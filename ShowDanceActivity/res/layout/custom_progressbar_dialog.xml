@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_win" >
+
+
+            <TextView
+                android:id="@+id/uploading_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="正在上传视频..."
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_15" />
+
+            <com.android.app.showdance.widget.MyProgressBar
+                android:id="@+id/uploading_proressbar"
+                style="@style/ProgressBar_Mini"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:progress="100" />
+    </RelativeLayout>
+
+</RelativeLayout>

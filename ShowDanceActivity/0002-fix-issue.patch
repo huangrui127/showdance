@@ -1,0 +1,178 @@
+From 9f601076275cb1118e670d6395ab9a22916ee2d9 Mon Sep 17 00:00:00 2001
+From: diegoguo <morphyguo@gmail.com>
+Date: Fri, 8 Jul 2016 23:53:50 +0800
+Subject: [PATCH 2/4] fix issue
+
+---
+ proguard-project.txt                               | 30 ++++++++++++++++++++++
+ .../showdance/adapter/UploadedVideoAdapter.java    |  2 +-
+ .../android/app/showdance/logic/VolleyManager.java |  6 +++--
+ src/gl/live/danceshow/media/MediaEngine.java       |  2 +-
+ .../live/danceshow/ui/camera/CenteredPreview.java  |  4 +--
+ .../danceshow/ui/widget/AspectTextureView.java     | 10 +++++++-
+ 6 files changed, 47 insertions(+), 7 deletions(-)
+
+diff --git a/proguard-project.txt b/proguard-project.txt
+index e8856da..bc8d90e 100644
+--- a/proguard-project.txt
++++ b/proguard-project.txt
+@@ -26,6 +26,11 @@
+ -ignorewarnings
+ -verbose 
+ -optimizations !code/simplification/arithmetic,!field/*,!class/merging/* 
++
++-keepattributes Exceptions,InnerClasses,Signature
++-keepattributes *Annotation*
++-keepattributes SourceFile,LineNumberTable
++
+ -keep public class * extends android.app.Activity
+ -keep public class * extends android.app.Application
+ -keep public class * extends android.app.Service
+@@ -34,7 +39,32 @@
+ -keep public class * extends android.app.backup.BackupAgentHelper 
+ -keep public class * extends android.preference.Preference
+ -keep public class com.android.vending.licensing.ILicensingService
++-keep public class com.android.app.showdance.model.Location
++-keep public class com.android.app.wumeiniang.** {
++*;
++}
++-keep public class com.android.app.wumeiniang.app.** {
++*;
++}
+ 
++-keep public class com.android.app.showdance.** {
++*;
++}
++-keep public class com.android.app.showdance.model.** {
++*;
++}
++
++-keep public class com.android.app.showdance.model.glmodel.FrameInfo$* {
++*;
++}
++
++-keep public class com.android.app.showdance.model.glmodel.** {
++*;
++}
++
++-keep public class com.android.app.showdance.model.glmodel.MusicInfo$* {
++*;
++}
+ 
+ -libraryjars libs/android-async-http-1.4.8.jar(!META-INF/MANIFEST.MF)
+ -libraryjars libs/aspectjrt-1.7.3.jar(!META-INF/MANIFEST.MF)
+diff --git a/src/com/android/app/showdance/adapter/UploadedVideoAdapter.java b/src/com/android/app/showdance/adapter/UploadedVideoAdapter.java
+index 6b2076f..ec67f5b 100644
+--- a/src/com/android/app/showdance/adapter/UploadedVideoAdapter.java
++++ b/src/com/android/app/showdance/adapter/UploadedVideoAdapter.java
+@@ -117,7 +117,7 @@ public class UploadedVideoAdapter extends BaseAdapter {
+ 	 */
+ 	@Override
+ 	public int getViewTypeCount() {
+-		return recordedVideoList.size();
++		return 1;//recordedVideoList.size();
+ 	}
+ 
+ 	public final class ViewHolder {
+diff --git a/src/com/android/app/showdance/logic/VolleyManager.java b/src/com/android/app/showdance/logic/VolleyManager.java
+index fc3d104..19d7ce9 100644
+--- a/src/com/android/app/showdance/logic/VolleyManager.java
++++ b/src/com/android/app/showdance/logic/VolleyManager.java
+@@ -33,7 +33,7 @@ public class VolleyManager  {
+ 	private static final String TAG = "VolleyManager";
+ 	private static VolleyManager mVolleyManager;
+ 	private RequestQueue mQueue;
+-	
++	private static boolean DEBUG = false;
+ 	public static final String CLIENT_ID = "4b2fb6135ff764965febf424057697e9";
+ 	
+ 	public static String SERVER_URL= "http://112.74.83.166:82";
+@@ -79,6 +79,7 @@ public class VolleyManager  {
+ 		ObjectMapper objectMapper = new ObjectMapper();
+ 		String result
+ 			 = objectMapper.writeValueAsString(req);
++		if(DEBUG)
+ 		Log.i(TAG,"postRequest "+result);
+ 		JSONObject json;
+ 			json = new JSONObject(result);
+@@ -122,7 +123,8 @@ public class VolleyManager  {
+ 		@Override
+ 		public void onResponse(JSONObject response) {
+ 			String json = response.toString();
+-			Log.d(TAG,"onResponse = "+json);
++			if(DEBUG)
++				Log.d(TAG,"onResponse = "+json);
+ 			if(clazz ==null) {
+ 				onMyResponse(null);
+ 				return;
+diff --git a/src/gl/live/danceshow/media/MediaEngine.java b/src/gl/live/danceshow/media/MediaEngine.java
+index 11f3756..230c610 100644
+--- a/src/gl/live/danceshow/media/MediaEngine.java
++++ b/src/gl/live/danceshow/media/MediaEngine.java
+@@ -48,7 +48,7 @@ public class MediaEngine implements SurfaceTexture.OnFrameAvailableListener , On
+     private static final String TAG = "MediaEngine";
+     
+     private static final int AUDIO_BITRATE= 64000;//128kb/s
+-	private static final int VIDEO_BITRATE = 1500000;
++	private static final int VIDEO_BITRATE = 1000000;
+ 	private int PREVIEW_WIDTH = 640;
+ 	private int PREVIEW_HEIGHT = 360;
+     private MediaExtractor mAudioExtractor;
+diff --git a/src/gl/live/danceshow/ui/camera/CenteredPreview.java b/src/gl/live/danceshow/ui/camera/CenteredPreview.java
+index f9e77f5..0dd995f 100644
+--- a/src/gl/live/danceshow/ui/camera/CenteredPreview.java
++++ b/src/gl/live/danceshow/ui/camera/CenteredPreview.java
+@@ -116,7 +116,7 @@ public class CenteredPreview extends FrameLayout implements TextureView.SurfaceT
+ //        requestLayoutParent();
+ 
+         if (hasFocusFunction(camera)) {
+-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
++            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+         }
+         camera.setParameters(parameters);
+     }
+@@ -138,7 +138,7 @@ public class CenteredPreview extends FrameLayout implements TextureView.SurfaceT
+     private boolean hasFocusFunction(Camera camera) {
+         List<String> supportedFocusModes = camera.getParameters().getSupportedFocusModes();
+         if (supportedFocusModes != null)
+-            return supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
++            return supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+         return false;
+     }
+ 
+diff --git a/src/gl/live/danceshow/ui/widget/AspectTextureView.java b/src/gl/live/danceshow/ui/widget/AspectTextureView.java
+index 6f0a5b9..a9bbab9 100644
+--- a/src/gl/live/danceshow/ui/widget/AspectTextureView.java
++++ b/src/gl/live/danceshow/ui/widget/AspectTextureView.java
+@@ -4,14 +4,17 @@ import android.content.Context;
+ import android.support.annotation.NonNull;
+ import android.util.AttributeSet;
+ import android.util.Log;
++import android.view.MotionEvent;
+ import android.view.SurfaceView;
+ import android.view.TextureView;
++import android.view.View;
++import android.view.View.OnTouchListener;
+ 
+ /**
+  * 根据宽度，调整宽高比的SurfaceView
+  * Created by zhengxiao on 14-2-28.
+  */
+-public class AspectTextureView extends TextureView {
++public class AspectTextureView extends TextureView implements OnTouchListener {
+     private double aspectRatio = 3.0 / 4.0;//4.0 / 3.0;
+ 
+     public AspectTextureView(Context context) {
+@@ -66,4 +69,9 @@ public class AspectTextureView extends TextureView {
+     public interface OnFrameUpdateListener {
+     	void OnFrameUpdate(TextureView texture);
+     }
++
++	@Override
++	public boolean onTouch(View v, MotionEvent event) {
++		return false;
++	}
+ }
+-- 
+1.9.1
+

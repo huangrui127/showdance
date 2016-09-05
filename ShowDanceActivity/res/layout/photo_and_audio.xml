@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <ScrollView
+        android:id="@+id/context_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:fillViewport="true"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/account_state_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="200.0dip" >
+
+                <ImageView
+                    android:id="@+id/iv_food_bg_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200.0dip"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="40.0dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_mask" />
+
+                <TextView
+                    android:id="@+id/dmltv_mother_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="5.0dip"
+                    android:layout_marginRight="5.0dip"
+                    android:layout_toLeftOf="@+id/rl_head"
+                    android:text="张三"
+                    android:textColor="#ff333333"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:id="@+id/rl_head"
+                    android:layout_width="80.0dip"
+                    android:layout_height="80.0dip"
+                    android:layout_alignBottom="@id/dmltv_mother_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/head_portrait" />
+
+                <!--
+                <RelativeLayout
+                    android:id="@+id/rl_head"
+                    android:layout_width="95.0dip"
+                    android:layout_height="95.0dip"
+                    android:layout_alignBottom="@id/dmltv_mother_name"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="10dip" >
+
+                    <include
+                        android:layout_width="75.0dip"
+                        android:layout_height="75.0dip"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        layout="@layout/include_head_round" />
+                </RelativeLayout>
+                -->
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:divider="@drawable/separator"
+                android:orientation="vertical"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="8.0dip"
+                android:showDividers="middle" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="80dip"
+                        android:layout_height="80dip"
+                        android:gravity="center_vertical"
+                        android:text="今天"
+                        android:textSize="25dip" />
+
+                    <ImageView
+                        android:id="@+id/take_photo_img"
+                        android:layout_width="80dip"
+                        android:layout_height="80dip"
+                        android:background="@drawable/photo"
+                        android:scaleType="fitXY"
+                        android:gravity="center_vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/release_photo_audio_lv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:divider="@null" >
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="@drawable/bg_half"
+            android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/stage_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="艺名:"
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableBottom="@drawable/phone_me"
+                        
+                        android:textSize="18.0sp" />
+</LinearLayout>
+   
+<!--  
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/account_state_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="120dip"
+                android:background="@drawable/bg_person"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dip"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/headPortrait"
+                    android:layout_width="65dip"
+                    android:layout_height="65dip"
+                    android:layout_gravity="center"
+                    android:background="@drawable/goods_list_item_bg"
+                    android:padding="4dip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/found_a" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:textColor="@color/white" >
+
+                    <TextView
+                        android:id="@+id/stage_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="艺名:"
+                        android:textColor="@color/white"
+                        android:textSize="18.0sp" />
+
+                    <TextView
+                        android:id="@+id/show_dance_id_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="秀舞吧号:"
+                        android:textColor="@color/white"
+                        android:textSize="16.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10.0dip"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@drawable/arrow_right_gray"
+                        android:src="@drawable/arrow_right_gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/not_login_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="120dip"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_person"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dip"
+                android:visibility="visible" >
+
+                <ImageView
+                    android:layout_width="65dip"
+                    android:layout_height="65dip"
+                    android:layout_gravity="center"
+                    android:background="@drawable/goods_list_item_bg"
+                    android:padding="4dip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/head_portrait" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="点击登录"
+                    android:textColor="@color/white"
+                    android:textSize="18.0sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10.0dip"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@drawable/arrow_right_gray"
+                        android:src="@drawable/arrow_right_gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <LinearLayout
+                    android:id="@+id/personal_msg_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:background="@drawable/selector_row_btn_style"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="6dip"
+                        android:background="@drawable/my_userinfo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dip"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="6dip"
+                        android:text="个人信息"
+                        android:textColor="@color/base_black"
+                        android:textSize="@dimen/textsize_18" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="right"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/fnmd_dance_team_sign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/arrow_right_gray"
+                            android:gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <include layout="@layout/listview_divider_line" />
+
+                    <LinearLayout
+                        android:id="@+id/gold_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dip"
+                        android:background="@drawable/gary_item_click"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="6dip"
+                            android:text="我的积分"
+                            android:textColor="@color/base_black"
+                            android:textSize="18dip" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text=""
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/listview_divider_line"
+                        android:visibility="gone" />
+
+                    <include
+                        layout="@layout/listview_divider_line"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/vip_yes_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dip"
+                        android:background="@drawable/gary_item_click"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="6dip"
+                            android:text="账户信息"
+                            android:textColor="@color/base_black"
+                            android:textSize="18dip" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text=""
+                                android:textColor="@color/base_black" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/shape_rounded_miaobian"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/MyDance_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dip"
+                        android:background="@drawable/gary_item_click"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="6dip"
+                            android:text="我的舞队"
+                            android:textColor="@color/base_black"
+                            android:textSize="18dip" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="凤凰舞队"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+-->
+                    <include layout="@layout/listview_divider_line" />
+
+                   <!--  <LinearLayout
+                        android:id="@+id/album_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dip"
+                        android:background="@drawable/selector_top_btn_style"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/my_showdance" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dip"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dip"
+                            android:text="我的秀舞"
+                            android:textColor="@color/base_black"
+                            android:textSize="@dimen/textsize_18" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/showdanceNum_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="0"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    --> 
+<!--
+                    <LinearLayout
+                        android:id="@+id/I_focus_the_team_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dip"
+                        android:background="@drawable/selector_middle_btn_style"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/my_attention" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dip"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dip"
+                            android:text="我的关注"
+                            android:textColor="@color/base_black"
+                            android:textSize="@dimen/textsize_18" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/I_focus_the_team_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="0"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/My_Fans_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dip"
+                        android:background="@drawable/selector_middle_btn_style"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/my_fans" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dip"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dip"
+                            android:text="我的粉丝"
+                            android:textColor="@color/base_black"
+                            android:textSize="@dimen/textsize_18" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/My_Fans_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="0"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/DownloadAV_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dip"
+                        android:background="@drawable/selector_bottom_btn_style"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/my_downloaded" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dip"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dip"
+                            android:text="我的下载"
+                            android:textColor="@color/base_black"
+                            android:textSize="@dimen/textsize_18" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/DownloadAV_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="0"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/DownloadMusic_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dip"
+                        android:background="@drawable/gary_item_click"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="6dip"
+                            android:text="已下载舞曲"
+                            android:textColor="@color/base_black"
+                            android:textSize="18dip" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="10dip"
+                                android:text="5"
+                                android:textColor="@color/color_gray" />
+
+                            <ImageView
+                                android:id="@+id/fnmd_dance_team_sign"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arrow_right_gray"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/selector_row_btn_style"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="6dip"
+                        android:background="@drawable/my_setting" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dip"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dip"
+                        android:text="更多设置"
+                        android:textColor="@color/base_black"
+                        android:textSize="@dimen/textsize_18" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="right"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/the_stage_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/base_black" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dip"
+                            android:layout_marginRight="5dip"
+                            android:background="@drawable/arrow_right_gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/selector_row_btn_style"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="6dip"
+                        android:background="@drawable/umeng_socialize_qq_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dip"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dip"
+                        android:text="秀舞吧官方交流群"
+                        android:textColor="@color/base_black"
+                        android:textSize="@dimen/textsize_18" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="right"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:text="336432749"
+                            android:textColor="@color/base_black"
+                            android:textSize="@dimen/textsize_15" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dip"
+                            android:layout_marginRight="5dip"
+                            android:background="@drawable/arrow_right_gray"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>-->
+    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dip"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dip"
+                        android:text="视频空间"
+                        android:textColor="@color/base_black"
+                        android:textSize="@dimen/textsize_20" />
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+     <com.fortysevendeg.swipelistview.SwipeListView
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/uploadedlist"
+            android:listSelector="#00000000"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            swipe:swipeFrontView="@+id/front"
+            swipe:swipeBackView="@+id/back"
+            swipe:swipeMode="left"
+            swipe:swipeActionLeft="reveal" 
+            android:layout_above="@+id/logout_btn"
+            swipe:swipeCloseAllItemsWhenMoveList="true"
+            swipe:swipeOpenOnLongPress="false"
+            swipe:swipeOffsetLeft="300dp"
+            android:layout_marginBottom="3dp"
+            />
+<Button
+                    android:id="@+id/logout_btn"
+                    style="@style/button_style"
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_normal_selector"
+                    android:text="退出登录"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/white" />
+</RelativeLayout>
+</LinearLayout>

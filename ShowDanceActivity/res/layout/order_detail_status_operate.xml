@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50.0dip"
+    android:layout_marginTop="8.0dip" >
+
+    <TextView
+        android:id="@+id/order_status"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="下单成功"
+        android:textColor="@color/font_gray_new"
+        android:textSize="16.0sp" />
+
+    <Button
+        android:id="@+id/order_operte"
+        style="@style/button_style"
+        android:layout_width="90.0dip"
+        android:layout_height="40.0dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/green_lucency_button"
+        android:focusable="false"
+        android:text="联系客服"
+        android:textColor="@drawable/green_lucency_textview_color" />
+
+</RelativeLayout>

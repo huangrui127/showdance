@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/letter_sort_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="28.0dip"
+            android:background="@color/activity_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="8.0dip"
+            android:text="A"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/found_a_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/a_img"
+                android:layout_width="65dip"
+                android:layout_height="65dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/found_a"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/dance_man_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:paddingTop="5dip"
+                        android:text="阿苏"
+                        android:textColor="@color/base_black" />
+
+                    <TextView
+                        android:id="@+id/dance_man_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="男"
+                        android:textColor="@color/red" />
+
+                    <TextView
+                        android:id="@+id/isTeamHeader_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="(队长)"
+                        android:textColor="@color/base_black" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:paddingRight="5dip" >
+
+                        <TextView
+                            android:id="@+id/dance_man_distance_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="30dip"
+                            android:paddingTop="5dip"
+                            android:text="300"
+                            android:textColor="@color/color_gray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="米以内"
+                            android:textColor="@color/color_gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:text="所属:"
+                        android:textColor="@color/base_black" />
+
+                    <TextView
+                        android:id="@+id/dance_team_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="凤凰舞队"
+                        android:textColor="@color/color_gray" />
+
+                    <TextView
+                        android:id="@+id/dance_team_starLevel_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:paddingTop="5dip"
+                        android:text="3星级"
+                        android:textColor="@color/color_gray" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

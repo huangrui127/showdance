@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ayb="http://schemas.android.com/apk/res/com.ayibang.ayb"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="10.0dip"
+            android:paddingBottom="50.0dip" >
+
+            <TextView
+                style="@style/form_text_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="输入您的投诉内容" />
+
+            <EditText
+                android:id="@+id/content"
+                style="@style/editetext_style"
+                android:layout_width="fill_parent"
+                android:layout_height="100.0dip"
+                android:layout_marginTop="10.0dip"
+                android:gravity="top|left|center"
+                android:imeOptions="actionSend"
+                android:padding="10.0dip"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/commit"
+                style="@style/button_style"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/btn_finish_selector"
+                android:text="提交投诉"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/edittext_bg"
+                android:orientation="vertical"
+                android:padding="14.0dip"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="@color/font_orange"
+                    android:textSize="18.0sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="阿姨帮会根据用户的投诉对保洁员进行处罚，严重者会直接下岗。用户需要对自己撰写的投诉负责，如因用户对保洁员的虚假投诉造成保洁员受到的处罚不当，用户负有部分责任，情节严重者，保洁员有权利向阿姨帮甚至相关单位（包括但不限于公安机关、中国妇女协会等相关机构）进行申诉。"
+                    android:textColor="@color/font_gray"
+                    android:textSize="16.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

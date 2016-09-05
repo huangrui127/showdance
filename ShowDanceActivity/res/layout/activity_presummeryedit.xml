@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <com.android.app.showdance.widget.AspectLinearLayout
+        android:id="@+id/editor_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tab_bottom_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+        <EditText
+                android:id="@+id/video_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@null"
+                android:focusableInTouchMode="true"
+                android:hint="歌曲名字"
+                android:singleLine="true"
+                android:textColor="@color/white" 
+                android:textColorHint="#b0c6ce"
+                android:textSize="@dimen/textsize_26" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dip" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/compose"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center|right"
+                    android:padding="5.0dip"
+                    android:text="舞曲制作:"
+                    android:textSize="@dimen/textsize_12" 
+                    android:textColor="@color/white" />
+
+                <EditText
+                android:id="@+id/compose_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:focusableInTouchMode="true"
+                android:hint="请输入作曲人或歌手(可不填)"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="@color/white" 
+                android:textColorHint="#b0c6ce"
+                android:textSize="@dimen/textsize_12" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/singer"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:layout_marginLeft="50dp"
+                    android:padding="5.0dip"
+                    android:text="编        舞:"
+                    android:textSize="@dimen/textsize_12" 
+                    android:textColor="@color/white" />
+
+                <EditText
+                android:id="@+id/singer_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2.0dip"
+                android:background="@null"
+                android:layout_marginRight="20dp"
+                android:focusableInTouchMode="true"
+                android:hint="请输入编舞老师姓名(可不填)"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="@color/white" 
+                android:textColorHint="#b0c6ce"
+                android:textSize="@dimen/textsize_12" />
+            </LinearLayout>
+ <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dancer"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:padding="5.0dip"
+                    android:layout_marginLeft="50dp"
+                    android:text="表  演  者:"
+                    android:textSize="@dimen/textsize_12" 
+                    android:textColor="@color/white" />
+
+                <EditText
+                android:id="@+id/dancer_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:focusableInTouchMode="true"
+                android:hint="请输入表演者姓名(可不填)"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="@color/white" 
+                android:textColorHint="#b0c6ce"
+                android:textSize="@dimen/textsize_12" />
+            </LinearLayout>
+           <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/golden_words"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:layout_marginLeft="50dp"
+                    android:padding="5.0dip"
+                    android:text="舞蹈宣言:"
+                    android:textSize="@dimen/textsize_12" 
+                    android:textColor="@color/white" />
+
+                <EditText
+                android:id="@+id/golden_words_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="2.0dip"
+                android:background="@null"
+                android:focusableInTouchMode="true"
+                android:hint="请输入你想对舞友说的话(可不填)"
+                android:padding="2.0dip"
+                android:textColor="@color/white" 
+                android:textColorHint="#b0c6ce"
+                android:textSize="@dimen/textsize_12" />
+            </LinearLayout>
+            </LinearLayout>
+        </com.android.app.showdance.widget.AspectLinearLayout>
+
+
+ <ImageButton
+            android:id="@+id/btn_picker"
+            android:layout_marginTop="-35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_edit_selector"
+            android:layout_gravity="center" />
+
+  <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5.0dip" >
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:padding="5.0dip"
+                    android:text="字体颜色"
+                    android:textColor="@color/black" />
+
+             <SeekBar
+                android:id="@+id/video_text_color"
+                style="@style/Widget.SeekBar.Normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:layout_marginRight="20dp"
+                android:thumbOffset="0dp"
+                android:progress="3"
+                android:max="7"
+               />
+            </LinearLayout>
+                      <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill_horizontal"
+                    android:textSize="10sp"
+                    android:text="添加片头，每张图片显示3秒，最多可添加5张图片，请根据前奏时长把握"
+                    android:textColor="@color/black" />
+  <!--  
+       <com.viewpagerindicator.TabPageIndicator  
+        android:id="@+id/indicator"  
+        android:layout_width="0dp"
+        android:layout_weight="1"
+       android:layout_height="wrap_content" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="3dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+  -->
+  <HorizontalScrollView 
+      android:layout_width="fill_parent"
+      android:layout_height="140dp"
+      >
+             <LinearLayout android:layout_width="wrap_content"
+      android:layout_height="140dp"
+      android:orientation="horizontal">
+          <ImageView 
+              android:id="@+id/imag2"
+              android:layout_width="240dp"
+	      android:layout_height="135dp"
+	       android:scaleType="center"
+	      android:src="@drawable/img_settings_btn"
+	      android:background="@color/main_tab_bottom_bg"
+              />
+      
+        <ImageView 
+              android:id="@+id/imag3"
+              android:layout_width="240dp"
+	      android:layout_height="135dp"
+	      android:layout_marginLeft="2dp"
+	       android:scaleType="center"
+	      android:src="@drawable/img_settings_btn"
+	      android:background="@color/main_tab_bottom_bg"
+              />
+          <ImageView 
+              android:id="@+id/imag4"
+              android:layout_width="240dp"
+	      android:layout_height="135dp"
+	       android:scaleType="center"
+	      android:src="@drawable/img_settings_btn"
+	      android:layout_marginLeft="2dp"
+	      android:background="@color/main_tab_bottom_bg"
+              />
+            <ImageView 
+              android:id="@+id/imag5"
+              android:layout_width="240dp"
+	      android:layout_height="135dp"
+	      android:layout_marginLeft="2dp"
+	      android:scaleType="center"
+	      android:src="@drawable/img_settings_btn"
+	      android:background="@color/main_tab_bottom_bg"
+              />
+            </LinearLayout>
+  </HorizontalScrollView>
+  
+  <Button
+            android:id="@+id/btn_video_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_normal_selector"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_14" />
+</LinearLayout>

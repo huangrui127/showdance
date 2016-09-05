@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <ScrollView
+        android:id="@+id/context_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:fillViewport="true"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/account_state_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="230.0dip" >
+
+                <ImageView
+                    android:id="@+id/background_wall_img"
+                    android:layout_width="fill_parent"
+                    android:layout_height="230.0dip"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="40.0dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_mask" />
+
+                <TextView
+                    android:id="@+id/dmltv_mother_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="5.0dip"
+                    android:layout_marginRight="5.0dip"
+                    android:layout_toLeftOf="@+id/rl_head"
+                    android:text="张三"
+                    android:textColor="#ff333333"
+                    android:textSize="18.0sp" />
+
+                <ImageView
+                    android:id="@+id/rl_head"
+                    android:layout_width="80.0dip"
+                    android:layout_height="80.0dip"
+                    android:layout_alignBottom="@id/dmltv_mother_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/head_portrait" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/personal_sign_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginRight="5.0dip"
+                    android:text="看花开花落。。。看花开花落看花开花落。。。"
+                    android:textColor="@color/color_gray"
+                    android:textSize="16.0sp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/personal_photo_lv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:divider="@null" >
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

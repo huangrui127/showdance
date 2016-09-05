@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.app.wumeiniang"
+    android:versionCode="162"
+    android:versionName="5.1.6" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="23" />
+
+    <!-- Push service 运行需要的权限 -->
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问wifi网络信息,wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 指定添加安装快捷方式的权限 -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+
+    <!-- 请求访问使用照相设备 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> 
+    <!-- 语音录音 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 这个权限用于获取wifi的获取权限,wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 允许应用读取低级别的系统日志文件 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <permission
+        android:name="android.permission.FLASHLIGHT"
+        android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+        android:protectionLevel="normal" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name="com.android.app.wumeiniang.app.InitApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_logo"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name="com.android.app.showdance.ui.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+    <service   
+              android:name="com.android.app.showdance.logic.UpdateService"  
+              android:enabled="true"  
+              >  
+          </service>  
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="VeDAh0XdUtfBqUYSRgPQzcZP" />
+
+        <activity
+            android:name="zhengxiao.videoman.lib.ui.camera.CameraPreviewActivity"
+            android:screenOrientation="landscape" >
+           </activity>
+        <activity
+            android:name="zhengxiao.videoman.lib.ui.camera.VideoReviewActivity"
+            android:screenOrientation="landscape" />
+
+        <service android:name="zhengxiao.videoman.lib.services.VideoConversionService" />
+
+        <!-- 欢迎界面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 引导界面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 首页 -->
+        <activity
+            android:name="com.android.app.showdance.ui.HomePageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 首页——各个城市 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.ShowCityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 首页——各个城市 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.SelectCtiyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 粉丝贡献榜 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FansContributionListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 视频详情——【评论】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.VideoCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 视频详情——【发表评论】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.VideoPublishCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的舞友 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.MyFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我关注的舞队 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.IfocusedTheDanceTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现 -->
+        <activity
+            android:name="com.android.app.showdance.ui.FoundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+ <activity
+            android:name="com.android.app.showdance.ui.CameraMoreFramActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+ <activity
+            android:name="com.android.app.showdance.ui.CameraAvatorFramActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+ <activity
+            android:name="com.android.app.showdance.ui.TeacherOfFrameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+ <activity
+            android:name="com.android.app.showdance.ui.PreSummeryEditorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+ <activity
+            android:name="com.android.app.showdance.ui.BuyInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+ 
+ <activity
+            android:name="com.android.app.showdance.ui.UseIntroductionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+ 
+ <activity
+            android:name="com.android.app.showdance.ui.SplashActivity"
+            android:configChanges="keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 秀舞界面 -->
+        <activity
+            android:name="com.android.app.wumeiniang.ShowDanceActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar">
+            </activity>
+            
+        <!-- 明星老师界面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.TeacherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        
+         <!-- 明星老师歌曲界面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.TeacherDancerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现   附近舞友 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundNearManActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现-附近舞友-【舞友详情】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundNearManDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现-附近舞友-【舞友详情】-【个人相册】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundPersonalPhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现-【附近舞队】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundNearDanceTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现-附近舞队-【舞队详情】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundNearDanceTeamDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 【舞队成员】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.TheDanceMemberActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 发现-【搜舞队】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundSearchDanceTeamActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的 -->
+        <activity
+            android:name="com.android.app.showdance.ui.OwnerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【登录】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.OwnerLoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【注册-填写手机号】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.OwnerPhoneRegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【注册-设置秀舞吧号】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.OwnerRegisterDanceIdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【艺名修改】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usercenter.TheStageNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【验证原手机号】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.TheModifyOldPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【居住地修改】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usercenter.TheLivePlaceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【生日】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usercenter.TheBirthDayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【个性签名】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usercenter.TheSignatureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【修改密码】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.TheModifyPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【找回密码】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.TheFindPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 我的-【重置密码】页面 -->
+        <activity
+            android:name="com.android.app.showdance.ui.usermanager.TheResetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 账户详情 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.PersonalMsgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 关于——我的 -->
+        <activity
+            android:name="com.android.app.showdance.ui.more.OwnerAboutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 意见反馈——我的 -->
+        <activity
+            android:name="com.android.app.showdance.ui.more.OwnerFeedBack"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 更多——我的 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.OwnerMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 告诉朋友——我的 -->
+        <activity
+            android:name="com.android.app.showdance.ui.more.TellFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 新增加 -->
+        <!-- 发现 -【搜舞曲】 -->
+        <activity
+            android:name="com.android.app.showdance.ui.FoundSearchMusicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 摇一摇约舞 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundShakeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 随机约舞 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.FoundRamdomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 已下载舞曲 -->
+        <activity
+            android:name="com.android.app.showdance.ui.DownloadedMusicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 已录制视频 -->
+        <activity
+            android:name="com.android.app.showdance.ui.RecordedVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 视频详情 -->
+        <activity
+            android:name="com.android.app.showdance.ui.VideoDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <!-- 相册和视频 -->
+        <activity
+            android:name="com.android.app.showdance.ui.oa.PhotoAndAudioActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.android.app.showdance.ui.oa.OwnerDowmMusicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.android.app.showdance.ui.oa.ListToDanceVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 百度云视频播放 -->
+        <activity
+            android:name="com.android.app.showdance.ui.baidu.bvideo.VideoViewPlayingActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 维他蜜视频写入配置 -->
+
+        <activity
+            android:name="com.android.app.showdance.ui.vitamio.video.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <service
+            android:name="io.vov.vitamio.VitamioService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="io.vov.vitamio.IVitamioService" />
+            </intent-filter>
+        </service>
+
+        <!-- 维他蜜视频播放 -->
+       <!--   <activity
+            android:name="com.android.app.showdance.ui.vitamio.video.VideoPlayerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|navigation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="http" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="rtsp" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="rtmp" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="udp" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="tcp" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="file" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="content" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="mms" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="http" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="rtsp" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="rtmp" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="udp" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="tcp" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="file" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="content" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="mms" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/x-mpegurl" />
+                <data android:mimeType="application/vnd.apple.mpegurl" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:mimeType="application/x-mpegurl"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="rtsp" />
+                <data android:scheme="rtmp" />
+                <data android:scheme="mms" />
+                <data android:scheme="tcp" />
+                <data android:scheme="udp" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="video/*" />
+                <data android:mimeType="application/sdp" />
+                <data android:mimeType="application/octet-stream" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="ftp" />
+                <data android:scheme="rtsp" />
+                <data android:scheme="rtmp" />
+                <data android:scheme="mms" />
+                <data android:scheme="tcp" />
+                <data android:scheme="udp" />
+                <data android:scheme="gopher" />
+                <data android:mimeType="video/*" />
+                <data android:mimeType="audio/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="ftp" />
+                <data android:scheme="rtsp" />
+                <data android:scheme="rtmp" />
+                <data android:scheme="mms" />
+                <data android:scheme="tcp" />
+                <data android:scheme="udp" />
+                <data android:scheme="gopher" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.avi" />
+                <data android:pathPattern=".*\\.asf" />
+                <data android:pathPattern=".*\\.f4v" />
+                <data android:pathPattern=".*\\.flv" />
+                <data android:pathPattern=".*\\.mkv" />
+                <data android:pathPattern=".*\\.mpeg" />
+                <data android:pathPattern=".*\\.mpg" />
+                <data android:pathPattern=".*\\.mov" />
+                <data android:pathPattern=".*\\.rm" />
+                <data android:pathPattern=".*\\.vob" />
+                <data android:pathPattern=".*\\.wmv" />
+                <data android:pathPattern=".*\\.ts" />
+                <data android:pathPattern=".*\\.tp" />
+                <data android:pathPattern=".*\\.m3u" />
+                <data android:pathPattern=".*\\.m3u8" />
+                <data android:pathPattern=".*\\.m4v" />
+                <data android:pathPattern=".*\\.mp4" />
+            </intent-filter>
+        </activity>
+-->
+        <!-- 后台更新总调度服务 -->
+        <service android:name="com.android.app.showdance.logic.MainService" />
+
+        <!-- 注册验证码计时服务 -->
+        <service android:name="com.android.app.showdance.logic.RegisterCodeTimerService" />
+
+        <!-- 下载MP3服务 -->
+        <service android:name="com.android.app.showdance.logic.DownloadMediaService" />
+
+        <!-- 下载视频服务 -->
+        <service android:name="com.android.app.showdance.logic.DownloadViedoService" />
+
+        <!-- 上传视频服务 -->
+        <service android:name="com.android.app.showdance.logic.UploadViedoService" />
+
+        <!-- push应用定义消息receiver声明 -->
+        <receiver android:name="com.android.app.showdance.baidupush.MyPushMessageReceiver" >
+            <intent-filter>
+
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind,unbind,fetch,delete等反馈消息 -->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+
+        <!-- push必须的receviver和service声明 -->
+      <!--    <receiver
+            android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>-->
+      <!--   <receiver
+            android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>-->
+
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
+        <service
+            android:name="com.baidu.android.pushservice.CommandService"
+            android:exported="true" />
+        <!-- push结束 -->
+
+
+        <!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data
+            android:name="api_key"
+            android:value="VeDAh0XdUtfBqUYSRgPQzcZP" />
+
+        <service
+            android:name="com.speedtong.sdk.ECClientService"
+            android:exported="false" />
+
+<!-- 友盟自动更新服务 -->
+
+        <!-- *************************    分享相关的注册 START **************************** -->
+        <!-- 分享内容编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- 腾讯SSO授权的Activity注册 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1105468668" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 微信回调activity -->
+<activity
+   android:name=".wxapi.WXEntryActivity"
+   android:theme="@android:style/Theme.Translucent.NoTitleBar"
+   android:configChanges="keyboardHidden|orientation|screenSize"
+   android:exported="true"
+   android:screenOrientation="portrait" />
+        <!-- 人人SSO授权所需的OAuthActivity -->
+        <activity
+            android:name="com.renn.rennsdk.oauth.OAuthActivity"
+            android:configChanges="orientation|navigation|keyboardHidden" />
+
+        <!-- *************************    分享相关的注册 END **************************** -->
+		<activity
+            android:name="gl.live.danceshow.ui.camera.CameraPreviewActivity"
+            android:label="@string/app_name"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.PageIndicatorDefaults"
+            android:screenOrientation="landscape" >
+        </activity>
+
+		<meta-data
+            android:name="UMENG_APPKEY"
+            android:value="573ddcd767e58ede8b001e05" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" ></meta-data>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="48dip"
+    android:background="@drawable/bg_top" >
+
+    <ImageButton
+        android:id="@+id/title_bar_menu_left_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:background="@drawable/head_title_menu_left_bg"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/title_bar_return_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:background="@drawable/selector_bar_back"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/title_bar_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_20" />
+
+    <ImageButton
+        android:id="@+id/title_bar_more_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:background="@drawable/head_title_pulldown_bg"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/title_bar_menu_right_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:background="@drawable/title_bar_menu_right_open"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/btn_playerlrc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/desktop_playbt_b"
+        android:visibility="gone" />
+
+</RelativeLayout>

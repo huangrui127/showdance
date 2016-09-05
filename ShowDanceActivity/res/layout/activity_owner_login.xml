@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10.0dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/login_input_bg"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dip"/>
+
+            <EditText
+                android:id="@+id/owner_user_name_edt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:hint="请输入你的秀舞吧号/手机号"
+                android:inputType="text"
+                android:maxLength="20"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_clear_search_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5.0dip"
+                android:background="@drawable/selector_btn_search_clear_text_right"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/login_input_bg"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/login_icon_password" />
+
+            <EditText
+                android:id="@+id/owner_password_edt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:hint="请输入你的密码"
+                android:maxLength="20"
+                android:password="true"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_clear_search_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5.0dip"
+                android:background="@drawable/selector_btn_search_clear_text_right"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/loginRememberPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="10dip"
+            android:layout_weight="1"
+            android:button="@drawable/login_check"
+            android:text="记住密码"
+            android:textColor="@color/input_text_color"
+            android:textSize="@dimen/textsize_16" />
+
+        <Button
+            android:id="@+id/owner_login_btn"
+            style="@style/button_style"
+            android:layout_width="fill_parent"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/btn_finish_selector"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/owner_forget_old_password_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5.0dip"
+            android:gravity="center"
+            android:padding="5dip"
+            android:text="忘记了密码？"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_input_spreater"
+            android:background="@color/input_stroke" />
+
+        <Button
+            android:id="@+id/owner_register_btn"
+            style="@style/button_style"
+            android:layout_width="fill_parent"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/btn_green_selector"
+            android:text="用手机号注册"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</LinearLayout>

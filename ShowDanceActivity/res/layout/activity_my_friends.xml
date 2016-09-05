@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"        
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/chat_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:background="@drawable/btn_finish_selector"
+            android:layout_weight="1"
+            android:layout_margin="2dip"
+            android:text="最近聊天"
+            android:textColor="@color/white" />
+        
+        <Button
+            android:id="@+id/myfiens_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:background="@drawable/btn_finish_selector"
+            android:layout_margin="2dip"
+            android:layout_weight="1"
+            android:text="我的舞友(35)"
+            android:textColor="@color/white" />
+        
+         
+    </LinearLayout>
+    <ListView
+        android:id="@+id/myfiens_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:divider="@null">
+    </ListView>
+
+    <ListView
+        android:id="@+id/chat_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:visibility="gone"
+        android:divider="@null">
+    </ListView>
+    
+</LinearLayout>

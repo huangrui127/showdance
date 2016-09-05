@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+     <item android:maxLevel="5" android:drawable="@drawable/camera_focus_normal" />
+     <item android:maxLevel="6" android:drawable="@drawable/camera_focus_sucess" />
+     <item android:maxLevel="7" android:drawable="@drawable/camera_focus_fail" />
+</level-list>

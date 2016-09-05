@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_y" >
+
+    <ImageButton
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:background="@drawable/buyinfo_image_btn"
+        android:textSize="15.0sp" />
+
+    <RelativeLayout
+        android:id="@+id/buytips_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/close"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/buy_beauty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_tips" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buy_beauty"
+            android:background="@drawable/frame"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="33dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="该遮罩需付费，你可选择下载使用免费遮罩，或者联系舞媚娘官方电话："
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_18" />
+
+            <TextView
+                android:id="@+id/buytips_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/phone_btn"
+                android:clickable="true"
+                android:gravity="center|right"
+                android:paddingRight="10dp"
+                android:text="18963989616"
+                android:textColor="#a6104e"
+                android:textSize="@dimen/textsize_17" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="开通会员后，即可无限下载使用。"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_18" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.85"
+        android:background="#4d4d65"
+        android:orientation="vertical"
+        android:paddingLeft="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:drawableLeft="@drawable/icon_qq"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="舞媚娘官方QQ：3012138462"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:drawableLeft="@drawable/icon_group"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="QQ交流群：336432749"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:drawableLeft="@drawable/icon_wechat"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="微信：18963989616"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_18" />
+    </LinearLayout>
+
+</RelativeLayout>

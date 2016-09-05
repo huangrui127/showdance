@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="8.0dip"
+    android:layout_marginTop="16dip" >
+
+    <TextView
+        android:id="@+id/service_name_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_house"
+        android:gravity="center_vertical"
+        android:text="服务类型" />
+
+    <TextView
+        android:id="@+id/service_time_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_time"
+        android:gravity="center_vertical"
+        android:text="时间" />
+
+    <TextView
+        android:id="@+id/service_address_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_adress"
+        android:text="服务地址" />
+
+    <TextView
+        android:id="@+id/house_size_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_home"
+        android:text="平米" 
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/paid_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/moneyicon"
+        android:text="金额" 
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/frequency_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_refresh"
+        android:text="-----" 
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/items_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:visibility="gone">
+
+            <TextView
+                style="@style/order_flow_view_context_textview"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/icon_items"
+                android:text="商品" 
+                android:textColor="@color/black"/>
+
+            <TextView
+                style="@style/order_flow_view_context_textview"
+                android:layout_weight="1.0"
+                android:text="价钱"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/order_flow_view_context_textview"
+                android:layout_weight="1.0"
+                android:text="数量" 
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/items_name_tv"
+                style="@style/order_flow_view_context_textview"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/icon_none"
+                android:lineSpacingMultiplier="1.2"
+                android:minHeight="40.0dip"
+                android:text="-----" />
+
+            <TextView
+                android:id="@+id/items_price_tv"
+                style="@style/order_flow_view_context_textview"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:lineSpacingMultiplier="1.2"
+                android:minHeight="40.0dip"
+                android:text="-----" />
+
+            <TextView
+                android:id="@+id/items_count_tv"
+                style="@style/order_flow_view_context_textview"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:lineSpacingMultiplier="1.2"
+                android:minHeight="40.0dip"
+                android:text="-----" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/card_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_card"
+        android:text="-----" 
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/remark_tv"
+        style="@style/order_flow_view_context_textview"
+        android:drawableLeft="@drawable/icon_pencil"
+        android:text="-----" 
+        android:visibility="gone"/>
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/order_detail_status_operate"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:divider="@drawable/separator"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="8.0dip"
+        android:paddingRight="8.0dip"
+        android:showDividers="middle" >
+
+        <!-- android:background="@drawable/edittext_bg" -->
+
+        <TextView
+            android:id="@+id/release_dayofmonth_tv"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:gravity="center_vertical"
+            android:text="3月10日"
+            android:textSize="20dip" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/activity_bg"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/release_picture_img"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:background="@drawable/found_a"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/release_content_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:padding="5dip"
+                android:text="武大樱花园全程孕育在一种粉色的氛围中，乘着好天气大家可以去赏赏樱花的美景"
+                android:textSize="18dip" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

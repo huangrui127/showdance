@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_row_gray"
+    android:descendantFocusability="blocksDescendants" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imgDanceVideoSnapshot"
+            android:layout_width="fill_parent"
+            android:layout_height="135dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/imgPraiseNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/icon_flower" />
+
+        <TextView
+            android:id="@+id/tvPraiseNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@id/imgPraiseNum"
+            android:gravity="center"
+            android:textColor="#661900" />
+
+        <com.android.app.showdance.widget.CircleImageView
+            android:id="@+id/imgDanceVideoUserAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/imgDanceVideoSnapshot"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="90dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tvPraiseNum" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/imgDanceVideoSnapshot"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="-50dp" >
+
+            <!-- android:background="#7f000000" -->
+
+
+            <!-- 排名 -->
+
+            <TextView
+                android:id="@+id/tvTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dip"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_14"
+                android:visibility="visible" />
+
+            <!-- 用户名 -->
+
+            <TextView
+                android:id="@+id/tvDanceUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvTop"
+                android:gravity="left"
+                android:paddingLeft="5dip"
+                android:singleLine="true"
+                android:text="凤凰传奇"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_14" />
+
+            <!-- 视频名 -->
+
+            <TextView
+                android:id="@+id/tvDanceVideoName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDanceUser"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="5dip"
+                android:text="最炫民族风"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_14" />
+
+            <!-- 备注 -->
+
+            <TextView
+                android:id="@+id/tvDanceVideoRemark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/tvDanceVideoName"
+                android:gravity="left"
+                android:paddingLeft="5dip"
+                android:singleLine="true"
+                android:text="最炫民族风跳的好"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_14"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

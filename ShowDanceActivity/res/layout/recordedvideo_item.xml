@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal"
+        android:tag="back" >
+
+        <ImageButton
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_delete_big_selecter"
+            android:tag="delete_btn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/front"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/selector_row_gray"
+        android:orientation="horizontal"
+        android:tag="front" >
+
+        <ImageView
+            android:id="@+id/a_img"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/show_pressed" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="65dp"
+            android:layout_marginLeft="3dp" >
+
+            <TextView
+                android:id="@+id/music_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingTop="5dip"
+                android:text="小苹果"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_15" />
+
+            <TextView
+                android:id="@+id/music_singer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="5dip"
+                android:text="筷子兄弟"
+                android:textColor="@color/base_black" />
+
+            <TextView
+                android:id="@+id/music_size_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="下载量200"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/textsize_15" />
+
+            <TextView
+                android:id="@+id/download_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="下载量200"
+                android:textColor="@color/base_black"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/uploading_btn"
+                android:layout_width="64dip"
+                android:layout_height="30dip"
+                android:layout_toLeftOf="@+id/drag"
+                android:background="@drawable/selector_shape_rounded_style"
+                android:gravity="center"
+                android:text="上传"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/textsize_13" />
+
+            <ImageView
+                android:id="@+id/drag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/drag" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--
+<LinearLayout
+                android:id="@+id/uploading_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dip"
+                android:gravity="center_horizontal"
+                android:visibility="visible" >
+
+                <Button
+                    android:id="@+id/uploading_btn"
+                    android:layout_width="64dip"
+                    android:layout_height="30dip"
+                    android:background="@drawable/selector_shape_rounded_style"
+                    android:gravity="center"
+                    android:text="上传"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    android:textSize="@dimen/textsize_13" />
+
+                <Button
+                    android:id="@+id/edit_btn"
+                    android:layout_width="64dip"
+                    android:layout_height="30dip"
+                    android:background="@drawable/selector_shape_rounded_style"
+                    android:gravity="center"
+                    android:text="加片头"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize_13" />
+
+    -->
+
+</FrameLayout>

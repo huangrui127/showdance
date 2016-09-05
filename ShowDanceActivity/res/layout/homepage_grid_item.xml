@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/selector_gray"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/dance_video_image"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/found_a" >
+        </ImageView>
+
+        <!--
+             <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dance_video_image"
+            android:orientation="horizontal" >
+        -->
+
+        <TextView
+            android:id="@+id/top_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dance_video_image"
+            android:gravity="left"
+            android:padding="5dip"
+            android:text="1"
+            android:textColor="@color/base_black"
+            android:textSize="@dimen/textsize_16" />
+
+        <TextView
+            android:id="@+id/dance_user_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dance_video_image"
+            android:layout_toRightOf="@id/top_tv"
+            android:gravity="left"
+            android:padding="5dip"
+            android:text="凤凰传奇"
+            android:textColor="@color/base_black"
+            android:textSize="@dimen/textsize_14" />
+
+        <TextView
+            android:id="@+id/dance_video_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dance_video_image"
+            android:layout_toRightOf="@id/dance_user_tv"
+            android:gravity="left"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:text="小苹果广场舞"
+            android:textColor="@color/base_black"
+            android:textSize="@dimen/textsize_14" />
+        <!-- </RelativeLayout> -->
+    </RelativeLayout>
+
+</RelativeLayout>

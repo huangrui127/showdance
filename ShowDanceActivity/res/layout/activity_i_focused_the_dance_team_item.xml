@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/listview_divider_line" />
+
+    <LinearLayout
+        android:id="@+id/found_a_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/dance_team_img"
+                    android:layout_width="65dip"
+                    android:layout_height="65dip"
+                    android:background="@drawable/found_a"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.40"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:id="@+id/dance_team_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="凤凰舞队"
+                            android:textColor="@color/red"
+                            android:textSize="15dip" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="6dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="队长:"
+                            android:textColor="@color/base_black" />
+
+                        <TextView
+                            android:id="@+id/dance_team_header_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="张山"
+                            android:textColor="@color/base_black" />
+
+
+                        <TextView
+                            android:id="@+id/dance_team_num_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:text="队员10"
+                            android:textColor="@color/black_with_alpha" />
+
+                        <TextView
+                            android:layout_width="@dimen/login_input_spreater"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@color/color_gray" />
+
+                        <TextView
+                            android:id="@+id/dance_team_fansNum_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="粉丝10"
+                            android:textColor="@color/base_black" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/dance_team_sign_tv"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="6dip" 
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="人生莫过于三件事，吃饭睡觉广场舞！人生莫过于三件事，吃饭睡觉广场舞！"
+                        android:textColor="@color/color_gray"
+                        android:textSize="12dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/listview_divider_line" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

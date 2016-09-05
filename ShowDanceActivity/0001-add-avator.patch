@@ -1,0 +1,691 @@
+From 44bde6bf2d4d6e1f028088185d1fca04dc2c8d92 Mon Sep 17 00:00:00 2001
+From: diegoguo <morphyguo@gmail.com>
+Date: Fri, 22 Jul 2016 22:52:51 +0800
+Subject: [PATCH 1/2] add avator
+
+---
+ AndroidManifest.xml                                |   1 +
+ res/layout/controllerplaying.xml                   |  10 +-
+ .../app/showdance/ui/PreSummeryEditorActivity.java |  27 +--
+ .../app/showdance/ui/RecordedVideoActivity.java    |  27 ++-
+ .../app/showdance/ui/VolleyBaseActivity.java       |  10 +-
+ .../media/AvatorVideoSurfaceDrawnEvent.java        |  13 ++
+ src/gl/live/danceshow/media/MediaEngine.java       | 219 +++++++++++----------
+ .../media/TextureVideoSurfaceDrawEvent.java        |  45 +++++
+ .../danceshow/media/VideoSurfaceDrawEvent.java     |  97 +++++++++
+ .../ui/camera/AbsCameraPreviewActivity.java        |   1 -
+ .../danceshow/ui/camera/CameraPreviewActivity.java |   1 -
+ 11 files changed, 314 insertions(+), 137 deletions(-)
+ create mode 100644 src/gl/live/danceshow/media/AvatorVideoSurfaceDrawnEvent.java
+ create mode 100644 src/gl/live/danceshow/media/TextureVideoSurfaceDrawEvent.java
+ create mode 100644 src/gl/live/danceshow/media/VideoSurfaceDrawEvent.java
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index fc57843..9137323 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -445,6 +445,7 @@
+         <activity
+             android:name="com.android.app.showdance.ui.baidu.bvideo.VideoViewPlayingActivity"
+             android:configChanges="keyboardHidden|orientation"
++            android:screenOrientation="landscape"
+             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+             <intent-filter>
+                 <category android:name="android.intent.category.DEFAULT" />
+diff --git a/res/layout/controllerplaying.xml b/res/layout/controllerplaying.xml
+index 06081d6..8dd381e 100644
+--- a/res/layout/controllerplaying.xml
++++ b/res/layout/controllerplaying.xml
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/root1"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+@@ -6,14 +6,14 @@
+         <android.widget.VideoView
+             android:id="@+id/video_view"
+             android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_centerInParent="true" />
++            android:layout_height="match_parent"
++            android:layout_gravity="center" />
+ 
+     <LinearLayout
+         android:id="@+id/controlbar"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+-        android:layout_below="@+id/video_view"
++        android:layout_gravity="bottom"
+         android:orientation="vertical" >
+ 
+         <ImageView
+@@ -91,4 +91,4 @@
+         </RelativeLayout>
+     </LinearLayout>
+ 
+-</RelativeLayout>
+\ No newline at end of file
++</FrameLayout>
+\ No newline at end of file
+diff --git a/src/com/android/app/showdance/ui/PreSummeryEditorActivity.java b/src/com/android/app/showdance/ui/PreSummeryEditorActivity.java
+index efe402e..62d4974 100644
+--- a/src/com/android/app/showdance/ui/PreSummeryEditorActivity.java
++++ b/src/com/android/app/showdance/ui/PreSummeryEditorActivity.java
+@@ -1,5 +1,6 @@
+ package com.android.app.showdance.ui;
+ 
++import gl.live.danceshow.media.PreviewManager;
+ import gl.live.danceshow.media.StaticMediaEngine;
+ 
+ import java.io.File;
+@@ -646,7 +647,7 @@ public class PreSummeryEditorActivity extends BaseActivity {
+     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
+     private static final int PHOTO_REQUEST_CUT = 3;// 结果
+ 	
+-	File tmpJpgFile = new File(InitApplication.sdCardForegroundPath+"/tmp.jpg");
++	String tmpJpgFile = InitApplication.sdCardForegroundPath+"/tmp.jpg";
+     private void showDialog() {
+     	final CustomAlertDialog mCustomDialog = new CustomAlertDialog(PreSummeryEditorActivity.this).builder(R.style.DialogTVAnimWindowAnim);
+ 		mCustomDialog.setTitle("片头背景");
+@@ -658,7 +659,7 @@ public class PreSummeryEditorActivity extends BaseActivity {
+                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                         // 指定调用相机拍照后照片的储存路径
+                         
+-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(tmpJpgFile));
++                        intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.parse(tmpJpgFile));
+                         startActivityForResult(intent, PHOTO_REQUEST_TAKEPHOTO);
+                     }
+                 })
+@@ -678,7 +679,8 @@ public class PreSummeryEditorActivity extends BaseActivity {
+ 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+ 		switch (requestCode) {
+         case PHOTO_REQUEST_TAKEPHOTO:
+-            startPhotoZoom(Uri.fromFile(tmpJpgFile));
++        	if(data!=null)
++        		startPhotoZoom(data.getData());
+             break;
+ 
+         case PHOTO_REQUEST_GALLERY:
+@@ -688,7 +690,7 @@ public class PreSummeryEditorActivity extends BaseActivity {
+ 
+         case PHOTO_REQUEST_CUT:
+             if (data != null) 
+-                setPicToView(tmpJpgFile);
++                setPicToView(Uri.parse(tmpJpgFile));
+             break;
+         }
+         super.onActivityResult(requestCode, resultCode, data);
+@@ -703,24 +705,24 @@ public class PreSummeryEditorActivity extends BaseActivity {
+         Intent intent = new Intent("com.android.camera.action.CROP");
+         intent.setDataAndType(uri, "image/*");
+         // crop为true是设置在开启的intent中设置显示的view可以剪裁
+-        intent.putExtra("crop", "true");
++//        intent.putExtra("crop", "true");
+ 
+         // aspectX aspectY 是宽高的比例
+         intent.putExtra("aspectX", 16);
+         intent.putExtra("aspectY", 9);
+ 
+         // outputX,outputY 是剪裁图片的宽高
+-//        intent.putExtra("outputX", 1280);
+-//        intent.putExtra("outputY", 720);
++        intent.putExtra("outputX", PreviewManager.EXPECTED_PREVIEW_W);
++        intent.putExtra("outputY", PreviewManager.EXPECTED_PREVIEW_H);
+         intent.putExtra("return-data", false);
+-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tmpJpgFile));
++        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse(tmpJpgFile));
+         startActivityForResult(intent, PHOTO_REQUEST_CUT);
+     }
+ 
+     //将进行剪裁后的图片显示到UI界面上
+-    private void setPicToView(File file) {
++    private void setPicToView(Uri uri) {
+ //    		findViewById(R.id.login_status).setVisibility(file == null?View.GONE:View.VISIBLE);
+-    		if(file == null) {
++    		if(uri == null) {
+     			sBitmapList.clear();
+     			mEditor.setBackgroundColor(getResources().getColor(R.color.main_tab_bottom_bg));
+     			mEditor.setTag(null);
+@@ -738,10 +740,11 @@ public class PreSummeryEditorActivity extends BaseActivity {
+      			v.setTag(null);
+     			return;
+     		}
+-    		if(!file.exists() || curent == null)
++    		if(curent == null)
+     			return;
+     		
+-            Bitmap photo = BitmapFactory.decodeFile(file.getAbsolutePath());
++            Bitmap photo = BitmapFactory.decodeFile(uri.getPath());
++            Log.d("guolei","setPicToView photo "+photo.getWidth()+ " X  "+photo.getHeight());
+             Drawable drawable = new BitmapDrawable(photo);
+             curent.setBackgroundDrawable(drawable);
+             curent.setTag(new Object());
+diff --git a/src/com/android/app/showdance/ui/RecordedVideoActivity.java b/src/com/android/app/showdance/ui/RecordedVideoActivity.java
+index 96bb860..4e9b0c0 100644
+--- a/src/com/android/app/showdance/ui/RecordedVideoActivity.java
++++ b/src/com/android/app/showdance/ui/RecordedVideoActivity.java
+@@ -65,6 +65,7 @@ import com.android.app.showdance.model.glmodel.SignUpInfo.User;
+ import com.android.app.showdance.model.glmodel.VideoUploadInfo.ShowResponse;
+ import com.android.app.showdance.model.glmodel.VideoUploadInfo.VideoUploadResponse;
+ import com.android.app.showdance.model.glmodel.BaseRequest;
++import com.android.app.showdance.model.glmodel.ResponseFail;
+ import com.android.app.showdance.model.glmodel.VideoUploadInfo;
+ import com.android.app.showdance.ui.VolleyBaseActivity.OnResponseListener;
+ import com.android.app.showdance.ui.baidu.bvideo.VideoViewPlayingActivity;
+@@ -269,13 +270,13 @@ private MediaMetadataRetriever mRetriever;
+ 		
+ 		@Override
+ 		public void onClickFrontView(int position) {
+-//			Intent mIntent = new Intent();
+-//			mIntent.setClass(RecordedVideoActivity.this, VideoViewPlayingActivity.class);
+-//			mIntent.setData(Uri.parse(recordedVideoListInfo.get(position).getFilePath()));
+-//			startActivity(mIntent);
+-			Intent it = new Intent(Intent.ACTION_VIEW);  
+-	        it.setDataAndType(Uri.parse(recordedVideoListInfo.get(position).getFilePath()), "video/mp4");  
+-	        startActivity(it);
++			Intent mIntent = new Intent();
++			mIntent.setClass(RecordedVideoActivity.this, VideoViewPlayingActivity.class);
++			mIntent.setData(Uri.parse(recordedVideoListInfo.get(position).getFilePath()));
++			startActivity(mIntent);
++//			Intent it = new Intent(Intent.ACTION_VIEW);  
++//	        it.setDataAndType(Uri.parse(recordedVideoListInfo.get(position).getFilePath()), "video/mp4");  
++//	        startActivity(it);
+ 		}
+ 		
+ 		@Override
+@@ -667,6 +668,18 @@ private MediaMetadataRetriever mRetriever;
+ 							mRecordedVideoAdapter.notifyDataSetChanged();
+ 						}
+ 					}
++					
++					@Override
++					protected void handleFailResponse(ResponseFail response) {
++						runOnUiThread(new Runnable() {
++							
++							@Override
++							public void run() {
++								Toast.makeText(getApplicationContext(),"服务器请求失败!",
++										Toast.LENGTH_SHORT).show();
++							}
++						});
++					}
+ 				}, mErrorListener);
+ 		
+ 	}
+diff --git a/src/com/android/app/showdance/ui/VolleyBaseActivity.java b/src/com/android/app/showdance/ui/VolleyBaseActivity.java
+index 9ad2254..ece0370 100644
+--- a/src/com/android/app/showdance/ui/VolleyBaseActivity.java
++++ b/src/com/android/app/showdance/ui/VolleyBaseActivity.java
+@@ -117,8 +117,14 @@ public abstract class VolleyBaseActivity extends BaseActivity {
+ 
+ 	protected VolleyManager.ErrorListener mErrorListener = new VolleyManager.ErrorListener() {
+ 		public void onErrorResponse(com.android.volley.VolleyError error) {
+-//			Toast.makeText(getApplicationContext(), "error "+error.getMessage(),
+-//					Toast.LENGTH_SHORT).show();
++//			runOnUiThread(new Runnable() {
++//				
++//				@Override
++//				public void run() {
++//					Toast.makeText(getApplicationContext(),"网络异常!",
++//							Toast.LENGTH_SHORT).show();
++//				}
++//			});
+ 			Log.d("guolei",""+error.getMessage());
+ 			handleErrorResponse(error);
+ 		};
+diff --git a/src/gl/live/danceshow/media/AvatorVideoSurfaceDrawnEvent.java b/src/gl/live/danceshow/media/AvatorVideoSurfaceDrawnEvent.java
+new file mode 100644
+index 0000000..e6ff1f0
+--- /dev/null
++++ b/src/gl/live/danceshow/media/AvatorVideoSurfaceDrawnEvent.java
+@@ -0,0 +1,13 @@
++package gl.live.danceshow.media;
++
++import android.content.Context;
++
++public class AvatorVideoSurfaceDrawnEvent extends VideoSurfaceDrawEvent{
++
++	public AvatorVideoSurfaceDrawnEvent(MediaEngine engine, Context context) {
++		super(engine, context);
++	}
++	
++	
++	
++}
+\ No newline at end of file
+diff --git a/src/gl/live/danceshow/media/MediaEngine.java b/src/gl/live/danceshow/media/MediaEngine.java
+index 5f76996..fd7f70d 100644
+--- a/src/gl/live/danceshow/media/MediaEngine.java
++++ b/src/gl/live/danceshow/media/MediaEngine.java
+@@ -119,7 +119,7 @@ public class MediaEngine implements SurfaceTexture.OnFrameAvailableListener , On
+         ht.start();
+         mVideoSurfaceDraw = new Handler(ht.getLooper());
+         
+-        mVideoSurfaceDrawRunnable = new VideoSurfaceDrawEvent();
++        mVideoSurfaceDrawRunnable = new VideoSurfaceDrawEvent(this, mContext);
+     }
+     
+     public boolean initAudio(File file) throws IOException {
+@@ -687,121 +687,121 @@ public class MediaEngine implements SurfaceTexture.OnFrameAvailableListener , On
+     
+        public void setFixedLyricView(FixedLyricView view) {
+     	   if(mVideoSurfaceDrawRunnable== null) return;
+-    	   mVideoSurfaceDrawRunnable.mLyricView =view;
++    	   mVideoSurfaceDrawRunnable.setLyricView(view);
+        }
+         	
+     private boolean mAudioOK = false;
+     private boolean mVideoOK = false;
+     private int mTrackIndex = -1;
+-    private long mVideoDelayTime = 0;
++//    private long mVideoDelayTime = 0;
+     
+-    private class VideoSurfaceDrawEvent implements Runnable {
+-        private TextureView mTexture;
+-        private Drawable fg;
+-//        private Drawable prefg;
+-//        private boolean bFlip;
+-        private FixedLyricView mLyricView;
+-        private Paint mPaint;
+-        private float scale = 0.5f;
+-//        private boolean bpre;
+-//        private Matrix preMatrix;
+-        private  float scaledDensity;
+-        public VideoSurfaceDrawEvent() {
+-//        	textpaint.setTextSize(18);
+-//        	textpaint.setTypeface(Typeface.DEFAULT_BOLD);
+-//        	textpaint.setColor(Color.GREEN);
+-        	scaledDensity = mContext.getResources().getDisplayMetrics().scaledDensity;
+-        }
+-//        public void setCameraFlipFlag(boolean flip) {
+-////        	bFlip = flip;
+-////        	if(bFlip) {
+-////        	preMatrix = new Matrix();
+-////			preMatrix.postScale(-1, 1);
+-////        	} else {
+-////        		preMatrix = null;
+-////        	}
+-//		}
+-		@Override
+-        public void run() {
+-        	if(bStop || mLyricView == null || mTexture == null)
+-        		return;
+-//        	Bitmap buf = null;
+-        	long lag = System.nanoTime();
+-//        	try{
+-//        		buf = outputBitmap;//mTexture.getBitmap(PREVIEW_WIDTH, PREVIEW_HEIGHT);
+-//        		if(buf == null) return;
+-//        } catch (IllegalStateException e) {
+-//    		mMainHandler.removeCallbacks(this);
+-//    		mMainHandler.post(this);
+-//    		return;
+-//    	}
+-//        	 Log.d(TAG, "VideoSurfaceDrawEvent draw");
+-        	int version = Build.VERSION.SDK_INT;
+-        	Canvas canvas;
+-        	if(version>=Build.VERSION_CODES.M && Build.MODEL.equals("MI 5")) {
+-        		Log.d(TAG, "lockHardwareCanvas in");
+-        		canvas  = mVideoSurface.lockHardwareCanvas();
+-        		Log.d(TAG, "lockHardwareCanvas out");
+-        		if(canvas == null) return;
+-        	}else
+-        		canvas  = mVideoSurface.lockCanvas(null);
+-            try {
+-                Matrix mBitmapMatrix = mTexture.getTransform(null);
+-//                if(bFlip)
+-//                	mBitmapMatrix.postScale(-1, 1);
+-                synchronized (MediaEngine.this) {
+-                	Bitmap buf = outputBitmap;
+-                	  if(mPaint==null) {
+-                      	mPaint = new Paint(mLyricView.getPaint());
+-                      	mPaint.setTextSize(mLyricView.getTextSize()/scaledDensity);
+-                      	scale= (float)PreviewManager.EXPECTED_PREVIEW_H/(float)buf.getHeight();
+-                      }
+-                	if(mBitmapMatrix !=null) {
+-                		mBitmapMatrix.postScale(scale, scale);
+-                		buf = Bitmap.createBitmap(buf, 0, 0, outputBitmap.getWidth(), outputBitmap.getHeight(), mBitmapMatrix, true);
+-//                		buf = Bitmap.createScaledBitmap(buf, PREVIEW_WIDTH, PREVIEW_HEIGHT, true);
+-                	}
+-                	int h = buf.getHeight();
+-                	canvas.drawBitmap(buf,0,(PreviewManager.EXPECTED_PREVIEW_H-h)/2, null);
+-//                	buf.recycle();
+-                	Bitmap b= null;
+-//                	if(prefg !=null) {
+-//                		b = ((BitmapDrawable)prefg.getCurrent()).getBitmap();
+-//                		if(b!=null&& !b.isRecycled())
+-//                    		canvas.drawBitmap(b, 0,0, null);
++//    private class VideoSurfaceDrawEvent implements Runnable {
++//        private TextureView mTexture;
++//        private Drawable fg;
++////        private Drawable prefg;
++////        private boolean bFlip;
++//        private FixedLyricView mLyricView;
++//        private Paint mPaint;
++//        private float scale = 0.5f;
++////        private boolean bpre;
++////        private Matrix preMatrix;
++//        private  float scaledDensity;
++//        public VideoSurfaceDrawEvent() {
++////        	textpaint.setTextSize(18);
++////        	textpaint.setTypeface(Typeface.DEFAULT_BOLD);
++////        	textpaint.setColor(Color.GREEN);
++//        	scaledDensity = mContext.getResources().getDisplayMetrics().scaledDensity;
++//        }
++////        public void setCameraFlipFlag(boolean flip) {
++//////        	bFlip = flip;
++//////        	if(bFlip) {
++//////        	preMatrix = new Matrix();
++//////			preMatrix.postScale(-1, 1);
++//////        	} else {
++//////        		preMatrix = null;
++//////        	}
++////		}
++//		@Override
++//        public void run() {
++//        	if(bStop || mLyricView == null || mTexture == null)
++//        		return;
++////        	Bitmap buf = null;
++//        	long lag = System.nanoTime();
++////        	try{
++////        		buf = outputBitmap;//mTexture.getBitmap(PREVIEW_WIDTH, PREVIEW_HEIGHT);
++////        		if(buf == null) return;
++////        } catch (IllegalStateException e) {
++////    		mMainHandler.removeCallbacks(this);
++////    		mMainHandler.post(this);
++////    		return;
++////    	}
++////        	 Log.d(TAG, "VideoSurfaceDrawEvent draw");
++//        	int version = Build.VERSION.SDK_INT;
++//        	Canvas canvas;
++//        	if(version>=Build.VERSION_CODES.M && Build.MODEL.equals("MI 5")) {
++//        		Log.d(TAG, "lockHardwareCanvas in");
++//        		canvas  = mVideoSurface.lockHardwareCanvas();
++//        		Log.d(TAG, "lockHardwareCanvas out");
++//        		if(canvas == null) return;
++//        	}else
++//        		canvas  = mVideoSurface.lockCanvas(null);
++//            try {
++//                Matrix mBitmapMatrix = mTexture.getTransform(null);
++////                if(bFlip)
++////                	mBitmapMatrix.postScale(-1, 1);
++//                synchronized (MediaEngine.this) {
++//                	Bitmap buf = outputBitmap;
++//                	  if(mPaint==null) {
++//                      	mPaint = new Paint(mLyricView.getPaint());
++//                      	mPaint.setTextSize(mLyricView.getTextSize()/scaledDensity);
++//                      	scale= (float)PreviewManager.EXPECTED_PREVIEW_H/(float)buf.getHeight();
++//                      }
++//                	if(mBitmapMatrix !=null) {
++//                		mBitmapMatrix.postScale(scale, scale);
++//                		buf = Bitmap.createBitmap(buf, 0, 0, outputBitmap.getWidth(), outputBitmap.getHeight(), mBitmapMatrix, true);
++////                		buf = Bitmap.createScaledBitmap(buf, PREVIEW_WIDTH, PREVIEW_HEIGHT, true);
+ //                	}
+-                	if(fg!=null) {
+-                	b = ((BitmapDrawable)fg.getCurrent()).getBitmap();
+-//                	if(!bpre && preMatrix != null) {
+-//                		b = Bitmap.createBitmap(b, 0, 0, PREVIEW_WIDTH, PREVIEW_HEIGHT, preMatrix, true);
++//                	int h = buf.getHeight();
++//                	canvas.drawBitmap(buf,0,(PreviewManager.EXPECTED_PREVIEW_H-h)/2, null);
++////                	buf.recycle();
++//                	Bitmap b= null;
++////                	if(prefg !=null) {
++////                		b = ((BitmapDrawable)prefg.getCurrent()).getBitmap();
++////                		if(b!=null&& !b.isRecycled())
++////                    		canvas.drawBitmap(b, 0,0, null);
++////                	}
++//                	if(fg!=null) {
++//                	b = ((BitmapDrawable)fg.getCurrent()).getBitmap();
++////                	if(!bpre && preMatrix != null) {
++////                		b = Bitmap.createBitmap(b, 0, 0, PREVIEW_WIDTH, PREVIEW_HEIGHT, preMatrix, true);
++////                	}
++//                }
++//                	if(b!=null&& !b.isRecycled()){
++//                			canvas.drawBitmap(b, 0,0, null);
+ //                	}
+-                }
+-                	if(b!=null&& !b.isRecycled()){
+-                			canvas.drawBitmap(b, 0,0, null);
+-                	}
+-                String text = mLyricView.getText().toString();
+-                canvas.drawText(text, canvas.getWidth()/2-mPaint.measureText(text)/2,	 canvas.getHeight()-40, mPaint);
+-               }
+-            } finally {
+-                mVideoSurface.unlockCanvasAndPost(canvas);
+-            }
+-            mVideoDelayTime = (System.nanoTime()-lag)/1000;
+-            Log.w(TAG,"mVideoDelayTime "+mVideoDelayTime);
+-        }
+-
+-		public void setTexture(TextureView texture) {
+-			if(mTexture == null)
+-				mTexture = texture;
+-		}
+-		
+-		public void setSurfaceForeground(Drawable fg) {
+-			synchronized (this) {
+-				this.fg=fg;
+-//				this.prefg = prefg;
+-//				this.bpre = bpre;
+-			}
+-		}
+-    }
++//                String text = mLyricView.getText().toString();
++//                canvas.drawText(text, canvas.getWidth()/2-mPaint.measureText(text)/2,	 canvas.getHeight()-40, mPaint);
++//               }
++//            } finally {
++//                mVideoSurface.unlockCanvasAndPost(canvas);
++//            }
++////            mVideoDelayTime = (System.nanoTime()-lag)/1000;
++////            Log.w(TAG,"mVideoDelayTime "+mVideoDelayTime);
++//        }
++//
++//		public void setTexture(TextureView texture) {
++//			if(mTexture == null)
++//				mTexture = texture;
++//		}
++//		
++//		public void setSurfaceForeground(Drawable fg) {
++//			synchronized (this) {
++//				this.fg=fg;
++////				this.prefg = prefg;
++////				this.bpre = bpre;
++//			}
++//		}
++//    }
+ 
+     private VideoSurfaceDrawEvent mVideoSurfaceDrawRunnable;
+ 
+@@ -925,7 +925,8 @@ public boolean isStart() {
+ 				return;
+ 		}
+ //		mVideoSurfaceDraw.removeCallbacks(mVideoSurfaceDrawRunnable);
+-		mVideoSurfaceDrawRunnable.setTexture(texture);
++		if(mVideoSurfaceDrawRunnable instanceof TextureVideoSurfaceDrawEvent)
++			((TextureVideoSurfaceDrawEvent) mVideoSurfaceDrawRunnable).setTexture(texture);
+ //		 mVideoSurfaceDraw.post(mVideoSurfaceDrawRunnable);
+ //		 mVideoHandler.post(new VideoMux((System.nanoTime())/1000));
+ 	}
+diff --git a/src/gl/live/danceshow/media/TextureVideoSurfaceDrawEvent.java b/src/gl/live/danceshow/media/TextureVideoSurfaceDrawEvent.java
+new file mode 100644
+index 0000000..1ad1cbf
+--- /dev/null
++++ b/src/gl/live/danceshow/media/TextureVideoSurfaceDrawEvent.java
+@@ -0,0 +1,45 @@
++package gl.live.danceshow.media;
++
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.Canvas;
++import android.graphics.Matrix;
++import android.view.TextureView;
++
++public class TextureVideoSurfaceDrawEvent  extends VideoSurfaceDrawEvent {
++    private TextureView mTexture;
++    private float scale = -1;
++    
++    public TextureVideoSurfaceDrawEvent(MediaEngine engine, Context context) {
++    	super(engine, context);
++    }
++
++	public void setTexture(TextureView texture) {
++		if(mTexture == null)
++			mTexture = texture;
++	}
++	
++	@Override
++	protected Matrix getMatrix() {
++		return mTexture.getTransform(null);
++	}
++	
++	@Override
++	protected void drawCameraPreview(Canvas canvas,Matrix mBitmapMatrix) {
++		Bitmap buf = outputBitmap;
++		if(scale == -1) {
++			scale= (float)PreviewManager.EXPECTED_PREVIEW_H/(float)outputBitmap.getHeight();
++		}
++  	if(mBitmapMatrix !=null) {
++  		mBitmapMatrix.postScale(scale, scale);
++  		buf = Bitmap.createBitmap(buf, 0, 0, outputBitmap.getWidth(), outputBitmap.getHeight(), mBitmapMatrix, true);
++//  		buf = Bitmap.createScaledBitmap(buf, PREVIEW_WIDTH, PREVIEW_HEIGHT, true);
++  	}
++  	int h = buf.getHeight();
++  	canvas.drawBitmap(buf,0,(PreviewManager.EXPECTED_PREVIEW_H-h)/2, null);
++	}
++	
++	public void setTextureView(TextureView view) {
++		mTexture=view;
++	}
++}
+\ No newline at end of file
+diff --git a/src/gl/live/danceshow/media/VideoSurfaceDrawEvent.java b/src/gl/live/danceshow/media/VideoSurfaceDrawEvent.java
+new file mode 100644
+index 0000000..b26b47d
+--- /dev/null
++++ b/src/gl/live/danceshow/media/VideoSurfaceDrawEvent.java
+@@ -0,0 +1,97 @@
++package gl.live.danceshow.media;
++
++import gl.live.danceshow.ui.widget.FixedLyricView;
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.Canvas;
++import android.graphics.Matrix;
++import android.graphics.Paint;
++import android.graphics.drawable.BitmapDrawable;
++import android.graphics.drawable.Drawable;
++import android.os.Build;
++import android.util.Log;
++import android.view.Surface;
++
++public class VideoSurfaceDrawEvent implements Runnable {
++	private Drawable fg;
++	private static final String TAG = "videodraw";
++	private FixedLyricView mLyricView;
++	private Paint mPaint;
++
++	private float scaledDensity;
++	private MediaEngine mEngine;
++	protected Context mContext;
++	protected Bitmap outputBitmap;
++	private Surface mVideoSurface;
++
++	public VideoSurfaceDrawEvent(MediaEngine engine, Context context) {
++		mEngine = engine;
++		mContext = context;
++		scaledDensity = mContext.getResources().getDisplayMetrics().scaledDensity;
++	}
++
++	@Override
++	public void run() {
++		if (!mEngine.isStart() || mLyricView == null || outputBitmap == null)
++			return;
++		int version = Build.VERSION.SDK_INT;
++		Canvas canvas;
++		if (version >= Build.VERSION_CODES.M && Build.MODEL.equals("MI 5")) {
++			Log.d(TAG, "lockHardwareCanvas in");
++			canvas = mVideoSurface.lockHardwareCanvas();
++			Log.d(TAG, "lockHardwareCanvas out");
++			if (canvas == null)
++				return;
++		} else
++			canvas = mVideoSurface.lockCanvas(null);
++
++		try {
++			if (mPaint == null) {
++				mPaint = new Paint(mLyricView.getPaint());
++				mPaint.setTextSize(mLyricView.getTextSize() / scaledDensity);
++
++			}
++			synchronized (mEngine) {
++				//draw camera preview
++				Matrix mBitmapMatrix = getMatrix();
++				drawCameraPreview(canvas, mBitmapMatrix);
++
++				// draw frame
++				Bitmap b = null;
++				if (fg != null) {
++					b = ((BitmapDrawable) fg.getCurrent()).getBitmap();
++				}
++				if (b != null && !b.isRecycled()) {
++					canvas.drawBitmap(b, 0, 0, null);
++				}
++
++				// draw text
++				String text = mLyricView.getText().toString();
++				canvas.drawText(text,
++						canvas.getWidth() / 2 - mPaint.measureText(text) / 2,
++						canvas.getHeight() - 40, mPaint);
++			}
++		} finally {
++			mVideoSurface.unlockCanvasAndPost(canvas);
++		}
++	}
++
++	public void setSurfaceForeground(Drawable fg) {
++		synchronized (this) {
++			this.fg = fg;
++			// this.prefg = prefg;
++			// this.bpre = bpre;
++		}
++	}
++
++	protected Matrix getMatrix() {
++		return null;
++	}
++
++	protected void drawCameraPreview(Canvas canvas, Matrix mBitmapMatrix) {
++	}
++
++	public void setLyricView(FixedLyricView view) {
++		mLyricView =view;
++	}
++}
+\ No newline at end of file
+diff --git a/src/gl/live/danceshow/ui/camera/AbsCameraPreviewActivity.java b/src/gl/live/danceshow/ui/camera/AbsCameraPreviewActivity.java
+index c7bd146..4c539fb 100644
+--- a/src/gl/live/danceshow/ui/camera/AbsCameraPreviewActivity.java
++++ b/src/gl/live/danceshow/ui/camera/AbsCameraPreviewActivity.java
+@@ -492,7 +492,6 @@ public abstract class AbsCameraPreviewActivity extends FragmentActivity implemen
+ 	                	startok = true;
+ 	                } catch (Exception e) {
+ 	                    releaseMediaRecorder();
+-	                    return;
+ 	                }
+ 	            } else {
+ 	                // prepare didn't work, release the camera
+diff --git a/src/gl/live/danceshow/ui/camera/CameraPreviewActivity.java b/src/gl/live/danceshow/ui/camera/CameraPreviewActivity.java
+index 85fe480..3f9474f 100644
+--- a/src/gl/live/danceshow/ui/camera/CameraPreviewActivity.java
++++ b/src/gl/live/danceshow/ui/camera/CameraPreviewActivity.java
+@@ -117,7 +117,6 @@ public class CameraPreviewActivity extends AbsCameraPreviewActivity implements
+ 		setting = (ImageButton) findViewById(R.id.setPreFrame);
+ 		setting.setOnClickListener(this);
+ 		
+-
+ 		mImageViewTimer = (ImageView) findViewById(R.id.timer);
+ 		titleText = (TextView) findViewById(R.id.titleText);
+ 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+-- 
+1.9.1
+

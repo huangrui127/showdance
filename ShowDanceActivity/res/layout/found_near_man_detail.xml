@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/found_a_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/activity_bg"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <ImageView
+                android:id="@+id/dance_team_img"
+                android:layout_width="65dip"
+                android:layout_height="65dip"
+                android:src="@drawable/found_a"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/dance_man_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:paddingTop="5dip"
+                        android:textColor="@color/base_black" />
+
+                    <TextView
+                        android:id="@+id/dance_man_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:text="秀舞ID:"
+                        android:textColor="@color/base_black" />
+
+                    <TextView
+                        android:id="@+id/dance_Id_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:textColor="@color/color_gray" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="77dip"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dip"
+                    android:text="地区"
+                    android:textColor="@color/base_black" />
+
+                <TextView
+                    android:id="@+id/area_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_gray" />
+            </LinearLayout>
+
+            <include layout="@layout/listview_divider_line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:layout_width="77dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="20dip"
+                    android:text="个性签名"
+                    android:textColor="@color/base_black" />
+
+                <TextView
+                    android:id="@+id/fnmd_dance_team_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:lines="2"
+                    android:textColor="@color/color_gray" />
+            </LinearLayout>
+
+            <include layout="@layout/listview_divider_line" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dip"
+            android:padding="5dip"
+            android:text="Ta的视频"
+            android:textColor="@color/base_black" />
+    </LinearLayout>
+
+    <!--
+             <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+    -->
+
+    <GridView
+        android:id="@+id/Ta_video"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadingEdge="none"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="2dp"
+        android:listSelector="@null"
+        android:numColumns="3"        
+        android:background="@color/white"
+        android:verticalSpacing="2dp" >
+    </GridView>
+
+    <!-- </LinearLayout> -->
+
+
+    <!-- </ScrollView> -->
+
+</LinearLayout>

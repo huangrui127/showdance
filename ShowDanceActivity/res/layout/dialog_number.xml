@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:background="@color/white"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/window_TV"
+        android:layout_width="170dip"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dip"
+        android:text="窗帘数"
+        android:textColor="@color/font_gray"
+        android:textSize="@dimen/textsize_14" />
+
+    <ImageView
+        android:id="@+id/minus_IV"
+        android:layout_toRightOf="@id/window_TV"
+        android:layout_width="20dip"
+        android:layout_height="20dip"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/desc"
+        android:src="@drawable/btn_cut_normal" />
+    
+    <TextView
+        android:id="@+id/shutters_number_tv"
+        android:layout_toRightOf="@id/minus_IV"
+        android:layout_width="50dip"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/font_gray"
+        android:textSize="@dimen/textsize_14" />
+
+    <ImageView
+        android:id="@+id/plus_IV"
+        android:layout_toRightOf="@id/shutters_number_tv"
+        android:layout_width="20dip"
+        android:layout_height="20dip"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/desc"
+        android:src="@drawable/btn_add_normal" />
+
+    <TextView
+        android:id="@+id/vice_TV"
+        android:layout_toRightOf="@id/plus_IV"
+        android:layout_width="20dip"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="right"
+        android:text="副"
+        android:textColor="@color/font_gray"
+        android:textSize="@dimen/textsize_14" />
+
+</RelativeLayout>

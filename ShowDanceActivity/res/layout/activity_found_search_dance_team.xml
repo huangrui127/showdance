@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_main_title_bar" />
+
+    <include layout="@layout/activity_search_title_white_bg3" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/login_input_spreater"
+        android:background="@color/input_stroke" />
+
+</LinearLayout>
