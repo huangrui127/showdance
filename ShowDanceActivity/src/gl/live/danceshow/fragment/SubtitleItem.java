@@ -18,6 +18,7 @@ public class SubtitleItem implements Serializable{
 	private String img;
 	private String name;
 	private Long uuid;
+	private long percent;
 	public SubtitleItem() {}
 	public void setData(FontData d) {
 		mFontData = d;
@@ -38,6 +39,14 @@ public class SubtitleItem implements Serializable{
 		return path;
 	}
 
+	public void setPercent(long p) {
+		percent = p;
+	}
+
+	public long getPercent() {
+		return percent;
+	}
+	
 	public void setImg(String i) {
 		img = i;
 	}

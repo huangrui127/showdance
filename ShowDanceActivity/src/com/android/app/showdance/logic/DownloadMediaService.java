@@ -755,8 +755,8 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 						
 						EventBus.getDefault().postSticky(
 								new SubtitleEvent(dmi.getData().getId(),
-//										dmi.getProgressCount(),
-//										dmi.getCurrentProgress(), 
+										total,
+										current,
 										DOWNLOAD_STATE_DOWNLOADING));
 
 					}

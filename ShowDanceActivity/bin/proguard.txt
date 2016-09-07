@@ -296,7 +296,7 @@
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_post_share.xml #generated:2
-# view sw550dp-large-v13\res/layout-sw550dp-large-v13/umeng_socialize_post_share.xml #generated:2
+# view sw550dp-large-v13/res/layout-sw550dp-large-v13/umeng_socialize_post_share.xml #generated:2
 -keep class com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout { <init>(...); }
 
 # view res/layout/umeng_socialize_at_view.xml #generated:21
@@ -322,8 +322,8 @@
 -keep class gl.live.danceshow.ui.widget.FixedLyricView { <init>(...); }
 
 # view res/layout/camera_activity.xml #generated:95
-# view res/layout/subtitle_controller.xml #generated:35
-# view res/layout/subtitle_controller.xml #generated:66
+# view res/layout/subtitle_controller.xml #generated:46
+# view res/layout/subtitle_controller.xml #generated:77
 -keep class gl.live.danceshow.ui.widget.VerticalSeekBar { <init>(...); }
 
 # view AndroidManifest.xml #generated:469

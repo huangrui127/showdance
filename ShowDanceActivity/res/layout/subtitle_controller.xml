@@ -5,11 +5,22 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_set"
     android:orientation="horizontal">
-    
+    <Button
+            android:id="@+id/subtitle_setok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:text="完成"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@drawable/button_color"
+            android:textSize="13.0sp" />
            <TextView
                android:id="@+id/subtitle"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="40dp"
     android:gravity="center"
     android:textColor="@color/white"
     android:paddingLeft="10dp"

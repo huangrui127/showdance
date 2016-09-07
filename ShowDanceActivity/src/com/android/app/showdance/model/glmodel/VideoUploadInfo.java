@@ -71,6 +71,7 @@ public class VideoUploadInfo {
 		 protected String created_at;
 		 protected int  id;
 		 protected int  count;
+		 protected int  share_count;
 		 protected String img;
 		 protected String name;
 		 protected String user_id;
@@ -99,6 +100,14 @@ public class VideoUploadInfo {
 		 public int getcount() {
 			 return count;
 		 }
+		 
+		 public void setshare_count(int arg) {
+			 share_count = arg;
+		 }
+		 public int getshare_count() {
+			 return share_count;
+		 }
+		 
 		 
 		 public void setpath(String arg) {
 			 path = arg;

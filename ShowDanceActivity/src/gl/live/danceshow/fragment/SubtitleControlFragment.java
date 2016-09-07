@@ -28,9 +28,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -43,6 +46,7 @@ import com.android.app.showdance.logic.event.SubtitleEvent;
 import com.android.app.showdance.model.DownloadFrameInfo;
 import com.android.app.showdance.model.glmodel.FontInfo;
 import com.android.app.showdance.model.glmodel.FontInfo.FontData;
+import com.android.app.showdance.widget.CustomAlertDialog;
 import com.android.app.wumeiniang.R;
 import com.android.app.wumeiniang.app.InitApplication;
 import com.android.volley.Request.Method;
@@ -87,6 +91,7 @@ public void onEventMainThread(SubtitleEvent event) {
 			Log.d(TAG,"item state "+item.getDownload());
 			switch (state) {
 			case ContentValue.DOWNLOAD_STATE_DOWNLOADING:
+				item.setPercent(event.current*100/event.total);
 				break;
 			case ContentValue.DOWNLOAD_STATE_SUCCESS:
 //				new UnzipTask().execute(intent.getStringExtra("downloadpath"),item.getName());
@@ -245,7 +250,9 @@ private class ScanSubtitleTask extends AsyncTask<Void, Void, List<SubtitleItem>>
 		if (downloadsubtitleItems != null && downloadsubtitleItems.size() != 0) {
 			if(cameraFgAdapter==null){
 			cameraFgAdapter = new SubtitleAdapter(getContext(), downloadsubtitleItems);
-			((GridView)getView().findViewById(R.id.subtitle_grid)).setAdapter(cameraFgAdapter);
+			GridView grid = ((GridView)getView().findViewById(R.id.subtitle_grid));
+			grid.setAdapter(cameraFgAdapter);
+			grid.setOnItemLongClickListener(cameraFgAdapter);
 			}else {
 				cameraFgAdapter.setSubTitleList(result);
 				cameraFgAdapter.notifyDataSetChanged();
@@ -326,6 +333,13 @@ private class ScanSubtitleTask extends AsyncTask<Void, Void, List<SubtitleItem>>
 	@Override
 	public void onViewCreated(View v, Bundle savedInstanceState) {
 		initViewAndAdapter(v);
+		Button b = (Button)v.findViewById(R.id.subtitle_setok);
+		b.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SubtitleControlFragment.this.dismiss();
+			}
+		});
 	}
 	
 	protected void initViewAndAdapter(View v) {
@@ -333,7 +347,8 @@ private class ScanSubtitleTask extends AsyncTask<Void, Void, List<SubtitleItem>>
 		seekBar.setOnSeekBarChangeListener(mSeekBarChangeListener);
 		seekBar = (VerticalSeekBar) v.findViewById(R.id.lrc_textsize);
 		seekBar.setOnSeekBarChangeListener(mSeekBarChangeListener);
-		((GridView)getView().findViewById(R.id.subtitle_grid)).setOnItemClickListener(SubtitleControlFragment.this);
+		GridView grid = ((GridView)getView().findViewById(R.id.subtitle_grid));
+		grid.setOnItemClickListener(SubtitleControlFragment.this);
 	}
 	
 	@Override

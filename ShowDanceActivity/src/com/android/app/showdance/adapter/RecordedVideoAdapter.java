@@ -198,13 +198,13 @@ public class RecordedVideoAdapter extends BaseAdapter {
 //			mediaMetadataRetriever.release();
 		if (videoType == 1) {
 			holder.uploading_btn.setVisibility(View.VISIBLE);
-			if(uploadVideo.getUploadState() == 1) {
-				holder.uploading_btn.setOnClickListener(null);
-				holder.uploading_btn.setText("已上传");
-			}else {
+//			if(uploadVideo.getUploadState() == 1) {
+//				holder.uploading_btn.setOnClickListener(null);
+//				holder.uploading_btn.setText("已上传");
+//			}else {
 				holder.uploading_btn.setText("上传");
 			holder.uploading_btn.setOnClickListener(new MyOnClick(holder, uploadVideo, position));
-			}
+//			}
 		}
 //			else if (videoType == 2) {
 //			holder.edit_btn.setVisibility(View.VISIBLE);

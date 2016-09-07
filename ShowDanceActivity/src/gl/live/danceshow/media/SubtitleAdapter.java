@@ -3,6 +3,7 @@ package gl.live.danceshow.media;
 
 import gl.live.danceshow.fragment.SubtitleItem;
 
+import java.io.File;
 import java.util.List;
 
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 import com.android.app.showdance.impl.ContentValue;
 import com.android.app.showdance.logic.DownloadMediaService;
 import com.android.app.showdance.logic.VolleyManager;
+import com.android.app.showdance.widget.CustomAlertDialog;
 import com.android.app.wumeiniang.R;
 import com.android.app.wumeiniang.app.InitApplication;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -34,7 +37,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
  * @date 2015-5-14 下午03:51:19
  * 
  */
-public class SubtitleAdapter extends BaseAdapter {
+public class SubtitleAdapter extends BaseAdapter implements OnItemLongClickListener{
 
 	protected Context context;
 	protected List<SubtitleItem> mList;
@@ -94,9 +97,11 @@ public class SubtitleAdapter extends BaseAdapter {
 		TextView text = (TextView)convertView.findViewById(R.id.list_item_name);
 		switch (item.getDownload()) {
 		case ContentValue.DOWNLOAD_STATE_SUCCESS:
-			text.setText("已下载");
+			text.setText("使用");
 			break;
 		case ContentValue.DOWNLOAD_STATE_DOWNLOADING:
+			text.setText(String.valueOf(item.getPercent())+"%");
+			break;
 		case ContentValue.DOWNLOAD_STATE_WATTING:
 		case ContentValue.DOWNLOAD_STATE_EXCLOUDDOWNLOAD:
 			text.setText("下载中");
@@ -124,9 +129,47 @@ public class SubtitleAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view,
+			int position, long id) {
+		final SubtitleItem fileName = mList.get(position);
+		if(fileName.getDownload() != ContentValue.DOWNLOAD_STATE_SUCCESS) return false;
+		final int index = position;
+		CustomAlertDialog mCustomDialog = new CustomAlertDialog(context).builder(R.style.DialogTVAnimWindowAnim);
+		mCustomDialog.setTitle("删除提示");
+		mCustomDialog.setMsg("确认删除 " + fileName.getName() + " 吗?");
+		mCustomDialog.setPositiveButton(context.getResources().getString(R.string.dialog_ok), new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				File delFilePath = new File(fileName.getPath());
+				Log.d("guolei","deleteDir "+deleteFile(delFilePath));
+				mList.remove(index);
+				notifyDataSetChanged();
+			}
+		}).setNegativeButton(context.getResources().getString(R.string.dialog_cancel), new OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
-
+			}
+		}).show();
+		
+		return true;
 	
+	}
+
+	private boolean deleteFile(File file) {
+//		if (dir.isDirectory()) {
+//			String[] children = dir.list();
+//			for (int i = 0; i < children.length; i++) {
+//				boolean success = deleteDir(new File(dir, children[i]));
+//				if (!success) {
+//					return false;
+//				}
+//			}
+//		}
+		// The directory is now empty so now it can be smoked
+		return file.delete();
+	} 
 	public interface OnFgItemClickListener {
 		void onItemClick(AnimItem item);
 	}

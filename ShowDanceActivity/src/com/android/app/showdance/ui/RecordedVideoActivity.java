@@ -835,7 +835,12 @@ private MediaMetadataRetriever mRetriever;
 			View view = inflater.inflate(R.layout.custom_upload_zone_dialog, null);
 			TextView v = (TextView)view.findViewById(R.id.wumeiniang);
 			v.setTag(filepath);
-			v.setOnClickListener(mUploadZoneListener);
+			UploadVideoInfo item = recordedVideoListInfo.get(selectPosition);//.getFileName();
+			if(item.getUploadState()==1) {
+				v.setText("武媚娘已上传");
+			}else
+				v.setOnClickListener(mUploadZoneListener);
+			
 			v = (TextView)view.findViewById(R.id.tangdou);
 			v.setOnClickListener(mUploadZoneListener);
 			v = (TextView)view.findViewById(R.id.jiuai);
@@ -844,6 +849,10 @@ private MediaMetadataRetriever mRetriever;
 			
 			mDialog.setContentView(view);
 			mDialog.setCancelable(true); // false设置点击其他地方不能取消进度条
+	}
+	
+	private void updateWuMeiFirst() {
+		Toast.makeText(this, "请先上传到武媚娘!", Toast.LENGTH_SHORT).show();
 	}
 	
 	private View.OnClickListener mUploadZoneListener = new View.OnClickListener() {
@@ -856,11 +865,21 @@ private MediaMetadataRetriever mRetriever;
 				showSizeProgressDialog(RecordedVideoActivity.this,  new UploadEvent(0.00, (String)v.getTag(), null, null));
 				break;
 			case R.id.tangdou:
+				UploadVideoInfo item = recordedVideoListInfo.get(selectPosition);//.getFileName();
+				if(item.getUploadState()!=1) {
+					updateWuMeiFirst();
+					break;
+				}
 				Intent mIntent = new Intent(Intent. ACTION_VIEW,Uri.parse("http://u.tangdou.com/"));
 				startActivity(mIntent);
 				mDialog.dismiss();
 				break;
 			case R.id.jiuai:
+				UploadVideoInfo item1 = recordedVideoListInfo.get(selectPosition);//.getFileName();
+				if(item1.getUploadState()!=1) {
+					updateWuMeiFirst();
+					break;
+				}
 				Intent mIntent1 = new Intent(Intent. ACTION_VIEW,Uri.parse("http://i.9igcw.com/my/upvideo.html"));
 				startActivity(mIntent1);
 				mDialog.dismiss();

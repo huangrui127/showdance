@@ -105,7 +105,7 @@ public abstract class AbsCameraPreviewActivity extends FragmentActivity implemen
         container.addView(mPreview);
         
         mFg = new ImageView(this);
-        mFg.setScaleType(ScaleType.FIT_CENTER);
+        mFg.setScaleType(ScaleType.FIT_XY);
         p=new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT, Gravity.TOP);
         mFg.setLayoutParams(p);
         container.addView(mFg);
