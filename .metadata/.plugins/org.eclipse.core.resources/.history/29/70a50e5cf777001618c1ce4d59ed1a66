@@ -33,7 +33,6 @@
                 android:gravity="center"
                 android:padding="8dip"
                 android:text="舞媚娘"
-                android:visibility="gone"
                 android:textColor="@color/black"
                 android:drawableTop="@drawable/app_logo"
                 android:textSize="@dimen/textsize_15" />

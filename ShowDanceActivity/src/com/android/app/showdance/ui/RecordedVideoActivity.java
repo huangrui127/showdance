@@ -466,7 +466,12 @@ private MediaMetadataRetriever mRetriever;
 //						String titleName = filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
 //						CustomAlertDialog(titleName.replace(".mp4", ""), filePath);
 //						showProgressDialogFile(RecordedVideoActivity.this, filePath);
-						showUploadZoneDialog(this,filePath);
+						if (upload == 0) {
+		                    showUploadZoneDialog(this, filePath);
+		                }else {
+		                    showSizeProgressDialog(RecordedVideoActivity.this, new UploadEvent(0.00,
+		                            filePath, null, null));
+		                }
 			} else {
 				Toast.makeText(getApplicationContext(), "请先登录后上传视频", Toast.LENGTH_SHORT).show();
 			}
