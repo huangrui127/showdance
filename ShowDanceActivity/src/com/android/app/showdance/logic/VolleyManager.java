@@ -13,6 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.AndroidRuntimeException;
 import android.util.Log;
 
@@ -52,6 +54,8 @@ public class VolleyManager  {
 	public static final String METHOD_STAR_FRAME = "starFrameTeacherList";
 	public static final String SHARED = "/share/";
 	
+	private int version = -1;
+	
 	public static final String FONT_LIST = "fontList";
 	
 	public static VolleyManager getInstance(Context context) {
@@ -74,6 +78,13 @@ public class VolleyManager  {
 	
 	private VolleyManager(Context context) {
 		mQueue = Volley.newRequestQueue(context.getApplicationContext());
+			try {
+				PackageInfo info = context.getPackageManager()
+						.getPackageInfo(context.getPackageName(), 0);
+				version = info.versionCode;
+			} catch (NameNotFoundException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public <T,R> void getRequest(T req, String method,
@@ -95,11 +106,14 @@ public class VolleyManager  {
 		ObjectMapper objectMapper = new ObjectMapper();
 		String result
 			 = objectMapper.writeValueAsString(req);
-		if(DEBUG) {
-			Log.i(TAG, SERVER_URL +"   postRequest "+result);
-		}
 		JSONObject json;
 			json = new JSONObject(result);
+			//add versioncode
+			json.put("version", version);
+			
+			if(DEBUG) {
+				Log.i(TAG, SERVER_URL +"   postRequest "+json.toString());
+			}
 		JsonObjectRequest request = new JsonObjectRequest(Method.POST,
 				SERVER_URL + API+method, json,
 				listener == null ? new ResponeListener<R>(null) : listener,

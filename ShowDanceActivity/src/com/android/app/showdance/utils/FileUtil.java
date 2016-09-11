@@ -15,9 +15,11 @@ import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
@@ -26,6 +28,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.FileHeader;
 
 public class FileUtil {
 
@@ -950,4 +954,31 @@ public class FileUtil {
 		}
 	}
 
+	public static void unzipFileforEncrypted(String zipFile, String dest,String passwd) throws ZipException {
+        net.lingala.zip4j.core.ZipFile zFile = new net.lingala.zip4j.core.ZipFile(zipFile);  
+//        zFile.setFileNameCharset("GBK");  
+        if (!zFile.isValidZipFile()) {  
+            throw new ZipException("压缩文件不合法,可能被损坏.");  
+        }  
+        File destDir = new File(dest);  
+        if (destDir.isDirectory() && !destDir.exists()) {  
+            destDir.mkdir();  
+        }  
+        if (zFile.isEncrypted()) {  
+            zFile.setPassword(passwd.toCharArray());  
+        }  
+        zFile.extractAll(dest);  
+          
+        List<FileHeader> headerList = zFile.getFileHeaders();  
+        List<File> extractedFileList = new ArrayList<File>();  
+        for(FileHeader fileHeader : headerList) {  
+            if (!fileHeader.isDirectory()) {  
+                extractedFileList.add(new File(destDir,fileHeader.getFileName()));  
+            }  
+        }  
+        File [] extractedFiles = new File[extractedFileList.size()];  
+        extractedFileList.toArray(extractedFiles);  
+//        return extractedFiles; 
+	}
+	
 }

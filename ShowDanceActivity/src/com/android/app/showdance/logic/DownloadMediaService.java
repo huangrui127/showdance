@@ -1,6 +1,7 @@
 package com.android.app.showdance.logic;
 
 import gl.live.danceshow.fragment.SubtitleItem;
+import net.lingala.zip4j.exception.ZipException;
 
 import java.io.File;
 import java.io.IOException;
@@ -246,14 +247,15 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 				return false;
 			}
 			try {
-				FileUtil.unzip(path, sdcardpath+File.separator+outdir);
+					FileUtil.unzipFileforEncrypted(path, sdcardpath+File.separator+outdir,"1q2w3e4r");
 				new File(path).delete();
-			} catch (IOException e) {
-				handler.post(new Runnable() {
+			} catch (ZipException e) {
+				final String msg = e.getMessage();
+	handler.post(new Runnable() {
 					
 					@Override
 					public void run() {
-						Toast.makeText(getApplicationContext(), "“+path+” 解压失败！",
+						Toast.makeText(getApplicationContext(), "“+path+” 解压失败: "+msg,
 								Toast.LENGTH_SHORT).show();
 					}
 				});
@@ -470,6 +472,7 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 				tmpurl = dmi.getMusic().getLrc();
 				final String lrcurl = tmpurl.substring(tmpurl.lastIndexOf("/")+1);
 				File flrc = new File(lrcToPath, lrcurl);// 歌词保存路径及文件名字
+				final String flrcpath = flrc.getAbsolutePath();
 				SharedPreferences.Editor editor = InitApplication.mSpUtil.getMusicSp().edit();
 				editor.putString(mp3url, lrcurl+"_"+dmi.getFileName()+"_"+dmi.getMusic().getSinger()).commit();
 //				Log.d("download","mp3url "+mp3url+" lrcurl " +lrcurl+ " sp "+InitApplication.mSpUtil.getMusicSp().getString(mp3url, "null"));
@@ -602,44 +605,30 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 				});
 				dmi.setDownloadFile(downMp3);
 
-				DownloadFile downAss = download(lrcUrl, flrc.getAbsolutePath(), new RequestCallBack<File>() {
-
-					/**
-					 * (非 Javadoc) Title: onStart Description:
-					 * 
-					 * @see net.tsz.afinal.http.AjaxCallBack#onStart()
-					 */
-					@Override
-					public void onStart() {
-						// 如果这个任务在等待,开启这个下载任务
-						// 讲下载状态设置为 正在下载
-						// 开启任务
-						// dmi.setDownloadState(DOWNLOAD_STATE_DOWNLOADING);
-
-					}
-
-					/**
-					 * (非 Javadoc) Title: onLoading Description:
-					 * 
-					 * @param count
-					 * @param current
-					 * @see net.tsz.afinal.http.AjaxCallBack#onLoading(long,
-					 *      long)
-					 */
+				DownloadFile downAss = download(lrcUrl, flrcpath, new RequestCallBack<File>() {
 
 					@Override
 					public void onLoading(long total, long current, boolean isUploading) {
-
 					}
-
 					@Override
-					public void onFailure(HttpException arg0, String arg1) {
+					public void onFailure(HttpException t, String arg1) {
 
+						 Log.e("guolei","下载失败:" + arg1 + ":" +
+						 dmi.getDownloadUrl() + "：\n原因：" + t.getMessage()
+						 + "异常信息:" + t.getLocalizedMessage());
+						if("maybe the file has downloaded completely".equalsIgnoreCase(arg1)) {
+							new UnzipTask().execute(flrcpath,dmi.getName(),lrcToPath);
+						}else {
+							Toast.makeText(getApplicationContext(), dmi.getName() + "歌词 下载失败!", Toast.LENGTH_SHORT).show();
+						}
 					}
 
 					@Override
 					public void onSuccess(ResponseInfo<File> arg0) {
-
+						 Log.e("guolei","lrcc download success,:" + flrcpath + ":" +lrcToPath);
+						if(FileUtil.getUrlExtension(flrcpath).equalsIgnoreCase("zip")) {
+							new UnzipTask().execute(flrcpath,dmi.getName(),lrcToPath);
+						}
 					}
 				});
 				dmi.setDownloadFile(downAss);
