@@ -34,7 +34,6 @@
                 android:padding="8dip"
                 android:text="舞媚娘"
                 android:textColor="@color/black"
-                android:visibility="gone"
                 android:drawableTop="@drawable/app_logo"
                 android:textSize="@dimen/textsize_15" />
                 <TextView
