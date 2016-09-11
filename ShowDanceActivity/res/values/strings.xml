@@ -14,10 +14,10 @@
     <string name="check_network">正在检测网络</string>
     <string name="app_network">请开启本机网络!</string>
     <string name="search_city_hint">搜索全国城市(中文/拼音)</string>
-<string name="getqiniutoken_fail">获取上传凭证失败!</string>
-<string name="modifypreframe">修改片头</string>
-<string name="load_tips">登录后才能上传</string>
-<string name="upload_success">上传成功!</string>
+    <string name="getqiniutoken_fail">获取上传凭证失败!</string>
+    <string name="modifypreframe">修改片头</string>
+    <string name="load_tips">登录后才能上传</string>
+    <string name="upload_success">上传成功!</string>
     <!-- 下拉刷新 -->
     <string name="pull_to_refresh_pull">下拉刷新</string>
     <string name="pull_to_refresh_release">松开后刷新</string>
@@ -265,7 +265,6 @@
     <string name="updated_just_now">刚刚更新</string>
     <string name="time_error">时间有问题</string>
     <string name="copyright">©Copyright 容联云通讯</string>
-    
     <string name="camera_fg_private_aut">秋天景色</string>
     <string name="camera_fg_private_bench">海边椰树</string>
     <string name="camera_fg_private_flower">向日葵</string>
@@ -285,10 +284,8 @@
     <string name="camera_fg_team_happynewyear_2016">猴年大吉</string>
     <string name="camera_fg_team_green">草原</string>
     <string name="camera_fg_team_summer">夏日荷塘</string>
-    
     <string name="camera_fg_team_water">荷花塘</string>
     <string name="camera_fg_team_winter">冬雪</string>
-    
     <string name="camera_fg_avator3_lover">七夕</string>
     <string name="camera_fg_avator3_forest">森林里</string>
     <string name="camera_fg_avator3_bench">海边</string>
@@ -297,14 +294,14 @@
     <string name="camera_fg_avator3_stage">舞台秀</string>
     <string name="camera_fg_avator3_congratulation">喜庆</string>
     <string name="camera_fg_avator3_zhangdengjiecai">张灯结彩</string>
-    
     <string name="camera_fg_avator2_lake">荷塘</string>
     <string name="camera_fg_avator2_show">紫魅舞台</string>
     <string name="camera_fg_avator2_country">田野</string>
     <string name="camera_fg_avator2_peace">安宁</string>
     <string name="camera_fg_avator2_summer">初夏荷塘</string>
-     <string name="camera_fg_avator2_hill_flower">山中小荷</string>
-      <string name="camera_fg_avator2_show_dance">炫舞</string>
-       <string name="camera_fg_avator2_moon">月夜</string>
-    
+    <string name="camera_fg_avator2_hill_flower">山中小荷</string>
+    <string name="camera_fg_avator2_show_dance">炫舞</string>
+    <string name="camera_fg_avator2_moon">月夜</string>
+    <string name="title_activity_home">HomeActivity</string>
+
 </resources>
