@@ -462,10 +462,18 @@ private MediaMetadataRetriever mRetriever;
 			if (id != 0) {
 						String filePath = intent.getStringExtra("filePath");
 						selectPosition = intent.getIntExtra("position", 0);
+						int upload = intent.getIntExtra("uploaded", 0);
 //						String titleName = filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
 //						CustomAlertDialog(titleName.replace(".mp4", ""), filePath);
 //						showProgressDialogFile(RecordedVideoActivity.this, filePath);
-						showUploadZoneDialog(this,filePath);
+//						showUploadZoneDialog(this,filePath);
+						if (upload == 0) {
+		                    showUploadZoneDialog(this, filePath);
+		                }else {
+		                    showSizeProgressDialog(RecordedVideoActivity.this, new UploadEvent(0.00,
+		                            filePath, null, null));
+		                }
+						
 			} else {
 				Toast.makeText(getApplicationContext(), "请先登录后上传视频", Toast.LENGTH_SHORT).show();
 			}
