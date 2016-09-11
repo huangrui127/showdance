@@ -75,11 +75,19 @@ public class VideoUploadInfo {
 		 protected String img;
 		 protected String name;
 		 protected String user_id;
+		 protected String province;
+		 
 		 public void setuser_id(String arg) {
 			 user_id = arg;
 		 }
 		 public String getuser_id() {
 			 return user_id;
+		 }
+		 public void setprovince(String arg) {
+			 province = arg;
+		 }
+		 public String getprovince() {
+			 return province;
 		 }
 		 public void setname(String arg) {
 			 name = arg;

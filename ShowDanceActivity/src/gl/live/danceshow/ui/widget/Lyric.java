@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.android.app.showdance.utils.FileUtil;
 import com.android.app.wumeiniang.app.InitApplication;
 
 
@@ -188,10 +189,12 @@ public class Lyric implements Serializable {
      */
     private File getMathedLyricFile(File dir, Audio info) {
         File matched = null;
-        File[] fs = dir.listFiles(new FileFilter() {
+        File[] fs = dir.listFiles
+        		(new FileFilter() {
 
             public boolean accept(File pathname) {
-                return pathname.getName().toLowerCase().endsWith(".lrc");
+                return pathname.getName().toLowerCase().endsWith(".lrc")
+                		||pathname.getName().toLowerCase().endsWith(".zip");
             }
         });
         if (null == fs) {
@@ -217,18 +220,18 @@ public class Lyric implements Serializable {
         // After the first song information, search the HOME folder,
         // if it does not exist, then create a directory, and then directly from
         // the matter
-        StringBuffer sb = new StringBuffer(info.getPath());
-        String curr_ = sb.substring(0, info.getPath().lastIndexOf("/"));
-        File curr_dir = new File(curr_);
-        if (curr_dir.exists()) {
-            matched = getMathedLyricFile(curr_dir, info);
-        }
-        if (matched != null && matched.exists()) {
-            info.setLyricFile(matched);
-            file = matched;
-            init(matched);
-            return;
-        }
+//        StringBuffer sb = new StringBuffer(info.getPath());
+//        String curr_ = sb.substring(0, info.getPath().lastIndexOf("/"));
+//        File curr_dir = new File(curr_);
+//        if (curr_dir.exists()) {
+//            matched = getMathedLyricFile(curr_dir, info);
+//        }
+//        if (matched != null && matched.exists()) {
+//            info.setLyricFile(matched);
+//            file = matched;
+//            init(matched);
+//            return;
+//        }
         File dir = new File(InitApplication.SdCardLrcPath, 
                 File.separator);
         if (!dir.exists()) {
@@ -239,6 +242,7 @@ public class Lyric implements Serializable {
         if (matched != null && matched.exists()) {
             info.setLyricFile(matched);
             file = matched;
+            
             init(matched);
         } else {
             init("");
@@ -251,6 +255,7 @@ public class Lyric implements Serializable {
      */
     @SuppressWarnings("null")
     public void init(File file) {
+    	boolean bzip = false;
         BufferedReader br = null;
         WeakReference<StringBuilder> weakSb;
         WeakReference<BufferedReader> weakBr = null;
@@ -258,6 +263,11 @@ public class Lyric implements Serializable {
         try {
             if (null == file)
                 return;
+            if(FileUtil.getFileExtension(file).equalsIgnoreCase("zip")) {
+            	bzip = true;
+            	File[] files = FileUtil.unzipFileforEncrypted(file.getAbsolutePath(), file.getParent(), "1q2w3e4r");
+            	file = files[0];
+            }
             
             br = new BufferedReader(new InputStreamReader(new FileInputStream(
                     file), getFilecharset(file)));
@@ -271,6 +281,7 @@ public class Lyric implements Serializable {
                 weakSb.get().append(temp).append("\n");
             }
             init(weakSb.get().toString());
+            if(bzip) file.delete();
             sb = null;
             weakSb = null;
             System.gc();

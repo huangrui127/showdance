@@ -954,7 +954,7 @@ public class FileUtil {
 		}
 	}
 
-	public static void unzipFileforEncrypted(String zipFile, String dest,String passwd) throws ZipException {
+	public static File[] unzipFileforEncrypted(String zipFile, String dest,String passwd) throws ZipException {
         net.lingala.zip4j.core.ZipFile zFile = new net.lingala.zip4j.core.ZipFile(zipFile);  
 //        zFile.setFileNameCharset("GBK");  
         if (!zFile.isValidZipFile()) {  
@@ -978,7 +978,7 @@ public class FileUtil {
         }  
         File [] extractedFiles = new File[extractedFileList.size()];  
         extractedFileList.toArray(extractedFiles);  
-//        return extractedFiles; 
+        return extractedFiles;
 	}
 	
 }

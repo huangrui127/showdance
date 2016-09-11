@@ -620,22 +620,22 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 					@Override
 					public void onFailure(HttpException t, String arg1) {
 
-						 Log.e("guolei","下载失败:" + arg1 + ":" +
-						 dmi.getDownloadUrl() + "：\n原因：" + t.getMessage()
-						 + "异常信息:" + t.getLocalizedMessage());
-						if("maybe the file has downloaded completely".equalsIgnoreCase(arg1)) {
-							new UnzipTask().execute(flrcpath,dmi.getName(),lrcToPath);
-						}else {
-							Toast.makeText(getApplicationContext(), dmi.getName() + "歌词 下载失败!", Toast.LENGTH_SHORT).show();
-						}
+//						 Log.e("guolei","下载失败:" + arg1 + ":" +
+//						 dmi.getDownloadUrl() + "：\n原因：" + t.getMessage()
+//						 + "异常信息:" + t.getLocalizedMessage());
+//						if("maybe the file has downloaded completely".equalsIgnoreCase(arg1)) {
+//							new UnzipTask().execute(flrcpath,dmi.getName(),lrcToPath);
+//						}else {
+//							Toast.makeText(getApplicationContext(), dmi.getName() + "歌词 下载失败!", Toast.LENGTH_SHORT).show();
+//						}
 					}
 
 					@Override
 					public void onSuccess(ResponseInfo<File> arg0) {
-						 Log.e("guolei","lrcc download success,:" + flrcpath + ":" +lrcToPath);
-						if(FileUtil.getUrlExtension(flrcpath).equalsIgnoreCase("zip")) {
-							new UnzipTask().execute(flrcpath,null/*dmi.getName()*/,lrcToPath);
-						}
+//						 Log.e("guolei","lrcc download success,:" + flrcpath + ":" +lrcToPath);
+//						if(FileUtil.getUrlExtension(flrcpath).equalsIgnoreCase("zip")) {
+//							new UnzipTask().execute(flrcpath,null/*dmi.getName()*/,lrcToPath);
+//						}
 					}
 				});
 				dmi.setDownloadFile(downAss);

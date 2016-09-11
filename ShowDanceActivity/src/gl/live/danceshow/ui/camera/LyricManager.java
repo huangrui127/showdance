@@ -59,6 +59,10 @@ public class LyricManager implements UpdateMusicPlayCallback {
 		}
 	}
 
+	public void removeLyric() {
+		
+	}
+	
 	public void stopUpdateLyric() {
 		synchronized (mLock) {
 			if(!isplaying)
