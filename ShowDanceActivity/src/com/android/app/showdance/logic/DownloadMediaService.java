@@ -234,20 +234,27 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 
 	// private SQLiteDatabase db;
 	private class UnzipTask extends AsyncTask<String, Void, Boolean> {
-
+		private boolean bshow = false;
 		@Override
 		protected Boolean doInBackground(String... params) {
 			
 			String path = params[0];
 			String outdir = params[1];
 			String sdcardpath = params[2];
-			Log.d("guolei","path "+path + " outdir "+outdir + " sdcardpath "+sdcardpath);
-			if(path==null|| outdir == null) {
+//			Log.d("guolei","path "+path + " outdir "+outdir + " sdcardpath "+sdcardpath);
+			if(path==null/*|| outdir == null*/) {
 				Log.e("guolei","download error");
 				return false;
 			}
+			bshow = outdir!=null;
+			String out = null;
+			if(outdir!=null) {
+				out = sdcardpath+File.separator+outdir;
+			} else {
+				out = sdcardpath+File.separator;
+			}
 			try {
-					FileUtil.unzipFileforEncrypted(path, sdcardpath+File.separator+outdir,"1q2w3e4r");
+					FileUtil.unzipFileforEncrypted(path, out,"1q2w3e4r");
 				new File(path).delete();
 			} catch (ZipException e) {
 				final String msg = e.getMessage();
@@ -269,7 +276,7 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 		
 		@Override
 		protected void onPostExecute(Boolean result) {
-			if(result)
+			if(result&& bshow)
 			Toast.makeText(getApplicationContext(), "下载成功！",
 					Toast.LENGTH_SHORT).show();
 		}
@@ -627,7 +634,7 @@ public class DownloadMediaService extends Service implements ContentValue, Agent
 					public void onSuccess(ResponseInfo<File> arg0) {
 						 Log.e("guolei","lrcc download success,:" + flrcpath + ":" +lrcToPath);
 						if(FileUtil.getUrlExtension(flrcpath).equalsIgnoreCase("zip")) {
-							new UnzipTask().execute(flrcpath,dmi.getName(),lrcToPath);
+							new UnzipTask().execute(flrcpath,null/*dmi.getName()*/,lrcToPath);
 						}
 					}
 				});

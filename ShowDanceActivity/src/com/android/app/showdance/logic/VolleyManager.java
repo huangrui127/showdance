@@ -35,7 +35,7 @@ public class VolleyManager  {
 	private static final String TAG = "VolleyManager";
 	private static VolleyManager mVolleyManager;
 	private RequestQueue mQueue;
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	public static final String CLIENT_ID = "4b2fb6135ff764965febf424057697e9";
 	
 	public static String SERVER_URL= "http://www.wmnapp.com:82";
