@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RelativeLayout.LayoutParams;
 
 import com.android.app.wumeiniang.R;
 import com.android.app.showdance.model.UploadVideoInfo;
@@ -197,23 +196,16 @@ public class RecordedVideoAdapter extends BaseAdapter {
 //        } 
 		}
 //			mediaMetadataRetriever.release();
-
 		if (videoType == 1) {
 			holder.uploading_btn.setVisibility(View.VISIBLE);
-			if(uploadVideo.getUploadState() == 1) {
+//			if(uploadVideo.getUploadState() == 1) {
 //				holder.uploading_btn.setOnClickListener(null);
-			    holder.uploading_btn.setOnClickListener(new MyOnClick(holder, uploadVideo, position, 0));
-			    LayoutParams p=(LayoutParams) holder.uploading_btn.getLayoutParams();
-			     p.width = 320;
-			     holder.uploading_btn.setLayoutParams(p);
-				holder.uploading_btn.setText("上传到其它网站");
-			}else {
+//				holder.uploading_btn.setText("已上传");
+//			}else {
 				holder.uploading_btn.setText("上传");
-//				uploadVideoSelect(0, uploadVideo);
-				holder.uploading_btn.setOnClickListener(new MyOnClick(holder, uploadVideo, position, 1));
-			}
+			holder.uploading_btn.setOnClickListener(new MyOnClick(holder, uploadVideo, position));
+//			}
 		}
-		
 //			else if (videoType == 2) {
 //			holder.edit_btn.setVisibility(View.VISIBLE);
 //			holder.edit_btn.setOnClickListener(new View.OnClickListener() {
@@ -253,15 +245,14 @@ public class RecordedVideoAdapter extends BaseAdapter {
 		private ViewHolder holder;
 		private UploadVideoInfo uploadMusicItem;
 		private int position;
-		private int alreadUploaded;
+
 		/**
 		 * Title: Description:
 		 */
-		public MyOnClick(ViewHolder holder, UploadVideoInfo uploadMusicItem, int position, int uploadedType) {
+		public MyOnClick(ViewHolder holder, UploadVideoInfo uploadMusicItem, int position) {
 			this.holder = holder;
 			this.uploadMusicItem = uploadMusicItem;
 			this.position = position;
-			this.alreadUploaded = uploadedType;
 		}
 
 		/**
@@ -278,12 +269,12 @@ public class RecordedVideoAdapter extends BaseAdapter {
 				return;
 			}
 			if (NetUtil.isWifiConnected(context)) {// 已开启wifi网络
-				uploadVideoSelect(position, uploadMusicItem, alreadUploaded);
+				uploadVideoSelect(position, uploadMusicItem);
 			} else {// 未开启wifi网络
 				new CustomAlertDialog(context).builder(R.style.DialogTVAnimWindowAnim).setTitle("网络提示").setMsg("WIFI网络未开启,是否继续使用2G或3G网络上传!").setPositiveButton("确  认", new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						uploadVideoSelect(position, uploadMusicItem, alreadUploaded);
+						uploadVideoSelect(position, uploadMusicItem);
 					}
 				}).setNegativeButton("取  消", new OnClickListener() {
 					@Override
@@ -303,14 +294,13 @@ public class RecordedVideoAdapter extends BaseAdapter {
 	 * @param uploadMusicItem
 	 * @param holder
 	 */
-	private void uploadVideoSelect(int position, UploadVideoInfo uploadMusicItem, int uploaded) {
+	private void uploadVideoSelect(int position, UploadVideoInfo uploadMusicItem) {
 		if (position <= recordedVideoList.size()) {
 			uploadMusicItem = recordedVideoList.get(position);
 			String path = uploadMusicItem.getFilePath();
 			Intent intent = new Intent(ConstantsUtil.ACTION_UPLOAD);
 			intent.putExtra("position", position);
 			intent.putExtra("filePath", path);
-			intent.putExtra("uploaded", uploaded);
 			context.sendBroadcast(intent);
 		} else {
 			// 数组角标越界
