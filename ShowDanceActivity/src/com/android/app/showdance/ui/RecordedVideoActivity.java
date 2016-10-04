@@ -108,7 +108,7 @@ public class RecordedVideoActivity extends VolleyBaseActivity implements OnItemC
 	private long id;
 
 	private User userInfo;
-	private Long cityId;
+//	private Long cityId;
 
 private MediaMetadataRetriever mRetriever;
 	private boolean loadingFlag = true;
@@ -125,7 +125,7 @@ private MediaMetadataRetriever mRetriever;
 		setContentView(R.layout.activity_recordedvideo);
 		mRetriever = new MediaMetadataRetriever();
 		findViewById();
-		initView();
+//		initView();
 		setOnClickListener();
 
 	}
@@ -159,7 +159,11 @@ private MediaMetadataRetriever mRetriever;
 		userInfo = InitApplication.mSpUtil.getUser();
 
 		if (userInfo == null) {
-			userInfo = new User();
+			if(mRecordedVideoAdapter != null && recordedVideoList != null) {
+				recordedVideoListInfo.clear();
+				mRecordedVideoAdapter.notifyDataSetChanged();
+			}
+			return;
 		} else {
 			id = userInfo.getId(); // 用户登录
 
@@ -445,13 +449,14 @@ private MediaMetadataRetriever mRetriever;
 	protected void onResume() {
 		super.onResume();
 		EventBus.getDefault().register(this);
-		userInfo = InitApplication.mSpUtil.getUser();
-
-		if (userInfo == null) {
-			return;
-		} else if (cityId == null || cityId == 0) {
-			cityId = InitApplication.mSpUtil.getCityId(); // 用户城市
-		}
+//		userInfo = InitApplication.mSpUtil.getUser();
+//
+//		if (userInfo == null) {
+//			return;
+//		} else if (cityId == null || cityId == 0) {
+//			cityId = InitApplication.mSpUtil.getCityId(); // 用户城市
+//		}
+		initView();
 	}
 
 	
@@ -701,24 +706,24 @@ private MediaMetadataRetriever mRetriever;
 	 * @param id
 	 * @return void
 	 */
-	public void showProgressDialog(Context mContext, long id) {
-		mDialog = new AlertDialog.Builder(mContext).create();
-		mDialog.show();
-		// 注意此处要放在show之后 否则会报异常
-		mDialog.setContentView(R.layout.loading_progressbar_dialog);
-		mDialog.setCancelable(true); // false设置点击其他地方不能取消进度条
-
-		// 接口参数
-		MediaInfoPageVo mediaInfoPageVo = new MediaInfoPageVo();
-		paramsMap = new HashMap<String, Object>();
-		mediaInfoPageVo.setCreateUser(id);
-		mediaInfoPageVo.setPageNo(1);
-		mediaInfoPageVo.setPageSize(ConstantsUtil.PageSize);
-		paramsMap.put("mediaInfoPageVo", mediaInfoPageVo);
-
-		Task mTask = new Task(TaskType.TS_MediaInfoPageList, paramsMap);
-		MainService.newTask(mTask);
-	}
+//	public void showProgressDialog(Context mContext, long id) {
+//		mDialog = new AlertDialog.Builder(mContext).create();
+//		mDialog.show();
+//		// 注意此处要放在show之后 否则会报异常
+//		mDialog.setContentView(R.layout.loading_progressbar_dialog);
+//		mDialog.setCancelable(true); // false设置点击其他地方不能取消进度条
+//
+//		// 接口参数
+//		MediaInfoPageVo mediaInfoPageVo = new MediaInfoPageVo();
+//		paramsMap = new HashMap<String, Object>();
+//		mediaInfoPageVo.setCreateUser(id);
+//		mediaInfoPageVo.setPageNo(1);
+//		mediaInfoPageVo.setPageSize(ConstantsUtil.PageSize);
+//		paramsMap.put("mediaInfoPageVo", mediaInfoPageVo);
+//
+//		Task mTask = new Task(TaskType.TS_MediaInfoPageList, paramsMap);
+//		MainService.newTask(mTask);
+//	}
 
 	/**
 	 * 

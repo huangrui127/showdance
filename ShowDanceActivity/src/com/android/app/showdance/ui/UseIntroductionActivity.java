@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -88,6 +89,14 @@ protected void onPause() {
 //		mVideoView.start();
 //		Log.w("guolei","helpUrl.getPath() "+helpUrl.getPath() + " to stirng "+helpUrl.toString());
 		mVideoView.loadUrl(helpUrl.toString());
+		
+		mVideoView.setWebViewClient(new WebViewClient(){
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			    view.loadUrl(url);
+			    return super.shouldOverrideUrlLoading(view, url);
+			    }
+			});
 		mVideoView.onResume();
 	}
 	

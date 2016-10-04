@@ -5,5 +5,9 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/library"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pulltorefresh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/social_sdk_library_project"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/swipelistview"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

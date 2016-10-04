@@ -371,7 +371,7 @@ private SwipeListViewListener swipeListViewListener = new SwipeListViewListener(
 		
 		@Override
 		public void onClickFrontView(int position) {
-			Log.d("guolei","onClickFrontView");
+			Log.i("guolei","onClickFrontView");
 			Intent mIntent = new Intent();
 			mIntent.setData(Uri.parse(mVideoUploadList.get(position).getname()));
 			mIntent.putExtra("title", mVideoUploadList.get(position).getvideoname());
