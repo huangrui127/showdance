@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10.0dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/login_input_bg"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="visible" >
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/ic_login_user" />
+
+            <EditText
+                android:id="@+id/setting_dance_id_edt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:hint="输入秀舞吧号,设置后不可修改"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_clear_search_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="0.0dip"
+                android:background="@drawable/selector_btn_search_clear_text_right"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:padding="2dip"
+            android:text="舞友们能通过秀舞吧号找到你，可使用6-20个字母、数字、或下划线，必须以字母开头，不区分大小写，秀舞吧号设置成功后不可修改。"
+            android:textColor="@color/color_gray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:background="@drawable/login_input_bg"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:visibility="visible" >
+
+                <ImageView
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/icon_pencil" />
+
+                <EditText
+                    android:id="@+id/setting_pwd_edt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1.0"
+                    android:background="@android:color/transparent"
+                    android:hint="输入密码,不少于6位"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_clear_search_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@drawable/selector_btn_search_clear_text_right"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/login_input_spreater"
+                android:background="@color/input_stroke" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal"
+                android:visibility="visible" >
+
+                <ImageView
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/icon_pencil" />
+
+                <EditText
+                    android:id="@+id/setting_pwd_again_edt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1.0"
+                    android:background="@android:color/transparent"
+                    android:hint="再次输入密码"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_clear_search_text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@drawable/selector_btn_search_clear_text_right"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/login_input_bg"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="visible" >
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/ico_code" />
+
+            <EditText
+                android:id="@+id/write_recommendCode_edt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:hint="(可为空)填写推荐码:手机号/秀舞吧号"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_clear_search_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="0.0dip"
+                android:background="@drawable/selector_btn_search_clear_text_right"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:padding="2dip"
+            android:text="若有推荐码可以输入推荐码,则提供推荐码的人可以获得20个金币奖励哦。推荐码可以填写推荐人的手机号或秀舞吧号。"
+            android:textColor="@color/color_gray" />
+
+        <Button
+            android:id="@+id/settingDanceId_RegisterBtn"
+            style="@style/button_style"
+            android:layout_width="fill_parent"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/btn_finish_selector"
+            android:text="注册"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</LinearLayout>

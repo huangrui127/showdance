@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/id_user_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_half"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/stage_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableBottom="@drawable/phone_me"
+            android:gravity="center"
+            android:text="@string/mine_professional_name"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/location_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:text="地理位置"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/id_divider_02"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/id_user_info_layout"
+        layout="@layout/listview_divider_line" />
+
+    <TextView
+        android:id="@+id/id_user_video_zone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_divider_02"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="@string/mine_video_zone"
+        android:textColor="@color/base_black"
+        android:textSize="@dimen/textsize_20" />
+
+    <include
+        android:id="@+id/id_divider_03"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/id_user_video_zone"
+        layout="@layout/listview_divider_line" />
+
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/id_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/logout_btn"
+        android:layout_below="@id/id_divider_03"
+        android:layout_marginBottom="3dp"
+        android:background="@color/white"
+        xrefreshview:autoRefresh="false" >
+
+        <com.fortysevendeg.swipelistview.SwipeListView
+            android:id="@+id/uploadedlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@color/transparent"
+            swipe:swipeActionLeft="reveal"
+            swipe:swipeBackView="@+id/back"
+            swipe:swipeCloseAllItemsWhenMoveList="true"
+            swipe:swipeFrontView="@+id/front"
+            swipe:swipeMode="left"
+            swipe:swipeOffsetLeft="300dp"
+            swipe:swipeOpenOnLongPress="false" />
+
+    </com.andview.refreshview.XRefreshView>
+
+    <include
+        android:id="@+id/id_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/logout_btn"
+        layout="@layout/layout_empty"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/logout_btn"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_normal_selector"
+        android:text="@string/logout"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

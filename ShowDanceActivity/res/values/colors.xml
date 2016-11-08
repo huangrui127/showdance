@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="host_text_color_checked">#ff84c6</color>
+    <color name="host_text_color_normal">#bdbdbd</color>
+    <color name="title_bg">#cc3a99</color>
+    <color name="btn_select_bg">#bf6db7</color>
+    <color name="btn_shoot_text_select_color">#8B3282</color>
+    <color name="theme_color">#c564b6</color>
+    <color name="host_banner_color">#F1F4F4</color>
+    <color name="main_tab_bottom_bg">#4d4d65</color>
+    <color name="main_bottom_line">#ffe1e1e1</color>
+    <color name="activity_bg">#fff0eeee</color>
+    <color name="bg_color">#F0F0F0</color>
+    <color name="line_color">#DDDDDD</color>
+    <color name="camera_noframe_color">#dbd6f0</color>
+    <color name="listview_divider">#ffe7e6e8</color>
+    <color name="host_search_bg">#2CA399</color>
+    <color name="panic">#F29700</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="titlebar_bg">#1A2730</color>
+    <color name="gray_1">#969696</color>
+    <color name="gray_2">#DCDCDC</color>
+    <color name="gray_3">#787878</color>
+    <color name="bg_gray">#FFE3E3E7</color>
+    <color name="zhonghui">#ff798089</color>
+    <color name="hei">#ff000000</color>
+    <color name="red">#FF0000</color>
+    <color name="theme_bg_color">#f0f2f5</color>
+    <color name="color_theme">#489cfa</color>
+    <color name="transparent">#00000000</color>
+    <color name="base_color_text_black">#3e3e39</color>
+    <color name="black_color">#000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="lightgreen">#aeff39</color>
+    <color name="register_text_c">#ff646464</color>
+    <color name="register_text_dark">#ff333333</color>
+    <color name="main_top_back_text">#ff49526f</color>
+    <color name="main_tab_text">#FF8C00</color>
+    <color name="main_tab_text_pressed">#FF8C00</color>
+    <color name="login_title_bg">#0078d9</color>
+    <color name="login_other_btn_bg">#a0d5ff</color>
+    <color name="login_content_bg">#efefef</color>
+    <color name="input_stroke">#c2c2c2</color>
+    <color name="input_text_color">#9d9d9d</color>
+    <color name="download_bg">#3794de</color>
+    <color name="list_item_grey">#7b7b7b</color>
+    <color name="detail_bg">#f9f9f9</color>
+    <color name="main_title_bg">#20A8FF</color>
+    <color name="rectangle_border">#ffe6e6e6</color>
+    <color name="little_white">#fafafa</color>
+    <color name="sel_salary_detail_text">#949494</color>
+    <color name="black_with_alpha">#7F000000</color>
+    <color name="msg_dialog_bg_stroke">#cccccc</color>
+    <color name="progress_view_bg">#e4e4e4</color>
+    <color name="dialog_red">#ff4848</color>
+    <color name="dialog_grey">#d6d6d6</color>
+    <color name="dialog_deap_grey">#cccccc</color>
+    <color name="divider_color">#dedede</color>
+    <color name="im_divider_color">#005498</color>
+    <color name="font_gray">#ff666666</color>
+    <color name="reserve_hint_bg_color">#ffffefc3</color>
+    <color name="text_green">#00FF66</color>
+    <color name="font_green">#ff2cca77</color>
+    <color name="font_gray_new">#ff999999</color>
+    <color name="service_project_button_hover">#11000000</color>
+    <color name="text_hint_color">#ff929292</color>
+    <color name="form_text_title">#ff34302d</color>
+    <color name="content_title_bg">#fff8f8f8</color>
+    <color name="title_bottom_line">#ffbcbcbc</color>
+    <color name="subject_2">#ffb3b3b3</color>
+    <color name="vpi__background_holo_dark">#ff000000</color>
+    <color name="vpi__background_holo_light">#fff3f3f3</color>
+
+    <item name="vpi__bright_foreground_holo_dark" type="color">@color/vpi__background_holo_light</item>
+    <item name="vpi__bright_foreground_holo_light" type="color">@color/vpi__background_holo_dark</item>
+
+    <color name="vpi__bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
+    <color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
+
+    <item name="vpi__bright_foreground_inverse_holo_dark" type="color">@color/vpi__bright_foreground_holo_light</item>
+    <item name="vpi__bright_foreground_inverse_holo_light" type="color">@color/vpi__bright_foreground_holo_dark</item>
+
+    <color name="font_orange">#ffff5f3f</color>
+    <color name="grey">#C1CDCD</color>
+    <color name="background">#737373</color>
+    <color name="cost_time_line">#ffdbdcde</color>
+    <color name="item_normal_bg">#44000000</color>
+    <color name="item_prossed_bg">#55000000</color>
+    <color name="addcar_letter_bgcolor">#E0E0E0</color>
+    <color name="addcar_letter_textcolor">#454545</color>
+    <color name="addcar_titleTv_color">#336598</color>
+    <color name="feedback_textcolor">#80333333</color>
+    <color name="feedback_addmood_poi">#ff005092</color>
+    <color name="gray_white">#ebebeb</color>
+    <color name="gray_light">#887c7c7c</color>
+    <color name="gray_black">#2e2e2e</color>
+    <color name="color_gray">#ff828282</color>
+    <color name="weather_plugin_text">#ff2f2f2f</color>
+    <color name="weather_main_bg_color">#fff0f0f0</color>
+    <color name="weather_actionbar_background_start">#CD2626</color>
+    <color name="weather_actionbar_background_end">#EB1818</color>
+    <color name="weather_actionbar_separator">#A71717</color>
+    <color name="half_transparent">#aa000000</color>
+    <color name="selected_tabtext">#21cd73</color>
+    <color name="selected_person_tabtext">#ff999da7</color>
+    <color name="base_black">#ff000000</color>
+    <color name="unselected_tabtext">#77000000</color>
+    <color name="TextColorBlack">#FF000000</color>
+    <color name="AppBackgroundColor">#FFC0E7FA</color>
+    <color name="TextColorWhite">#FFFFFFFF</color>
+    <color name="TextColorBlue">#0066CC</color>
+    <color name="TextColorGray">#FF505050</color>
+    <color name="TextColorRed">#FFE26926</color>
+    <color name="BgColor">#ffd1dce9</color>
+    <color name="bg_all_grau">#ff292929</color>
+    <color name="sc_transparent_background">#00111111</color>
+    <color name="toast_color">#ff2E76B9</color>
+    <color name="border_line">#ffd7dadc</color>
+    <color name="minimusic"> #7fffd4</color>
+    <color name="fashion_color">#0099cc</color>
+    <color name="fahion">#33B5E5</color>
+    <color name="item_divider">#21cd73</color>
+    <color name="color_zhonghui">#ff798089</color>
+    <color name="color_hei">#ff000000</color>
+    <color name="classesfees_color">#44adfb</color>
+
+    <drawable name="file_list_item_press">#ff5b544d</drawable>
+    <drawable name="file_list_item_normal">#ff787470</drawable>
+
+    <color name="button_unpressed">#00000000</color>
+    <color name="button_pressed">#FF67ace2</color>
+    <color name="text_new">#ffff79db</color>
+    <color name="bg_home_menu">#ff1a2630</color>
+    <color name="text_home_menu_disable">#ff515961</color>
+    <color name="text_home_menu">#ff768899</color>
+    <color name="divider_home_menu">#ff0e1923</color>
+    <color name="text_emph">#ff0099ff</color>
+    <color name="sliding_action">#ff00cc99</color>
+    <color name="sliding_action_disable">#ff515961</color>
+    <color name="sliding_action_pressed">#ff007356</color>
+    <color name="ask_question_bg">#E8ECEF</color>
+    <color name="menu_left_bg">#1A2730</color>
+    <color name="register_title_c">#ff9f9f9f</color>
+    <color name="register_title_bg">#fff0f0f0</color>
+    <color name="frame_gray">#ffcecece</color>
+    <color name="ok_btn_bg_pressed">#ff32aa50</color>
+    <color name="register_title_step">#344bfe</color>
+    <color name="register_anew_send">#2A66FF</color>
+    <color name="msg_emote_divider">#ffa1a1a1</color>
+    <color name="sliding_bg">#FF343434</color>
+    <color name="pressed_bg">#8033B5E5</color>
+    <color name="userinfo_line">#ffdfdfdd</color>
+    <color name="zone_list_button">#ff666666</color>
+    <color name="text_normal">#ff768899</color>
+    <color name="text_disable">#ff515961</color>
+    <color name="text_pressed">#ff0099ff</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="alertdialog_textcolor">#675b9d</color>
+    <color name="mp3playlrc_color">#1E90FF</color>
+    <color name="light_green">#20c36e</color>
+    <color name="dialog_btn_bgcolor">#ff1E90FF</color>
+    <color name="hint_text_color">#ff999999</color>
+    <color name="list_devider_color">#fff2f2f2</color>
+    <color name="normal_text_color">#ff353535</color>
+    <color name="light_text_color">#ffd7d7d7</color>
+    <color name="last_msg_tv_color">#ffaaaaaa</color>
+    <color name="mediacontroller_bg_pressed">#ff53c1bd</color>
+    <color name="default_round_progress_roundColor">#30000000</color>
+    <color name="default_round_progress_roundProgressColor">#339933</color>
+    <color name="default_round_progress_roundProgressTextColor">#339933</color>
+
+    <dimen name="default_round_progress_roundWidth">2dp</dimen>
+
+    <bool name="default_round_progress_displayPercentage">true</bool>
+
+    <dimen name="default_round_progress_roundProgressTextSize">12sp</dimen>
+    <dimen name="default_round_progress_roundRadius">25dp</dimen>
+
+    <color name="gray_half">#0ff0f0f0</color>
+    <color name="darkgray">#404040ff</color>
+    <color name="yellow">#ffFF33ff</color>
+    <color name="green">#4eff00</color>
+    <color name="lightgray">#c0c0c0ff</color>
+    <color name="blue">#ff0f81d9</color>
+    <color name="gray">#ff666666</color>
+    <color name="text_gray2">#ffC3C3C3</color>
+    <color name="magenta">#ff6699ff</color>
+    <color name="cyan">#66ffffff</color>
+    <color name="transparent_black">#ff000000</color>
+    <color name="background_dark">#f0f0f0</color>
+    <color name="camera_bg">#2c2c2c</color>
+    <color name="camera_progress">#2980B9</color>
+    <color name="camera_progress_split">#005084</color>
+    <color name="camera_progress_three">#24ff00</color>
+    <color name="camera_progress_overflow">#1b5d89</color>
+    <color name="camera_theme_selected_bgcolor">#2980B9</color>
+    <color name="camera_bottom_press_bg">#1b1c1f</color>
+    <color name="title_background_color">#fcb840</color>
+    <color name="camera_progress_delete">#f68b2b</color>
+    <color name="translucent_background_80">#CC000000</color>
+    <color name="translucent_background_50">#7f000000</color>
+    <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_85">#DA000000</color>
+    <color name="transparent_black_30">#4D000000</color>
+
+    <color name="menu_main_top_font_color">#535353</color>
+    <color name="menu_main_grey_font_color">#b5b5b5</color>
+    
+    <color name="dim_foreground_dark">#bebebe</color>
+</resources>

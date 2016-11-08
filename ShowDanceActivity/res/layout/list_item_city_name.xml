@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView 
+        android:id="@+id/id_city_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="城市名"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"/>
+    
+    <View 
+        android:id="@+id/id_divider_view"
+        android:layout_below="@id/id_city_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    
+</RelativeLayout>

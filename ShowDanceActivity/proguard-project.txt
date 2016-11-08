@@ -1,0 +1,209 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+-optimizationpasses 5
+-dontusemixedcaseclassnames 
+-dontskipnonpubliclibraryclasses 
+-dontpreverify 
+-ignorewarnings
+-verbose 
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/* 
+
+-keepattributes Exceptions,InnerClasses,Signature
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver 
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper 
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+-keep public class com.android.app.showdance.model.Location
+-keep public class com.android.app.wumeiniang.** {
+*;
+}
+-keep public class com.android.app.wumeiniang.app.** {
+*;
+}
+
+-keep public class com.android.app.showdance.custom.** {
+*;
+}
+
+-keep public class com.android.app.showdance.ui.** {
+*;
+}
+-keep public class com.android.app.showdance.model.** {
+*;
+}
+
+-keep public class com.android.app.showdance.model.glmodel.FrameInfo$* {
+*;
+}
+
+-keep public class com.android.app.showdance.model.glmodel.** {
+*;
+}
+-keep public class de.greenrobot.event.** {
+*;
+}
+-keep public class com.android.app.showdance.model.glmodel.MusicInfo$* {
+*;
+}
+
+-libraryjars libs/android-async-http-1.4.8.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/aspectjrt-1.7.3.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/eventbus-2.4.0.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/gson-2.2.4.jar(!META-INF/MANIFEST.MF)
+#-libraryjars libs/isoparser-1.0-RC-27.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/jackson-all-1.7.6.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/mta-sdk-1.6.2.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/open_sdk_r5509.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/pinyin4j-2.5.0.jar(!META-INF/MANIFEST.MF)
+#-libraryjars libs/pushservice-4.5.3.48.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/qiniu-android-sdk-7.0.7.2.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/SocialSDK_QQZone_3.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/org.apache.http.legacy.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/umeng-analytics-v6.0.0.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/umeng_social_sdk.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/universal-image-loader-1.9.5.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/utdid4all-1.0.4.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/Volley.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/xUtils-2.6.14.jar(!META-INF/MANIFEST.MF)
+-libraryjars libs/android-support-v4.jar(!META-INF/MANIFEST.MF)
+-dontwarn android.support.**
+-keep class android.support.** { *; }
+
+#自定义控件
+-keep public class com.android.app.showdance.utils.XCRoundRectImageView
+
+#高德定位相关
+-dontwarn com.amap.api.**
+-dontwarn com.autonavi.**
+#3D地图
+-keep class com.amap.api.mapcore.**{*;} 
+-keep class com.amap.api.maps.**{*;} 
+-keep class com.autonavi.amap.mapcore.*{*;} 
+
+#定位
+-keep class com.amap.api.location.**{*;}
+-keep class com.amap.api.fence.**{*;}
+-keep class com.autonavi.aps.amapapi.model.**{*;}
+
+#搜索
+-keep class com.amap.api.services.**{*;}
+
+#2D地图
+-keep class com.amap.api.maps2d.**{*;}
+-keep class com.amap.api.mapcore2d.**{*;}
+
+#导航
+-keep class com.amap.api.navi.**{*;}
+-keep class com.autonavi.**{*;}
+
+-dontwarn com.andview.**
+-keep public class com.andview.** {*;}
+
+-dontwarn com.jude.**
+-keep public class com.jude.** {*;}
+
+-dontwarn com.tencent.**
+-keep public class com.tencent.** {*;}
+
+-dontwarn com.qiniu.android.**
+-keep class com.qiniu.android.** { *;}
+-dontwarn com.umeng.socialize.**
+-keep class com.umeng.socialize.** { *;}
+
+-dontwarn com.handmark.pulltorefresh.**
+-keep class com.handmark.pulltorefresh.** { *;}
+
+-dontwarn org.codehaus.jackson.**
+-keep class org.codehaus.jackson.** { *;}
+-dontwarn org.apache.commons.httpclient.**
+-keep class org.apache.commons.httpclient.** { *;}
+
+-dontwarn org.xmlpull.v1.**
+-keep class org.xmlpull.v1.**{
+*;
+}
+-keep class com.loopj.android.http.**{*;}
+ 
+ #不混淆org.apache.http.legacy.jar 
+ -dontwarn android.net.compatibility.**
+ -dontwarn android.net.http.**
+ -dontwarn com.android.internal.http.multipart.**
+ -dontwarn org.apache.commons.**
+ -dontwarn org.apache.http.**
+ -keep class android.net.compatibility.**{*;}
+ -keep class android.net.http.**{*;}
+ -keep class com.android.internal.http.multipart.**{*;}
+ -keep class org.apache.commons.**{*;}
+ -keep class org.apache.http.**{*;}
+
+-keep class org.apache.commons.**{
+*;
+}
+ -keep class com.sina.weibo.sdk.** {
+ *;
+ }
+-keep class com.umeng.socialize.**{
+*;
+}
+
+-keep class gl.live.danceshow.ui.widget.*{
+*;
+}
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+#-keep public class com.android.app.wumeiniang.R$*{
+#public static final int *;
+#}
+
+# Keep our interfaces so they can be used by other ProGuard rules.
+# See http://sourceforge.net/p/proguard/bugs/466/
+-keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+
+# Do not strip any method/class that is annotated with @DoNotStrip
+-keep @com.facebook.common.internal.DoNotStrip class *
+-keepclassmembers class * {
+    @com.facebook.common.internal.DoNotStrip *;
+}
+
+# Keep native methods
+-keepclassmembers class * {
+    native <methods>;
+}
+
+-dontwarn okio.**
+-dontwarn com.squareup.okhttp.**
+-dontwarn okhttp3.**
+-dontwarn javax.annotation.**
+-dontwarn com.android.volley.toolbox.**

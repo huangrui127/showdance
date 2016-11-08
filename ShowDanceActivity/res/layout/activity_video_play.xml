@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/id_title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        layout="@layout/activity_title_bar" />
+
+    <FrameLayout
+        android:id="@+id/id_video_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" >
+
+        <com.android.app.showdance.playvideo.CustomVideoView
+            android:id="@+id/id_videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ProgressBar
+                android:id="@+id/id_progressbar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/id_load_rate_tv"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="100%"
+                android:textColor="#52C1BD"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/id_back_and_upload_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="top" >
+
+            <RelativeLayout
+                android:id="@+id/id_back_btn_layout"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="6dp" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bg_pm" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/btn_back" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/id_upload_btn"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_btn_share"
+                android:text="上传"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/id_controlbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#80000000"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <RelativeLayout
+                    android:id="@+id/id_paly_and_current_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" >
+
+                    <ImageButton
+                        android:id="@+id/id_play_ib"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="#00000000"
+                        android:clickable="true"
+                        android:src="@drawable/player_btn_pause_style"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/id_time_current_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_toRightOf="@id/id_play_ib"
+                        android:gravity="center"
+                        android:text="00:00"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/id_end_and_full_screen_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" >
+
+                    <TextView
+                        android:id="@+id/id_time_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:text="00:00"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                    <ImageView
+                        android:id="@+id/id_full_screen_iv"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_toRightOf="@id/id_time_total_tv"
+                        android:clickable="true"
+                        android:src="@drawable/ic_ratio_full" />
+                </RelativeLayout>
+
+                <SeekBar
+                    android:id="@+id/id_media_progress_sb"
+                    style="@style/MediaController_SeekBar_SmallScreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_toLeftOf="@id/id_end_and_full_screen_layout"
+                    android:layout_toRightOf="@id/id_paly_and_current_layout"
+                    android:focusable="true"
+                    android:max="1000" />
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusableInTouchMode="false" >
+
+        <RelativeLayout
+            android:id="@+id/id_paly_and_share_count_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:touchscreenBlocksFocus="true" >
+
+            <LinearLayout
+                android:id="@+id/id_palycount_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/id_descrip_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已被播放"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_playcount_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_descrip_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/id_sharecount_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/id_palycount_layout"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/id_descrip_03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已被分享"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_sharecount_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/id_descrip_04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/id_share_btn"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/selector_btn_share"
+                android:gravity="center"
+                android:text="分享"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/id_divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/id_paly_and_share_count_layout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray_1" />
+
+        <ScrollView
+            android:id="@+id/id_xscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_divider_view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:fillViewport="true"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/id_slogan_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="舞媚娘APP——广场舞视频录制专家"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="一款致力于为广大广场舞爱好者提供舞蹈视频制作服务的手机软件，操作简单、制作快速。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="特  点："
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="1.一键轻松制作舞蹈视频，没网也能制作MV。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="2.一键选择动态遮罩，场景切换瞬间实现。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="3.一键搞定舞曲配乐，音色纯正从此告别杂音。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="4.一键特效拉瘦，爱上秀舞，你就是下一个广场舞明星。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="5.一键设置片头，告诉全世界你的舞蹈宣言。"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

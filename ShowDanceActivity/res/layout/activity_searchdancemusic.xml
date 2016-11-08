@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_main_title_bar" />
+
+    <include layout="@layout/activity_search_title_white_bg3" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/login_input_spreater"
+        android:background="@color/input_stroke" />
+
+    <ListView
+        android:id="@+id/search_music_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:fastScrollEnabled="false"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:listSelector="#00000000" />
+
+    <LinearLayout
+        android:id="@+id/no_login_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:text="抱歉,暂未搜索到您要找的舞曲..."
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_16" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,297 @@
+# view res/layout/camera_fg_list.xml #generated:40
+# view res/layout/camera_subtitle.xml #generated:40
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view res/layout/controllerplaying.xml #generated:6
+-keep class android.widget.VideoView { <init>(...); }
+
+# view AndroidManifest.xml #generated:97
+-keep class com.amap.api.location.APSService { <init>(...); }
+
+# view res/layout/fragment_main.xml #generated:17
+# view res/layout/fragment_nationwide.xml #generated:14
+-keep class com.android.app.showdance.custom.GridViewWithHeaderAndFooter { <init>(...); }
+
+# view res/layout/activity_title_bar.xml #generated:86
+-keep class com.android.app.showdance.custom.MarqueeTextView { <init>(...); }
+
+# view AndroidManifest.xml #generated:317
+-keep class com.android.app.showdance.logic.DownloadMediaService { <init>(...); }
+
+# view AndroidManifest.xml #generated:320
+-keep class com.android.app.showdance.logic.DownloadViedoService { <init>(...); }
+
+# view AndroidManifest.xml #generated:311
+-keep class com.android.app.showdance.logic.MainService { <init>(...); }
+
+# view AndroidManifest.xml #generated:314
+-keep class com.android.app.showdance.logic.RegisterCodeTimerService { <init>(...); }
+
+# view AndroidManifest.xml #generated:99
+-keep class com.android.app.showdance.logic.UpdateService { <init>(...); }
+
+# view AndroidManifest.xml #generated:323
+-keep class com.android.app.showdance.logic.UploadViedoService { <init>(...); }
+
+# view res/layout/activity_video_play.xml #generated:20
+-keep class com.android.app.showdance.playvideo.CustomVideoView { <init>(...); }
+
+# view AndroidManifest.xml #generated:149
+-keep class com.android.app.showdance.ui.BuyInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:137
+-keep class com.android.app.showdance.ui.CameraAvatorFramActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:133
+-keep class com.android.app.showdance.ui.CameraMoreFramActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:409
+-keep class com.android.app.showdance.ui.ChooseLocationActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:415
+-keep class com.android.app.showdance.ui.CustomUploadVideoTitleActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:289
+-keep class com.android.app.showdance.ui.DownloadedMusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:283
+-keep class com.android.app.showdance.ui.FoundSearchMusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:402
+-keep class com.android.app.showdance.ui.MainCategoryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:189
+-keep class com.android.app.showdance.ui.OwnerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:421
+-keep class com.android.app.showdance.ui.PlayVideoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:145
+-keep class com.android.app.showdance.ui.PreSummeryEditorActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:295
+-keep class com.android.app.showdance.ui.RecordedVideoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:395
+-keep class com.android.app.showdance.ui.ShowDanceMainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:157
+-keep class com.android.app.showdance.ui.SplashActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:177
+-keep class com.android.app.showdance.ui.TeacherActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:183
+-keep class com.android.app.showdance.ui.TeacherDancerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:141
+-keep class com.android.app.showdance.ui.TeacherOfFrameActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:153
+-keep class com.android.app.showdance.ui.UseIntroductionActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:266
+-keep class com.android.app.showdance.ui.more.OwnerAboutActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:271
+-keep class com.android.app.showdance.ui.more.OwnerFeedBack { <init>(...); }
+
+# view AndroidManifest.xml #generated:305
+-keep class com.android.app.showdance.ui.oa.OwnerDowmMusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:276
+-keep class com.android.app.showdance.ui.oa.OwnerMoreActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:261
+-keep class com.android.app.showdance.ui.oa.PersonalMsgActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:301
+-keep class com.android.app.showdance.ui.oa.PhotoAndAudioActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:116
+-keep class com.android.app.showdance.ui.oa.SelectCtiyActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:110
+-keep class com.android.app.showdance.ui.oa.ShowCityActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:122
+-keep class com.android.app.showdance.ui.oa.VideoCommentActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:128
+-keep class com.android.app.showdance.ui.oa.VideoPublishCommentActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:231
+-keep class com.android.app.showdance.ui.usercenter.TheBirthDayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:225
+-keep class com.android.app.showdance.ui.usercenter.TheLivePlaceActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:237
+-keep class com.android.app.showdance.ui.usercenter.TheSignatureActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:213
+-keep class com.android.app.showdance.ui.usercenter.TheStageNameActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:195
+-keep class com.android.app.showdance.ui.usermanager.OwnerLoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:201
+-keep class com.android.app.showdance.ui.usermanager.OwnerPhoneRegisterActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:207
+-keep class com.android.app.showdance.ui.usermanager.OwnerRegisterDanceIdActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:249
+-keep class com.android.app.showdance.ui.usermanager.TheFindPasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:219
+-keep class com.android.app.showdance.ui.usermanager.TheModifyOldPhoneActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:243
+-keep class com.android.app.showdance.ui.usermanager.TheModifyPasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:255
+-keep class com.android.app.showdance.ui.usermanager.TheResetPasswordActivity { <init>(...); }
+
+# view res/layout/custom_dialog_time_set.xml #generated:106
+# view res/layout/custom_dialog_time_set.xml #generated:115
+# view res/layout/custom_dialog_time_set.xml #generated:69
+# view res/layout/custom_dialog_time_set.xml #generated:79
+# view res/layout/custom_dialog_time_set.xml #generated:88
+# view res/layout/custom_dialog_time_set.xml #generated:97
+-keep class com.android.app.showdance.wheelview.WheelView { <init>(...); }
+
+# view res/layout/activity_presummeryedit.xml #generated:10
+-keep class com.android.app.showdance.widget.AspectLinearLayout { <init>(...); }
+
+# view res/layout/bitmap_list.xml #generated:2
+# view res/layout/camera_more_frame.xml #generated:2
+-keep class com.android.app.showdance.widget.AspectRelativeLayout { <init>(...); }
+
+# view res/layout/activity_select_city.xml #generated:94
+-keep class com.android.app.showdance.widget.BladeView { <init>(...); }
+
+# view res/layout/camera_more_frame.xml #generated:49
+# view res/layout/showdance_recommend_item.xml #generated:114
+-keep class com.android.app.showdance.widget.CircleProgressBar { <init>(...); }
+
+# view res/layout/video_first_item.xml #generated:9
+# view res/layout/video_second_item.xml #generated:9
+# view res/layout/video_third_item.xml #generated:9
+-keep class com.android.app.showdance.widget.CustomGridView { <init>(...); }
+
+# view res/layout/activity_showdance.xml #generated:191
+-keep class com.android.app.showdance.widget.DrawableTextView { <init>(...); }
+
+# view res/layout/activity_video_list_items.xml #generated:19
+-keep class com.android.app.showdance.widget.InfoImageView { <init>(...); }
+
+# view res/layout/activity_video_list.xml #generated:151
+-keep class com.android.app.showdance.widget.InfosListLayout { <init>(...); }
+
+# view res/layout/custom_progressbar_dialog.xml #generated:24
+-keep class com.android.app.showdance.widget.MyProgressBar { <init>(...); }
+
+# view res/layout/activity_select_city.xml #generated:80
+-keep class com.android.app.showdance.widget.PinnedHeaderListView { <init>(...); }
+
+# view res/layout/activity_teacher_dancer.xml #generated:10
+-keep class com.android.app.showdance.widget.PullToRefreshView { <init>(...); }
+
+# view res/layout/include_head_round.xml #generated:10
+-keep class com.android.app.showdance.widget.RoundImageView { <init>(...); }
+
+# view res/layout/view_radio_item.xml #generated:2
+-keep class com.android.app.showdance.yixia.camera.views.ThemeRadioButton { <init>(...); }
+
+# view AndroidManifest.xml #generated:170
+-keep class com.android.app.wumeiniang.ShowDanceActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:84
+-keep class com.android.app.wumeiniang.app.InitApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:366
+-keep class com.android.app.wumeiniang.wxapi.WXEntryActivity { <init>(...); }
+
+# view res/layout/fragment_main.xml #generated:10
+# view res/layout/fragment_mine.xml #generated:69
+# view res/layout/fragment_nationwide.xml #generated:8
+-keep class com.andview.refreshview.XRefreshView { <init>(...); }
+
+# view res/layout/bitmap_list.xml #generated:15
+# view res/layout/camera_more_frame.xml #generated:16
+# view res/layout/grid_item_dance_video.xml #generated:16
+# view res/layout/layout_main_gj.xml #generated:17
+# view res/layout/recordedvideo_item.xml #generated:47
+-keep class com.facebook.drawee.view.SimpleDraweeView { <init>(...); }
+
+# view res/layout/activity_owner.xml #generated:710
+# view res/layout/activity_recordedvideo.xml #generated:20
+# view res/layout/fragment_mine.xml #generated:79
+-keep class com.fortysevendeg.swipelistview.SwipeListView { <init>(...); }
+
+# view res/layout/activity_moreframe.xml #generated:22
+-keep class com.handmark.pulltorefresh.library.PullToRefreshGridView { <init>(...); }
+
+# view res/layout/activity_showdance.xml #generated:138
+# view res/layout/fragment_shoot.xml #generated:136
+-keep class com.handmark.pulltorefresh.library.PullToRefreshListView { <init>(...); }
+
+# view res/layout/layout_rollpagerview.xml #generated:10
+-keep class com.jude.rollviewpager.RollPagerView { <init>(...); }
+
+# view AndroidManifest.xml #generated:373
+-keep class com.renn.rennsdk.oauth.OAuthActivity { <init>(...); }
+
+# view res/layout/chatting_item.xml #generated:111
+-keep class com.speedtong.example.common.base.CCPTextView { <init>(...); }
+
+# view AndroidManifest.xml #generated:330
+-keep class com.speedtong.sdk.ECClientService { <init>(...); }
+
+# view AndroidManifest.xml #generated:360
+-keep class com.tencent.connect.common.AssistActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:347
+-keep class com.tencent.tauth.AuthActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:337
+-keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
+
+# view res/layout/umeng_socialize_post_share.xml #generated:2
+# view sw550dp-large-v13\res/layout-sw550dp-large-v13/umeng_socialize_post_share.xml #generated:2
+-keep class com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:21
+-keep class com.umeng.socialize.view.wigets.SearchBox { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:38
+-keep class com.umeng.socialize.view.wigets.SectionListView { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:47
+-keep class com.umeng.socialize.view.wigets.SlideBar { <init>(...); }
+
+# view res/layout/camera_fg_list.xml #generated:25
+# view res/layout/camera_subtitle.xml #generated:25
+-keep class com.viewpagerindicator.TabPageIndicator { <init>(...); }
+
+# view AndroidManifest.xml #generated:378
+-keep class gl.live.danceshow.ui.camera.CameraPreviewActivity { <init>(...); }
+
+# view res/layout/camera_activity.xml #generated:9
+-keep class gl.live.danceshow.ui.widget.AspectFrameLayout { <init>(...); }
+
+# view res/layout/camera_activity.xml #generated:273
+-keep class gl.live.danceshow.ui.widget.FixedLyricView { <init>(...); }
+
+# view res/layout/camera_activity.xml #generated:100
+# view res/layout/subtitle_controller.xml #generated:46
+# view res/layout/subtitle_controller.xml #generated:77
+-keep class gl.live.danceshow.ui.widget.VerticalSeekBar { <init>(...); }
+
+# view res/layout/videoview.xml #generated:7
+-keep class io.vov.vitamio.widget.VideoView { <init>(...); }
+
+# view AndroidManifest.xml #generated:104
+-keep class zhengxiao.videoman.lib.ui.camera.CameraPreviewActivity { <init>(...); }
+

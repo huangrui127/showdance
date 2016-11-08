@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/id_title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_bar" />
+
+    <TextView
+        android:id="@+id/id_prompt_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_title_bar_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:text="在下列输入框中，分别输入表演者名称及舞曲名，总字数限30字内。"
+        android:textColor="@color/gray"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/id_video_title_01_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_prompt_tv"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/id_name_of_performer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="表演者："
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/id_name_of_performer_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_name_of_performer_tv"
+            android:hint="举例：明月广场舞"
+            android:maxEms="30"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_video_title_02_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_video_title_01_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/id_dance_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="舞曲名："
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/id_dance_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_name_of_performer_tv"
+            android:hint="举例：潇洒人生"
+            android:maxEms="30"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/id_checkbox_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_video_title_02_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:checked="false"
+        android:text="参加梁海洋活动"
+        android:textColor="@color/gray"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/id_Continue_upload_btn"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_below="@id/id_checkbox_01"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_normal_selector"
+        android:text="继续上传"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/id_warning_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_Continue_upload_btn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:text="*温馨提示：根据国家相关法律规定，用户上传的视频需要经过审核才能够出现在视频分类，请您耐心等待。"
+        android:textColor="@color/red"
+        android:textSize="16sp" />
+
+</RelativeLayout>

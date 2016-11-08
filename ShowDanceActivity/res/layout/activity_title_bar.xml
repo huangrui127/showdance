@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/bg_top" >
+
+    <ImageButton
+        android:id="@+id/return_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/selector_bar_back"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/close_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/image_clear"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cancel_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:text="取消"
+        android:maxEms="5"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/blue_to_white_xml"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/id_drop_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/id_drop_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="定位"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/id_drop_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/id_drop_tv"
+            android:src="@drawable/btn_drop" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:maxEms="8"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="21sp" />
+
+    <com.android.app.showdance.custom.MarqueeTextView
+        android:id="@+id/id_marquee_tv"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxEms="8"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="21sp" />
+
+    <LinearLayout
+        android:id="@+id/group_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/downloadedMusicBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/radio_downloadedmusic_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="已下载舞曲"
+            android:textColor="@drawable/radio_text_selector"
+            android:textSize="15.0sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+        <Button
+            android:id="@+id/recordedVideoBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_recordedvideo_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="本地视频"
+            android:textColor="@drawable/radio_text_selector"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        style="@style/loading_small"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="17dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="7dp"
+        android:background="@null"
+        android:textColor="@drawable/radio_text_selector"
+        android:textSize="15.0sp"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/more_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/selector_bar_share"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button_phone_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_phone"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/membership_information_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:scaleType="centerInside"
+        android:text="电话咨询"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cancel_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:scaleType="centerInside"
+        android:text="取消订单"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/random_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:scaleType="centerInside"
+        android:text="换一批"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/save_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:text="确定"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/blue_to_white_xml"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

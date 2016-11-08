@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_row_gray"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <com.android.app.showdance.widget.CustomGridView
+        android:id="@+id/secondGridView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:layout_weight="1"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="1dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="1dp" >
+    </com.android.app.showdance.widget.CustomGridView>
+
+</LinearLayout>

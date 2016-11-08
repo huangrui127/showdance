@@ -1,0 +1,304 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cameraActivityRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <view
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/surfaceViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        class="gl.live.danceshow.ui.widget.AspectFrameLayout"
+        app:aspectHeight="9.0"
+        app:aspectWidth="16.0" >
+    </view>
+
+    <RelativeLayout
+        android:id="@+id/preview_controller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/record_cancel_seletor" />
+
+        <LinearLayout
+            android:id="@+id/torch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quit"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <ImageButton
+                android:id="@+id/torchbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/camera_torch_btn"
+                android:visibility="visible" />
+
+            <!-- android:text="切换镜头" -->
+
+            <TextView
+                android:id="@+id/torchbutton_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="加亮"
+                android:textColor="@color/TextColorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/setpreframe_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quit"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/torch"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/setPreFrame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/camera_preframe_btn"
+                android:visibility="visible" />
+
+            <!-- android:text="切换镜头" -->
+
+            <TextView
+                android:id="@+id/setPreFrame_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="设置片头"
+                android:textColor="@color/TextColorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/preview_scale_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/torch"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <gl.live.danceshow.ui.widget.VerticalSeekBar
+                android:id="@+id/preview_scale"
+                style="@style/Widget.SeekBar.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:focusable="true"
+                android:max="20"
+                android:progress="20"
+                android:thumbOffset="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="   拉瘦   "
+                android:textColor="@color/TextColorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/avator_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/preview_scale_layout"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/setAvator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/camera_avator_btn"
+                android:visibility="visible" />
+
+            <!-- android:text="切换镜头" -->
+
+            <TextView
+                android:id="@+id/avator_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="分身术"
+                android:textColor="@color/TextColorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/subtitle_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/preview_scale_layout"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/avator_layout"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/subtitle_controller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/camera_avator_btn"
+                android:visibility="visible" />
+
+            <!-- android:text="切换镜头" -->
+
+            <TextView
+                android:id="@+id/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="字幕字体"
+                android:textColor="@color/TextColorWhite" />
+        </LinearLayout>
+        <!--
+     <include
+        android:id="@+id/camera_fg"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_centerInParent="true"
+        layout="@layout/camera_fg_list"
+        android:visibility="gone" />
+        -->
+
+        <ImageView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/camera_timer_image_level_selector"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/focus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/camera_focus_level_selector"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/buttonSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/camera_settings_btn"
+            android:visibility="visible" />
+
+        <!-- android:text="切换镜头" -->
+
+        <TextView
+            android:id="@+id/buttonSettings_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="设置遮罩"
+            android:textColor="@color/TextColorWhite" />
+
+        <!-- android:text="开始拍摄" -->
+
+        <ImageButton
+            android:id="@+id/button_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/camera_recording_btn"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tips_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="拍摄"
+            android:textColor="@color/TextColorWhite"
+            android:visibility="visible" />
+        <!--
+              <Button
+                style="@style/btn_transparent"
+                android:id="@+id/buttonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:focusableInTouchMode="false"
+                android:text="重拍"
+                />
+        -->
+
+        <ImageButton
+            android:id="@+id/buttonCancelSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/camera_switch_selector"
+            android:visibility="visible" />
+
+        <!-- android:text="切换镜头" -->
+
+        <TextView
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="切换"
+            android:textColor="@color/TextColorWhite" />
+    </LinearLayout>
+
+    <gl.live.danceshow.ui.widget.FixedLyricView
+        android:id="@+id/audio_lrc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titleText"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@drawable/capture_rec_blink"
+        android:drawablePadding="8dp"
+        android:text="拍摄中..."
+        android:textColor="#aaa" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+        android:alpha="0.8" />
+
+</RelativeLayout>

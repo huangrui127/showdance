@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="5dip"
+        android:textColor="@color/activity_bg" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/locate_city_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dip"
+                    android:text="全国"
+                    android:textColor="@color/base_black"
+                    android:textSize="16dip" />
+
+                <TextView
+                    android:id="@+id/city_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="2dip"
+                    android:text="GPS定位"
+                    android:textColor="@color/color_gray"
+                    android:textSize="16dip"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dip"
+                android:textColor="@color/activity_bg" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="热门"
+                android:textColor="@color/color_gray" />
+
+            <LinearLayout
+                android:id="@+id/hot_city_slot_name_ll1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/hot_city_slot_name_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dip"
+                    android:text="武汉"
+                    android:textColor="@color/base_black"
+                    android:textSize="16dip" />
+            </LinearLayout>
+
+            <include layout="@layout/listview_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/hot_city_slot_name_ll2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/hot_city_slot_name_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dip"
+                    android:text="北京"
+                    android:textColor="@color/base_black"
+                    android:textSize="16dip" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dip"
+                android:textColor="@color/activity_bg" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/show_city_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="@null" >
+    </ListView>
+
+</LinearLayout>

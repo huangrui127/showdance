@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/head_imge"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_gravity="center_vertical"
+    android:layout_marginLeft="@dimen/childview_margin_left"
+    android:layout_marginTop="@dimen/item_margin" >
+
+     <com.android.app.showdance.widget.RoundImageView
+        android:id="@+id/iv_round_head"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="0.0dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/head_portrait" />
+
+</RelativeLayout>

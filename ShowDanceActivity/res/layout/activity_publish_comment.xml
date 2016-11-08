@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_title_bar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:padding="2dip" >
+
+        <TextView
+            android:id="@+id/video_name_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="类似爱情"
+            android:textColor="@color/color_gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/comment_content_et"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dip"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:gravity="top"
+        android:hint="说点什么吧..."
+        android:imeOptions="flagNoExtractUi"
+        android:maxLines="100"
+        android:padding="8dip"
+        android:textColor="#000000"
+        android:textSize="16sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:background="@drawable/addmood_split_line" />
+
+</LinearLayout>

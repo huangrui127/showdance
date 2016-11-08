@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/listview_divider_line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/found_a_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/picture_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <ImageView
+                    android:id="@+id/a_img"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:background="@drawable/found_a"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_toLeftOf="@+id/opeate_ll"
+                android:layout_toRightOf="@+id/picture_ll"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/music_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:paddingTop="5dip"
+                        android:text="小苹果"
+                        android:textColor="@color/red"
+                        android:textSize="15dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="  "
+                        android:textColor="@color/base_black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/music_singer_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="筷子兄弟"
+                        android:textColor="@color/base_black" />
+                    
+                    <TextView
+                        android:id="@+id/music_size_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:paddingTop="5dip"
+                        android:text="3.5M"
+                        android:textColor="@color/base_black" />
+                    
+                    <TextView
+                        android:id="@+id/download_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:paddingTop="5dip"
+                        android:text="下载量200"
+                        android:textColor="@color/base_black" 
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delete_ll"
+                android:layout_width="64dip"
+                android:layout_height="34dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/shape_rounded_pressed"
+                android:orientation="horizontal"
+                android:visibility="visible" >
+
+                <TextView
+                    android:id="@+id/downloaded_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="删除"
+                    android:textColor="@color/white"
+                    android:textSize="13dip" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

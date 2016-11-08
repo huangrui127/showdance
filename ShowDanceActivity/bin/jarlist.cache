@@ -1,0 +1,15 @@
+# cache for current jar dependency. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1469167888000 110747 e9b63380f3a242dbdbf103a2355ad7e43bad17cb D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline\libs\library-2.4.0.jar
+1477027676530 110747 e9b63380f3a242dbdbf103a2355ad7e43bad17cb D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline-base\libs\library-2.4.0.jar
+1473683574000 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\swipelistview\libs\android-support-v4.jar
+1475512777685 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline\libs\android-support-v4.jar
+1475512777685 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\frescolib\drawee\libs\android-support-v4.jar
+1475512777685 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline-base\libs\android-support-v4.jar
+1473683574000 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\library\libs\android-support-v4.jar
+1475512777685 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\ShowDanceActivity\libs\android-support-v4.jar
+1474813977959 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\RollViewPagerLibrary\libs\android-support-v4.jar
+1474813977959 1422188 1dc1f63cee098b27db60b9a2833fd7ca58f89636 D:\Android\ShowDance\test\showdance-master\XRefreshLibrary\libs\android-support-v4.jar
+1477027676526 38092 d85884acf6810a3bbbecb587f239005cbc846dc4 D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline-base\libs\bolts-tasks-1.4.0.jar
+1469167888000 38092 d85884acf6810a3bbbecb587f239005cbc846dc4 D:\Android\ShowDance\test\showdance-master\frescolib\imagepipeline\libs\bolts-tasks-1.4.0.jar

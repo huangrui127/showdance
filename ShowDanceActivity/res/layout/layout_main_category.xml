@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/id_btn_qg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:drawableTop="@drawable/selector_main_qg"
+        android:text="@string/menu_main_btn_qg"
+        android:textColor="@color/menu_main_top_font_color"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/id_btn_dr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:drawableTop="@drawable/selector_main_dr"
+        android:text="@string/menu_main_btn_dr"
+        android:textColor="@color/menu_main_top_font_color"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/id_btn_hw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:drawableTop="@drawable/selector_main_hw"
+        android:text="@string/menu_main_btn_hw"
+        android:textColor="@color/menu_main_top_font_color"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/id_btn_yz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:drawableTop="@drawable/selector_main_yz"
+        android:text="@string/menu_main_btn_yz"
+        android:textColor="@color/menu_main_top_font_color"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/id_btn_bs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:drawableTop="@drawable/selector_main_bs"
+        android:text="@string/menu_main_btn_bs"
+        android:textColor="@color/menu_main_top_font_color"
+        android:textSize="13sp" />
+
+</LinearLayout>

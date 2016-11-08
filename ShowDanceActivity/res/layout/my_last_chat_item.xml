@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/listview_divider_line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/found_a_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/picture_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageView
+                    android:id="@+id/a_img"
+                    android:layout_width="65dip"
+                    android:layout_height="65dip"
+                    android:background="@drawable/found_a"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/opeate_ll"
+                android:layout_toRightOf="@+id/picture_ll"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dip" >
+
+                    <TextView
+                        android:id="@+id/dance_man_tv"
+                        android:layout_width="80dip"
+                        android:layout_height="wrap_content"
+                        android:text="阿苏"
+                        android:textColor="@color/base_black" />
+
+                    <TextView
+                        android:id="@+id/time_tv"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dip"
+                        android:text="2014-12-12 12:10:30"
+                        android:textColor="@color/base_black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/topic_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:paddingTop="5dip"
+                        android:text="吃了么？"
+                        android:textColor="@color/base_black" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
