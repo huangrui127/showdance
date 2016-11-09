@@ -156,6 +156,7 @@ public abstract class AbsCameraPreviewActivity extends FragmentActivity implemen
         bResume = true;
         mMediaEngine.initSurfaceDrawnThread();
         mMediaEngine.setAvator(mAvator);
+        mMediaEngine.setFixedLyricView(mFixedLyricView);
         openCamera(false);
 //        mCameraView = mPreview.getCameraView();
         // Open the default i.e. the first rear facing camera.
@@ -393,7 +394,7 @@ public abstract class AbsCameraPreviewActivity extends FragmentActivity implemen
         	
         	mMediaEngine.initThreads();
 //        	mMediaEngine.setAvator(mAvator);
-        	mMediaEngine.setFixedLyricView(mFixedLyricView);
+        	
         	mMediaEngine.setPreviewTexture(mPreview.getCameraView());
 //        	mMediaEngine.setPreviewSize(mPreview.getPreviewSize());
 //            mPreview.setOnFrameUpdateListener(mMediaEngine);

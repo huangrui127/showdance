@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
 import android.view.Surface;
+import android.view.View;
 
 public class VideoSurfaceDrawEvent implements Runnable {
 	private Drawable fg;
@@ -28,6 +29,7 @@ public class VideoSurfaceDrawEvent implements Runnable {
 	protected  IPreviewTexture mIPreviewTexture;
 	private long mCurrentPTS;
 	private float textmarginbottom = 1.0f;
+	private Bitmap mTextDrawCache;
 	public VideoSurfaceDrawEvent(MediaEngine engine, Context context) {
 		mEngine = engine;
 		mContext = context;
@@ -60,6 +62,7 @@ public class VideoSurfaceDrawEvent implements Runnable {
 				mPaint.setAntiAlias(true);
 				mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 				mPaint.setTextSize(mLyricView.getTextSize() / (scaledDensity*textscalerate));
+				mPaint.setFakeBoldText(true);
 				textmarginbottom = mLyricView.getTextRatio();
 				Log.d(TAG,"textmarginbottom "+textmarginbottom);
 			}
@@ -81,10 +84,9 @@ public class VideoSurfaceDrawEvent implements Runnable {
 				}
 
 				// draw text
-				String text = mLyricView.getText().toString();
-				canvas.drawText(text,
-						canvas.getWidth() / 2 - mPaint.measureText(text) /2,
-						canvas.getHeight() - textmarginbottom*PreviewManager.EXPECTED_PREVIEW_H-20, mPaint);
+				if(mLyricView == null) return;
+				drawLyricViewDrawCache(canvas);
+				
 			
 		} finally {
 			mVideoSurface.unlockCanvasAndPost(canvas);
@@ -94,6 +96,30 @@ public class VideoSurfaceDrawEvent implements Runnable {
 		}
 	}
 
+	private void drawLyricViewDrawCache(Canvas canvas) {
+		String text = mLyricView.getText().toString();
+		canvas.drawText(text,
+				canvas.getWidth() / 2 - mPaint.measureText(text) /2,
+				canvas.getHeight() - textmarginbottom*PreviewManager.EXPECTED_PREVIEW_H-20, mPaint);
+		
+//		synchronized (mLyricView) {
+//			Bitmap b = mLyricView.getmCacheBitmap();
+//			
+//
+//			
+//			if (b != null) {
+//				float scale = PreviewManager.EXPECTED_PREVIEW_W * 120f*textscalerate
+//						/ b.getWidth();
+//				int w = (int) (b.getWidth() * scale / 100);
+//				int h = (int) (b.getHeight() * scale / 100);
+//				mTextDrawCache = Bitmap.createScaledBitmap(b, w, h, false);
+//			}
+//		}
+//		if(mTextDrawCache == null)
+//			return;
+//		canvas.drawBitmap(mTextDrawCache, canvas.getWidth() / 2 - mTextDrawCache.getWidth() /2, PreviewManager.EXPECTED_PREVIEW_H-mTextDrawCache.getHeight()-20, null);
+	}
+	
 	public void setCurrentPTS(long pts) {mCurrentPTS = pts;}
 	
 	protected void updateAvatorIfNeed() {
@@ -116,6 +142,8 @@ public class VideoSurfaceDrawEvent implements Runnable {
 
 	public void setLyricView(FixedLyricView view) {
 		mLyricView =view;
+//		mLyricView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+		
 	}
 
 	public void setIPreviewTexture(IPreviewTexture cameraView) {
