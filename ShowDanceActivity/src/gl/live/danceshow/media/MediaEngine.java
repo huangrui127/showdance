@@ -60,7 +60,7 @@ import android.view.TextureView;
 
 public class MediaEngine implements SurfaceTexture.OnFrameAvailableListener , OnFrameUpdateListener{
     private static final String TAG = "MediaEngine";
-    private static boolean bDEBUG = true;
+    private static boolean bDEBUG = false;
     
     private static final int AUDIO_BITRATE= 128000;//128kb/s
 	private static final int VIDEO_BITRATE = 5000000;
