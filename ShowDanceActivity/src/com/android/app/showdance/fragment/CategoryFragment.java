@@ -261,7 +261,7 @@ public class CategoryFragment extends Fragment {
 
     private void getVideoListMethod() {
         // openProgressDialog();
-        HotVideoListInfo.Request request = new HotVideoListInfo.Request(getRequestType(), "", "", PER_PAGE_NUMBER, 0);
+        HotVideoListInfo.Request request = new HotVideoListInfo.Request(getRequestType(), getRequestContent(), getRequestTheme(), PER_PAGE_NUMBER, 0);
         VolleyManager.getInstance().postRequest(request, VolleyManager.METHOD_HOT_VIDEO,
                 new OnResponseListener<HotVideoListInfo.Response>(HotVideoListInfo.Response.class) {
                     @Override
@@ -284,7 +284,27 @@ public class CategoryFragment extends Fragment {
         case 4: // 最新视频分类
             return 3;
         }
-        return 0;
+        return 0; // 其它分类默认传0
+    }
+    
+    private String getRequestContent(){
+        switch (mCategory.getType()) {
+        case 5:
+        case 6:
+            return "中国";
+        default:
+            return "";
+        }
+    }
+    
+    private String getRequestTheme(){
+        switch (mCategory.getType()) {
+        case 5: // 原创榜
+        case 6: // 萌娃榜
+            return mCategory.getName();
+        default:
+            return "";
+        }
     }
 
     /**

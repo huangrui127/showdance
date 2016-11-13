@@ -136,6 +136,9 @@ public class ShowDanceMainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         L.d(TAG, "onCreate");
+
+        // String serialNumber = android.os.Build.SERIAL;
+        // L.d(TAG, "获取的当前设备串号是："+serialNumber);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE); // 主界面不显示标题栏
         setContentView(R.layout.activity_main_showdance);
         startMainService();
@@ -313,7 +316,6 @@ public class ShowDanceMainActivity extends BaseActivity {
         startLocation();
         initMainTopBar();
         changeTitleBarTitleString(getString(R.string.menu_main));
-//        commitFragment(R.id.id_main_frame, MainFragment.newInstance());
         switchContent(mCurrentFragmentClass, MainFragment.class);
         mBottomBar.mainBtnClickableColorChange();
     }
@@ -322,7 +324,6 @@ public class ShowDanceMainActivity extends BaseActivity {
         L.i(TAG, "openShootContent");
         initShootTopBar();
         changeTitleBarTitleString(getString(R.string.menu_video_shoot));
-//        commitFragment(R.id.id_main_frame, ShootFragment.newInstance());
         switchContent(mCurrentFragmentClass, ShootFragment.class);
         mBottomBar.shootBtnClickableColorChange();
     }
@@ -333,7 +334,6 @@ public class ShowDanceMainActivity extends BaseActivity {
             L.d(TAG, "commitFragment(R.id.id_main_frame, MineFragment.newInstance())");
             initMineTopBar();
             changeTitleBarTitleString(getString(R.string.personal_center));
-//            commitFragment(R.id.id_main_frame, MineFragment.newInstance());
             switchContent(mCurrentFragmentClass, MineFragment.class);
             mBottomBar.mineBtnClickableColorChange();
         } else { // 用户未登录，需要首先进行注册或者登陆
@@ -359,8 +359,9 @@ public class ShowDanceMainActivity extends BaseActivity {
                 if (fromFragment.isAdded()) {
                     InitApplication.mSpUtil.setMainFragmentNeedRefresh(true); // 此时，由于Fragment是复用的，需要告诉Fragment此时需要进行数据刷新
                     mFragmentTransaction.show(fromFragment).commitAllowingStateLoss();
-                }else {
-                    mFragmentTransaction.add(R.id.id_main_frame, fromFragment, fromFragmentTag).commitAllowingStateLoss();
+                } else {
+                    mFragmentTransaction.add(R.id.id_main_frame, fromFragment, fromFragmentTag)
+                            .commitAllowingStateLoss();
                 }
             } else { // 非第一次打开应用，则肯定存在
                 if (toFragment == null) {
@@ -373,7 +374,7 @@ public class ShowDanceMainActivity extends BaseActivity {
                 }
                 mFragmentTransaction.commitAllowingStateLoss(); // 不保留状态提交事务
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -651,16 +652,16 @@ public class ShowDanceMainActivity extends BaseActivity {
         if (requestCode == REQUEST_OWNER_PHONE_REGISTER_ACTIVITY && resultCode == RESULT_OK) {
             openMineContent(); // 用户登录后，默认进入用户的视频中心
         }
-        
+
         switch (requestCode) {
-        case VIDEO_CAPTURE: 
+        case VIDEO_CAPTURE:
             startActivity(new Intent(this, RecordedVideoActivity.class));
             break;
         case REQUEST_EDIT:
             if (data != null && data.getData() != null)
                 handleRecordVideoResult(data.getData().getPath());
             break;
-        case REQUEST_RECORD: 
+        case REQUEST_RECORD:
             // if (data != null && data.getData() != null) {
             // showDialogToast();
             //
@@ -747,7 +748,7 @@ public class ShowDanceMainActivity extends BaseActivity {
 
         }
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();

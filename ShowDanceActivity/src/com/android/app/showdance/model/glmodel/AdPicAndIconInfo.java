@@ -119,6 +119,12 @@ public class AdPicAndIconInfo {
         private String name; // 分类图标名称
         private int type; // 分类图标类型
 
+        public Category(String name, int type) {
+            super();
+            this.name = name;
+            this.type = type;
+        }
+
         public String getName() {
             return name;
         }

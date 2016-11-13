@@ -53,6 +53,7 @@ import de.greenrobot.event.EventBus;
 
 /**
  * 功能：“我的”的Fragment
+ * 
  * @author djd
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
@@ -68,7 +69,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private UploadedVideoAdapter mAdapter;
     // private String show_dance_id;
     private Button logout_btn;
-    private User userInfo;
+    private User mUserInfo;
     private String mLocationName; // 自动定位的位置信息
     private String mUserChooseLocationName; // 用户选择的位置信息
 
@@ -103,9 +104,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         EventBus.getDefault().register(this);
         if (refeshState == 2) {
             // 获取配置中的手机号
-            userInfo = InitApplication.mSpUtil.getUser();
-            if (userInfo == null) {
-                userInfo = new User();
+            mUserInfo = InitApplication.mSpUtil.getUser();
+            if (mUserInfo == null) {
+                mUserInfo = new User();
             }
         }
         mLocationName = InitApplication.mSpUtil.getProvinceName() + " " + InitApplication.mSpUtil.getCityName();
@@ -128,7 +129,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     public void onEventMainThread(SharedEvent event) {
         L.i(TAG, "get SharedEvent");
-        if (userInfo == null) {
+        if (mUserInfo == null) {
             Toast.makeText(InitApplication.getRealContext(), "请先登录后分享视频!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -142,7 +143,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     public void onEventMainThread(UploadDeleteEvent event) {
         L.i(TAG, "get UploadDeleteEvent");
-        if (userInfo == null) {
+        if (mUserInfo == null) {
             Toast.makeText(InitApplication.getRealContext(), "请先登录后删除视频!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -213,7 +214,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         findViewById(view);
         initView();
-        MobclickAgent.onProfileSignIn(userInfo.getPhone());
+        MobclickAgent.onProfileSignIn(mUserInfo.getPhone());
         setOnClickListener();
         return view;
     }
@@ -371,14 +372,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     protected void initView() {
 
         // 获取配置中的手机号
-        userInfo = InitApplication.mSpUtil.getUser();
+        mUserInfo = InitApplication.mSpUtil.getUser();
 
-        if (userInfo == null) {
+        if (mUserInfo == null) {
             // finish();
             Toast.makeText(InitApplication.getRealContext(), "请登录!", Toast.LENGTH_SHORT).show();
             return;
         }
-        String stage_name = userInfo.getPhone();
+        String stage_name = mUserInfo.getPhone();
         // show_dance_id = userInfo.getId();
         if (!TextUtils.isEmpty(stage_name)) {
             stage_name_tv.setText(stage_name);
@@ -446,48 +447,43 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      */
     private void addShareCount() {
         L.d(TAG, "addShareCount()");
-        AddShareOrPlayCountInfo.Request request = null;
-        if (mVideoUploadResponse != null) {
-            request = new AddShareOrPlayCountInfo.Request(mVideoUploadResponse.getid());
-
-            // if (mHotVideo != null) {
-            // request = new AddShareCountInfo.Request(mHotVideo.getId());
-            // } else if (mVideoUploadResponse != null) {
-            // request = new
-            // AddShareCountInfo.Request(mVideoUploadResponse.getid());
-            // }
-
-            VolleyManager.getInstance().postRequest(request, VolleyManager.METHOD_ADD_SHARE_COUNT,
-                    new OnResponseListener<AddShareOrPlayCountInfo.Response>(AddShareOrPlayCountInfo.Response.class) {
-
-                        @Override
-                        protected void handleResponse(
-                                com.android.app.showdance.model.glmodel.AddShareOrPlayCountInfo.Response response) {
-                            if (response != null) {
-                                if (response.isFlag()) {
-                                    L.d(TAG, "视频分享【成功】！");
-                                    Toast.makeText(InitApplication.getRealContext(), "视频分享【成功】！", Toast.LENGTH_SHORT)
-                                            .show();
-                                } else {
-                                    L.e(TAG, "视频分享【失败】！");
-                                    Toast.makeText(InitApplication.getRealContext(), "视频分享【失败】！", Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-                                // int shareCount =
-                                // response.getVideo().getShare_count();
-                                // if (mHotVideo != null) {
-                                // mHotVideo.setShare_count(shareCount);
-                                // } else if (mVideoUploadResponse != null) {
-                                // mVideoUploadResponse.setshare_count(shareCount);
-                                // }
-                                // mShareCountTV.setText(shareCount + "");
-                            } else {
-                                L.e(TAG, "AddShareCountInfo.Response error!");
-                            }
-                        }
-                    }, mErrorListener);
+        if (mUserInfo != null) {
+            int user_id = mUserInfo.getId();
+            String phoneNum = mUserInfo.getPhone();
+            if (user_id != 0 && !"".equals(phoneNum)) { // 只有登录后的用户才可以增加播放与分享次数
+                AddShareOrPlayCountInfo.Request request = null;
+                if (mVideoUploadResponse != null) {
+                    request = new AddShareOrPlayCountInfo.Request(mVideoUploadResponse.getid(), 0, user_id, phoneNum);
+                    VolleyManager.getInstance().postRequest(request, VolleyManager.METHOD_ADD_SHARE_COUNT,
+                            addShareOrPlayCountListener, mErrorListener);
+                }
+            } else {
+                L.e(TAG, "已登录用户的id为：" + user_id + "----手机号为：" + phoneNum);
+            }
+        } else {
+            L.e(TAG, "用户未登录，不计算播放、分享次数！");
         }
     }
+
+    private OnResponseListener<AddShareOrPlayCountInfo.Response> addShareOrPlayCountListener = new OnResponseListener<AddShareOrPlayCountInfo.Response>(
+            AddShareOrPlayCountInfo.Response.class) {
+
+        @Override
+        protected void handleResponse(
+                com.android.app.showdance.model.glmodel.AddShareOrPlayCountInfo.Response response) {
+            if (response != null) {
+                if (response.isFlag()) {
+                    L.d(TAG, "视频分享【成功】！");
+                    Toast.makeText(InitApplication.getRealContext(), "视频分享【成功】！", Toast.LENGTH_SHORT).show();
+                } else {
+                    L.e(TAG, "视频分享【失败】！");
+                    Toast.makeText(InitApplication.getRealContext(), "视频分享【失败】！", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                L.e(TAG, "AddShareCountInfo.Response error!");
+            }
+        }
+    };
 
     private void configPlatforms(SharedEvent event) {
         // UMImage image = new UMImage(OwnerActivity.this,
@@ -598,8 +594,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(ConstantsUtil.VIDEO_UPLOAD_RESPONSE, videoUploadResponse);
                     intent.putExtras(bundle);
-                    L.i(TAG, "视频【" + videoUploadResponse.getvideoname() + "】的播放次数是："
-                            + videoUploadResponse.getcount() + "次");
+                    L.i(TAG, "视频【" + videoUploadResponse.getvideoname() + "】的播放次数是：" + videoUploadResponse.getcount()
+                            + "次");
                     L.i(TAG, "视频【" + videoUploadResponse.getvideoname() + "】的分享次数是："
                             + videoUploadResponse.getshare_count() + "次");
                     intent.setClass(getActivity(), PlayVideoActivity.class);
@@ -683,8 +679,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 getMyVedio();
                 InitApplication.mSpUtil.setMineFragmentNeedRefresh(false);
             }
-            userInfo = InitApplication.mSpUtil.getUser();
-            if (userInfo != null && logout_btn.getVisibility() == View.GONE) {
+            mUserInfo = InitApplication.mSpUtil.getUser();
+            if (mUserInfo != null && logout_btn.getVisibility() == View.GONE) {
                 logout_btn.setVisibility(View.VISIBLE);
             }
         }

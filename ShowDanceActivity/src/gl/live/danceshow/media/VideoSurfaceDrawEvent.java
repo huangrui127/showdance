@@ -1,5 +1,6 @@
 package gl.live.danceshow.media;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.view.Surface;
 import gl.live.danceshow.ui.widget.FixedLyricView;
 import gl.live.danceshow.ui.widget.IPreviewTexture;
 
+@SuppressLint("NewApi")
 public class VideoSurfaceDrawEvent implements Runnable {
 	private Drawable fg;
 	private static final String TAG = "videodraw";

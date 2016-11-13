@@ -36,6 +36,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -44,8 +45,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,16 +66,13 @@ import android.widget.Toast;
 public class MainFragment extends Fragment {
 
     private static final String TAG = "MainFragment";
-    // private static final int PER_PAGE_NUMBER = 99; // 每次请求从服务器获取的视频数量
+    private static final List<String> mCategoryTypes = new ArrayList<String>(); // 存储当前可用的分类
 
-    private FragmentManager mFragmentManager;
     private XRefreshView mXRefreshView; // 下拉、上拉刷新布局控件
     private GridViewWithHeaderAndFooter mVideoListGridView; // 视频列表布局
     private List<HotVideo> mHotVideoList; // 通过JSON获取的视频信息集
     private List<DanceVideoBean> mDanceVideoBeanList; // 做显示数据用的数据集
     private DanceVideoMainAdapter mDanceVideoMainAdapter; // “首页”视频列表adapter
-
-    // private CustomDialogFragment mCustomDialogFragment;
 
     private Dialog mDialog;
 
@@ -102,6 +98,13 @@ public class MainFragment extends Fragment {
     private HotVideo mGjVideoBean;
 
     private HttpUtils mHttpUtils;
+
+    private void initCategoryTypes() {
+        mCategoryTypes.add("全国榜");
+        mCategoryTypes.add("原创榜");
+        mCategoryTypes.add("萌娃榜");
+        mCategoryTypes.add("最新视频");
+    }
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -135,7 +138,7 @@ public class MainFragment extends Fragment {
                 .inflate(R.layout.layout_rollpagerview, null);
         mRollPagerView = (RollPagerView) mRollPagerViewLayout.findViewById(R.id.id_rollpagerview);
         mRollPagerView.setDrawingCacheEnabled(false);
-        
+
         mVideoListGridView = (GridViewWithHeaderAndFooter) view.findViewById(R.id.id_main_gridview_video_list);
 
         mCategoryGridViewLayout = (RelativeLayout) LayoutInflater.from(getActivity())
@@ -171,13 +174,13 @@ public class MainFragment extends Fragment {
     }
 
     private void init() {
-        mFragmentManager = getActivity().getSupportFragmentManager();
 
         mXRefreshView.setPullRefreshEnable(true);
         mXRefreshView.setXRefreshViewListener(getXRefreshViewListener());
         mXRefreshView.setPullLoadEnable(false); // 暂时禁用上拉加载更多
         mXRefreshView.setMoveFootWhenDisablePullLoadMore(false); // 禁止页面被向上拉动
 
+        initCategoryTypes();
         initCategoryGridView();
         initLoopAdImage();
         initVideoListGridView();
@@ -273,11 +276,26 @@ public class MainFragment extends Fragment {
 
     private void updateCategoryUI(List<Category> categories) {
         L.i(TAG, "updateCategoryUI");
-        if (categories != null && categories.size() > 0) {
-            mCategoryMainAdapter.setCategoryList(categories);
-            mCategoryGridView.setNumColumns(categories.size());
+        mCategories = filterCategories(categories);
+        if (mCategories != null && mCategories.size() > 0) {
+            mCategoryMainAdapter.setCategoryList(mCategories);
+            mCategoryGridView.setNumColumns(mCategories.size());
             mCategoryMainAdapter.notifyDataSetChanged();
         }
+    }
+
+    /**
+     * 功能：过滤获取的Category为当前已设定可用的分类
+     */
+    private List<Category> filterCategories(List<Category> categories) {
+        L.i(TAG, "filterCategories()");
+        List<Category> tempCategories = new ArrayList<AdPicAndIconInfo.Category>();
+        for (int i = 0; i < categories.size(); i++) {
+            if (mCategoryTypes.contains(categories.get(i).getName())) {
+                tempCategories.add(categories.get(i));
+            }
+        }
+        return tempCategories;
     }
 
     /**
@@ -408,13 +426,13 @@ public class MainFragment extends Fragment {
     /**
      * 功能：清除顶部轮播图片缓存（必须清除，否则服务器端更改图片后，无法显示新的图片）
      */
-    private void clearViewPagerCache(){
+    private void clearViewPagerCache() {
         if (mRollPagerView != null) {
             L.d(TAG, "clearViewPagerCache()");
             mRollPagerView.destroyDrawingCache();
         }
     }
-    
+
     /**
      * 功能：获取“首页”顶部的广告轮播图片及分类导航信息
      */
@@ -457,6 +475,10 @@ public class MainFragment extends Fragment {
                     L.d(TAG, "topPic size is " + mAds.size() + "; icon size is " + mCategories.size());
                     clearViewPagerCache();
                     updateTopExtraUI(mAds);
+                    // 测试增加原创榜和萌娃榜
+                    // mCategories.add(new Category("原创榜", 5));
+                    // mCategories.add(new Category("萌娃榜", 6));
+
                     updateCategoryUI(mCategories);
                 }
             } catch (Exception e) {
@@ -590,26 +612,12 @@ public class MainFragment extends Fragment {
         dismissDialog();
     }
 
-    @SuppressWarnings("unused")
-    private void commitFragment(int containerViewId, Fragment fragment) {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.push_left_in, R.anim.push_left_out, R.anim.push_right_in,
-                R.anim.push_right_out);
-        fragmentTransaction.replace(containerViewId, fragment);
-        // fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        // mFragmentManager.beginTransaction().replace(containerViewId,
-        // fragment).commit();
-    }
-
     private void openCategoryActivity(Category category) {
         Intent intent = new Intent(getActivity(), MainCategoryActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ConstantsUtil.CATEGORY, category);
         intent.putExtras(bundle);
         startActivity(intent);
-        // getActivity().overridePendingTransition(R.anim.push_left_in,
-        // R.anim.push_left_out);
     }
 
     private void dismissDialog() {

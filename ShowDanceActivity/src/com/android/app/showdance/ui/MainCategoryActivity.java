@@ -39,8 +39,6 @@ public class MainCategoryActivity extends BaseActivity {
         initView();
         setOnClickListener();
         changeTitleBarTitleString(getTitleString());
-        // commitFragment(R.id.id_main_category_frame,
-        // CategoryFragment.newInstance());
         openFragment(mCategory.getType()); // 根据传入的分类不同，打开不同的分类Fragment
     }
 
@@ -50,14 +48,16 @@ public class MainCategoryActivity extends BaseActivity {
 
     private void openFragment(int type) {
         switch (type) {
-        case 0:
-        case 1:
-        case 2:
-            L.d(TAG,"打开全国、省、市分类");
+        case 0: // 全国
+        case 1: // 省
+        case 2: // 市
+        case 5: // 原创榜
+        case 6: // 萌娃榜
+            L.d(TAG,"打开全国、省、市、原创榜、萌娃榜分类");
             commitFragment(R.id.id_main_category_frame, CategoryFragment.newInstance()); // 打开全国、省市分类
             break;
         case 3:
-        case 4:
+        case 4: // 最新视频
             L.d(TAG,"打开最新视频、待审核视频分类");
             commitFragment(R.id.id_main_category_frame, NewVideoFragment.newInstance()); // 打开最新视频、待审核视频分类
             break;

@@ -5,14 +5,15 @@ public class AddShareOrPlayCountInfo {
     public static class Request {
         private int video_id;
         private int type; // type为1，表示需要增加播放次数；type为0，表示需要增加分享次数。
+        private int user_id; // 当前登录的用户id
+        private String phone; // 当前登录的用户手机号
         
-        public Request(int videoId,int type){
-            this.video_id = videoId;
+        public Request(int video_id, int type, int user_id, String phone) {
+            super();
+            this.video_id = video_id;
             this.type = type;
-        }
-        
-        public Request(int videoId) {
-            video_id = videoId;
+            this.user_id = user_id;
+            this.phone = phone;
         }
 
         public int getVideo_id() {
@@ -31,6 +32,22 @@ public class AddShareOrPlayCountInfo {
             this.type = type;
         }
 
+        public int getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+        
     }
 
     public static class Response {

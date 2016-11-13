@@ -6,6 +6,7 @@ import java.util.List;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.android.app.showdance.custom.MarqueeTextView;
+import com.android.app.showdance.custom.RandomTextView;
 import com.android.app.showdance.logic.UploadViedoService;
 import com.android.app.showdance.logic.VolleyManager;
 import com.android.app.showdance.logic.event.UploadEvent;
@@ -112,8 +113,8 @@ public class PlayVideoActivity extends Activity {
     private RelativeLayout mTitleLayout; // 顶部标题栏
     private FrameLayout mVideoLayout; // VideoView父布局
     private RelativeLayout mContentLayout; // 视频底部内容部分
-    private TextView mPlayCountTV; // 播放次数view
-    private TextView mShareCountTV; // 分享次数view
+    private RandomTextView mPlayCountTV; // 播放次数view
+    private RandomTextView mShareCountTV; // 分享次数view
     private Button mShareBtn; // 分享按钮
 
     private RelativeLayout mBackAndUploadLayout; // 视频界面顶部返回及上传按钮
@@ -263,6 +264,12 @@ public class PlayVideoActivity extends Activity {
             mPlayCountTV.setText(mVideoUploadResponse.getcount() + "");
             mShareCountTV.setText(mVideoUploadResponse.getshare_count() + "");
         }
+        // 设置数字滚动模式
+        mPlayCountTV.setPianyilian(RandomTextView.FIRSTF_FIRST);
+        mShareCountTV.setPianyilian(RandomTextView.FIRSTF_LAST);
+        // 数字开始滚动
+        mPlayCountTV.start();
+        mShareCountTV.start();
     }
 
     private void initTitleTv(String title) {
@@ -405,8 +412,8 @@ public class PlayVideoActivity extends Activity {
         return_imgbtn = (ImageButton) findViewById(R.id.return_imgbtn);
         mTitleLayout = (RelativeLayout) findViewById(R.id.id_title_bar_layout);
         mContentLayout = (RelativeLayout) findViewById(R.id.id_content_layout);
-        mPlayCountTV = (TextView) findViewById(R.id.id_playcount_tv);
-        mShareCountTV = (TextView) findViewById(R.id.id_sharecount_tv);
+        mPlayCountTV = (RandomTextView) findViewById(R.id.id_playcount_tv);
+        mShareCountTV = (RandomTextView) findViewById(R.id.id_sharecount_tv);
         mShareBtn = (Button) findViewById(R.id.id_share_btn);
         mShareBtn.setOnClickListener(ShareBtnClickListener);
 
@@ -766,7 +773,7 @@ public class PlayVideoActivity extends Activity {
         // 设置分享展示的缩略图
         if (mHotVideo != null) {
             video.setThumb(mHotVideo.getImg());
-        }else if (mVideoUploadResponse != null){
+        } else if (mVideoUploadResponse != null) {
             video.setThumb(mVideoUploadResponse.getimg());
         }
         new ShareAction(this)
@@ -805,48 +812,58 @@ public class PlayVideoActivity extends Activity {
 
     /**
      * 功能：增加被分享视频的分享次数或者增加视频的播放次数
-     * 
-     * @param requestType
-     *            为1表示增加播放次数，为0表示增加分享次数
+     * @param requestType 为1表示增加播放次数，为0表示增加分享次数
      */
     private void addShareOrPlayCount(final int requestType) {
         L.d(TAG, "addShareCount()");
-        AddShareOrPlayCountInfo.Request request = null;
-        if (mHotVideo != null) {
-            request = new AddShareOrPlayCountInfo.Request(mHotVideo.getId(), requestType);
-        } else if (mVideoUploadResponse != null) {
-            request = new AddShareOrPlayCountInfo.Request(mVideoUploadResponse.getid(), requestType);
-        }
+        if (mUserInfo != null) {
+            int user_id = mUserInfo.getId();
+            String phoneNum = mUserInfo.getPhone();
+            if (user_id != 0 && !"".equals(phoneNum)) { // 只有登录后的用户才可以增加播放与分享次数
+                AddShareOrPlayCountInfo.Request request = null;
+                if (mHotVideo != null) {
+                    request = new AddShareOrPlayCountInfo.Request(mHotVideo.getId(), requestType, user_id, phoneNum);
+                } else if (mVideoUploadResponse != null) {
+                    request = new AddShareOrPlayCountInfo.Request(mVideoUploadResponse.getid(), requestType, user_id,
+                            phoneNum);
+                }
 
-        VolleyManager.getInstance().postRequest(request, VolleyManager.METHOD_ADD_SHARE_COUNT,
-                new OnResponseListener<AddShareOrPlayCountInfo.Response>(AddShareOrPlayCountInfo.Response.class) {
+                VolleyManager.getInstance().postRequest(request, VolleyManager.METHOD_ADD_SHARE_COUNT,
+                        new OnResponseListener<AddShareOrPlayCountInfo.Response>(
+                                AddShareOrPlayCountInfo.Response.class) {
 
-                    @Override
-                    protected void handleResponse(
-                            com.android.app.showdance.model.glmodel.AddShareOrPlayCountInfo.Response response) {
-                        if (response != null) {
-                            if (requestType == 0) {
-                                if (response.isFlag()) {
-                                    L.d(TAG, "视频分享【成功】！");
-                                    Toast.makeText(InitApplication.getRealContext(), "视频分享【成功】！", Toast.LENGTH_SHORT)
-                                            .show();
+                            @Override
+                            protected void handleResponse(
+                                    com.android.app.showdance.model.glmodel.AddShareOrPlayCountInfo.Response response) {
+                                if (response != null) {
+                                    if (requestType == 0) {
+                                        if (response.isFlag()) {
+                                            L.d(TAG, "视频分享【成功】！");
+                                            Toast.makeText(InitApplication.getRealContext(), "视频分享【成功】！",
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            L.e(TAG, "视频分享【失败】！");
+                                            Toast.makeText(InitApplication.getRealContext(), "视频分享【失败】！",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        if (response.isFlag()) {
+                                            L.d(TAG, "增加视频播放次数成功！");
+                                        } else {
+                                            L.e(TAG, "增加视频播放次数失败！");
+                                        }
+                                    }
                                 } else {
-                                    L.e(TAG, "视频分享【失败】！");
-                                    Toast.makeText(InitApplication.getRealContext(), "视频分享【失败】！", Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-                            } else {
-                                if (response.isFlag()) {
-                                    L.d(TAG, "增加视频播放次数成功！");
-                                } else {
-                                    L.e(TAG, "增加视频播放次数失败！");
+                                    L.e(TAG, "AddShareOrPlayCountInfo.Response error!");
                                 }
                             }
-                        } else {
-                            L.e(TAG, "AddShareOrPlayCountInfo.Response error!");
-                        }
-                    }
-                }, mErrorListener);
+                        }, mErrorListener);
+            } else {
+                L.e(TAG, "已登录用户的id为：" + user_id + "----手机号为：" + phoneNum);
+            }
+        } else {
+            L.e(TAG, "用户未登录，不计算播放、分享次数！");
+        }
     }
 
     public abstract class OnResponseListener<T> extends VolleyManager.ResponeListener<T> {

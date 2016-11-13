@@ -91,6 +91,10 @@ public class CategoryMainAdapter extends BaseAdapter {
             return R.drawable.selector_main_yz;
         case 4: // 最新视频图标（原比赛图标）
             return R.drawable.selector_main_bs;
+        case 5: // 原创榜图标
+            return R.drawable.selector_main_yc;
+        case 6: // 萌娃榜图标
+            return R.drawable.selector_main_mw;
         default:
             return R.drawable.selector_main_dr;
         }
