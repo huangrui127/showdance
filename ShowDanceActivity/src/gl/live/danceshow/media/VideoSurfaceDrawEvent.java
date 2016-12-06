@@ -58,7 +58,6 @@ public class VideoSurfaceDrawEvent implements Runnable {
 			if (mPaint == null) {
 				mPaint = new Paint(mLyricView.getPaint());
 				mPaint.setAntiAlias(true);
-                mPaint.setFakeBoldText(true);
 				mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 				mPaint.setTextSize(mLyricView.getTextSize() / (scaledDensity*textscalerate));
 				textmarginbottom = mLyricView.getTextRatio();
